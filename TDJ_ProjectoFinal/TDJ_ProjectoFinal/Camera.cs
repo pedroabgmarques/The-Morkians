@@ -23,7 +23,7 @@ namespace TDJ_ProjectoFinal
         {
             if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
             {
-                target.X += 0.09f; // velocidade aumentada para teste
+                target.X += 0.005f; 
             }
         }
 
