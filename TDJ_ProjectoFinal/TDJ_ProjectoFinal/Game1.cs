@@ -40,8 +40,8 @@ namespace TDJ_ProjectoFinal
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
-            scene.AddSprite(new Sprite(Content, "universe").Scl(Camera.worldWidth).
-                At(new Vector2(0f, 5000 * Camera.worldWidth / 600)));
+            scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / 600).
+                At(new Vector2(0f, 0f)));
             
         }
 
