@@ -19,6 +19,11 @@ namespace TDJ_ProjectoFinal
             Camera.gDevManager = gdm;
         }
 
+        public static void CameraUpdate()
+        {
+            target.X+=0.001f;
+        }
+
         public static void SetWorldWidth(float w)
         {
             Camera.worldWidth = w;
