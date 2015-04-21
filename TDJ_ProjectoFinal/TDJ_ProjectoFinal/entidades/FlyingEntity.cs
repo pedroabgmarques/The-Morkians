@@ -8,13 +8,14 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
+    
     /// <summary>
     /// Representa qualquer coisa que voe no jogo
     /// </summary>
     public class FlyingEntity : Sprite
     {
         protected Sprite sprite;
-
+        protected float speed;
         public FlyingEntity(ContentManager contents, string assetName) 
             : base(contents, assetName)
         {
