@@ -23,7 +23,6 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
-            base.position.X += Camera.speed / 2;
             base.Update(gameTime);
         }
 

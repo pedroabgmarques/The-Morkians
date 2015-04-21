@@ -14,7 +14,6 @@ namespace TDJ_ProjectoFinal
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
-        FlyingEntity player;
 
         public Game1()
             : base()
@@ -48,7 +47,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
             
             //Nave do jogador
-            scene.AddSprite(new FlyingEntity(Content, "nave").Scl(0.5f));
+            scene.AddSprite(new Player(Content, "nave").Scl(0.5f));
          
         }
 
