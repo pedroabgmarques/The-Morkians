@@ -48,6 +48,24 @@ namespace TDJ_ProjectoFinal
             
             //Nave do jogador
             scene.AddSprite(new Player(Content, "nave").Scl(0.5f));
+
+            //Alguns inimigos
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, 0f)));
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, 1f)));
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, -1f)));
+
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, 0f)));
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, 1f)));
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, -1f)));
+
+            scene.AddSprite(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
+                At(new Vector2(Camera.worldWidth, 0f)));
          
         }
 
