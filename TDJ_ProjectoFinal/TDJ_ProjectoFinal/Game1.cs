@@ -66,6 +66,10 @@ namespace TDJ_ProjectoFinal
 
             scene.AddSprite(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
                 At(new Vector2(Camera.worldWidth, 0f)));
+
+            //Missil
+            scene.AddSprite(new Missil(Content, "missil", TipoMissil.EmFrente, -1).Scl(0.2f).
+                At(new Vector2(Camera.worldWidth, 0f)));
          
         }
 

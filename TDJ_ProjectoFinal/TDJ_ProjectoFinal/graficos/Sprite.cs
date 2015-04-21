@@ -22,7 +22,11 @@ namespace TDJ_ProjectoFinal.graficos
         protected Rectangle? source = null;
         protected Color[] pixels;
         protected ContentManager cManager;
+<<<<<<< HEAD
         
+=======
+        public SpriteEffects spriteEffects;
+>>>>>>> 500ef3becc2a7878f9e9bf252977efc831f1d0ea
         public Sprite(ContentManager contents, String assetName)
         {
             this.cManager = contents;
@@ -32,6 +36,7 @@ namespace TDJ_ProjectoFinal.graficos
             this.image = contents.Load<Texture2D>(assetName);
             this.pixelsize = new Vector2(image.Width, image.Height);
             this.size = new Vector2(1f, (float)image.Height / (float)image.Width);
+            this.spriteEffects = SpriteEffects.None;
         }
 
         // Se houver colisao, collisionPoint é o ponto de colisão
@@ -146,7 +151,7 @@ namespace TDJ_ProjectoFinal.graficos
             // scene.SpriteBatch.Draw(this.image, pos, Color.White);
             scene.SpriteBatch.Draw(this.image, pos, source, Color.White,
                 this.rotation, new Vector2(pixelsize.X / 2, pixelsize.Y / 2),
-                SpriteEffects.None, 0);
+                spriteEffects, 0);
         }
 
         public virtual void SetRotation(float r)
