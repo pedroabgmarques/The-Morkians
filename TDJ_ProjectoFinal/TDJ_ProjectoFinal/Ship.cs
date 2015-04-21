@@ -12,8 +12,19 @@ namespace TDJ_ProjectoFinal
     {
         private Sprite ship;
         private float velocity;
-        private Vector2 position;
+        private Vector2 position  {  set; get; }
 
         
+
+        public Ship(ContentManager contents, float velocity,Vector2 position) 
+        {
+            this.ship = new Sprite(contents, "nave");
+            this.velocity = velocity;
+            this.position = position;
+        }
+
+        
+
+ 
     }
 }

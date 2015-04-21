@@ -13,6 +13,7 @@ namespace TDJ_ProjectoFinal
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
+        Ship player;
 
         public Game1()
             : base()
@@ -42,6 +43,7 @@ namespace TDJ_ProjectoFinal
             scene = new Scene(spriteBatch);
             scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / 600).
                 At(new Vector2(Camera.worldWidth, 0f)));
+            
          
         }
 
