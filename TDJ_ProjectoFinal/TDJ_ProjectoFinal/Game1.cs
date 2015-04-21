@@ -62,7 +62,7 @@ namespace TDJ_ProjectoFinal
 
             scene.Update(gameTime);
 
-            Camera.CameraUpdate();
+            Camera.Update();
             
             base.Update(gameTime);
         }

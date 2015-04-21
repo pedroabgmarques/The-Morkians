@@ -19,7 +19,16 @@ namespace TDJ_ProjectoFinal
             Camera.gDevManager = gdm;
         }
 
-        public static void CameraUpdate()
+        /// <summary>
+        /// Devolve a posição atual da camara
+        /// </summary>
+        /// <returns>Vector2</returns>
+        public static Vector2 GetTarget()
+        {
+            return Camera.target;
+        }
+
+        public static void Update()
         {
             if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
             {
