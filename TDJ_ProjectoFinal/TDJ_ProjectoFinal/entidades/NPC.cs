@@ -24,7 +24,8 @@ namespace TDJ_ProjectoFinal.entidades
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave) 
             : base(contents, assetName)
         {
-                this.tipoNave = tipoNave;
+            base.spriteEffects = SpriteEffects.FlipHorizontally;
+            this.tipoNave = tipoNave;
         }
 
         public override void Update(GameTime gameTime)
@@ -47,17 +48,6 @@ namespace TDJ_ProjectoFinal.entidades
             }
 
             base.Update(gameTime);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            //Os NPC's têm um Draw próprio para desenhar a nave rodada horizontalmente
-
-            Rectangle pos = Camera.WorldSize2PixelRectangle(this.position, this.size);
-            // scene.SpriteBatch.Draw(this.image, pos, Color.White);
-            scene.SpriteBatch.Draw(this.image, pos, source, Color.White,
-                this.rotation, new Vector2(pixelsize.X / 2, pixelsize.Y / 2),
-                SpriteEffects.FlipHorizontally, 0);
         }
 
     }
