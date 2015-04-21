@@ -22,7 +22,7 @@ namespace TDJ_ProjectoFinal.graficos
         protected Rectangle? source = null;
         protected Color[] pixels;
         protected ContentManager cManager;
-        protected SpriteEffects spriteEffects;
+        public SpriteEffects spriteEffects;
         public Sprite(ContentManager contents, String assetName)
         {
             this.cManager = contents;
