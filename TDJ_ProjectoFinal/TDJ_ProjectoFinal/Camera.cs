@@ -21,7 +21,10 @@ namespace TDJ_ProjectoFinal
 
         public static void CameraUpdate()
         {
-            target.X+=0.001f;
+            if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
+            {
+                target.X += 0.09f; // velocidade aumentada para teste
+            }
         }
 
         public static void SetWorldWidth(float w)
