@@ -13,10 +13,12 @@ namespace TDJ_ProjectoFinal
         public static float ratio { private set; get; }
         private static Vector2 target;
         private static int lastSeenPixelWidth = 0;
+        public static float speed { get; set; }
 
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
             Camera.gDevManager = gdm;
+            Camera.speed = 0.005f;
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace TDJ_ProjectoFinal
         {
             if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
             {
-                target.X += 0.005f; 
+                target.X += Camera.speed; 
             }
         }
 

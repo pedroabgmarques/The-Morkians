@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
@@ -13,7 +14,7 @@ namespace TDJ_ProjectoFinal
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
-        Ship player;
+        FlyingEntity player;
 
         public Game1()
             : base()
@@ -41,9 +42,13 @@ namespace TDJ_ProjectoFinal
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
-            scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / 600).
+
+            //Fundo do universo (imóvel)
+            scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             
+            //Nave do jogador
+            scene.AddSprite(new FlyingEntity(Content, "nave").Scl(0.5f));
          
         }
 
@@ -63,6 +68,8 @@ namespace TDJ_ProjectoFinal
             scene.Update(gameTime);
 
             Camera.Update();
+
+            scene.Update(gameTime);
             
             base.Update(gameTime);
         }

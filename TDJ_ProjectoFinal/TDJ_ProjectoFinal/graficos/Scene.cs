@@ -8,7 +8,7 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
-    class Scene
+    public class Scene
     {
         public SpriteBatch SpriteBatch { get; private set; }
         private List<Sprite> sprites;

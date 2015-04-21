@@ -8,7 +8,7 @@ using System.Text;
 
 namespace TDJ_ProjectoFinal.graficos
 {
-    class Sprite
+    public class Sprite
     {
         public bool HasCollisions { protected set; get; }
 
