@@ -42,7 +42,7 @@ namespace TDJ_ProjectoFinal
             scene = new Scene(spriteBatch);
             scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / 600).
                 At(new Vector2(Camera.worldWidth, 0f)));
-            
+         
         }
 
             
