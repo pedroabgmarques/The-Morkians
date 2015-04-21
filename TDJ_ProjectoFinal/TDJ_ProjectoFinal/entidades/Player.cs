@@ -18,12 +18,7 @@ namespace TDJ_ProjectoFinal.entidades
 
         
         KeyboardState currentKeyboardState;
-        public Player(ContentManager contents, string assetName) 
-            : base(contents, assetName)
-        {
-            //Velocidade da nave
-            this.speed = 0.008f;
-
+     
         private int contador;
         private ContentManager contents;
 
@@ -31,7 +26,8 @@ namespace TDJ_ProjectoFinal.entidades
             : base(contents, assetName){
                 contador = 0;
                 this.contents = contents;
-
+                //Velocidade da nave
+                this.speed = 0.008f;
         }
 
         public override void Update(GameTime gameTime)
