@@ -21,6 +21,7 @@ namespace TDJ_ProjectoFinal.entidades
      
         private int contador;
         private ContentManager contents;
+        private int shootTime = 1500;
 
         public Player(ContentManager contents, string assetName) 
             : base(contents, assetName){
@@ -67,17 +68,20 @@ namespace TDJ_ProjectoFinal.entidades
                 this.position.X += speed;
 
             }
+            if (currentKeyboardState.IsKeyDown(Keys.Space)) 
+            {
+                if (contador >= shootTime) { 
+                    scene.AddSprite(new Missil(contents, "missil", TipoMissil.EmFrente, 1).Scl(0.2f).
+                    At(new Vector2(position.X + 0.5f, position.Y)));
+                    contador = 0;
+                }
+            }
 
             
 
             base.position.X += Camera.speed / 2;
 
-            if (contador > 5000)
-            {
-                scene.AddSprite(new Missil(contents, "missil", TipoMissil.EmFrente, 1).Scl(0.2f).
-                At(new Vector2(position.X + 0.2f, position.Y)));
-                contador = 0;
-            }
+            
             contador += gameTime.ElapsedGameTime.Milliseconds;
 
             base.Update(gameTime);

@@ -30,7 +30,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoMissil = tipoMissil;
-            this.speed = Camera.speed * 2;
+            this.speed = Camera.speed * 3;
             this.direccao = direccao;
         }
 
