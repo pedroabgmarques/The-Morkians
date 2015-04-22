@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,28 @@ namespace TDJ_ProjectoFinal
             this.tipoBala = tipoBala;
             this.speed = Camera.speed * 3;
             this.direccao = direccao;
+        }
+        public override void Update(GameTime gameTime)
+        {
+            switch (this.tipoBala)
+            {
+                case TipoBala.Simples:
+                    base.position.X += speed * direccao;
+                    break;
+                case TipoBala.Duplo:
+                    //TODO: algoritmo para seguir a nave
+                    base.position.X += speed * direccao;
+                    break;
+                case TipoBala.Triplo:
+                    //TODO: algoritmo para seguir a nave
+                    base.position.X += speed * direccao;
+                    break;
+                default:
+                    base.position.X += speed * direccao;
+                    break;
+            }
+
+            
         }
     }
 }

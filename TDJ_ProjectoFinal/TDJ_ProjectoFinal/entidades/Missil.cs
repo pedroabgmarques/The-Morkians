@@ -32,6 +32,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.tipoMissil = tipoMissil;
             this.speed = Camera.speed * 3;
             this.direccao = direccao;
+
         }
 
         public override void Update(GameTime gameTime)

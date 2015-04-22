@@ -71,9 +71,10 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.Space)) 
             {
                 if (contador >= shootTime) { 
-                    scene.AddSprite(new Missil(contents, "Missil", TipoMissil.EmFrente, 1).Scl(0.2f).
+                    scene.AddSprite(new Bala(contents, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
                     At(new Vector2(position.X + 0.5f, position.Y)));
                     contador = 0;
+                    
                 }
             }
 
