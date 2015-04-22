@@ -28,7 +28,7 @@ namespace TDJ_ProjectoFinal
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoBala = tipoBala;
-            this.speed = Camera.speed * 3;
+            this.speed = Camera.speed * 9;
             this.direccao = direccao;
         }
         public override void Update(GameTime gameTime)
@@ -39,11 +39,11 @@ namespace TDJ_ProjectoFinal
                     base.position.X += speed * direccao;
                     break;
                 case TipoBala.Duplo:
-                    //TODO: algoritmo para seguir a nave
+                    
                     base.position.X += speed * direccao;
                     break;
                 case TipoBala.Triplo:
-                    //TODO: algoritmo para seguir a nave
+                    
                     base.position.X += speed * direccao;
                     break;
                 default:
