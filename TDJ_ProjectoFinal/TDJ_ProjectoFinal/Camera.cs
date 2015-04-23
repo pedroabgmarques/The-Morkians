@@ -8,7 +8,7 @@ namespace TDJ_ProjectoFinal
 {
     class Camera
     {
-        private static GraphicsDeviceManager gDevManager;
+        public static GraphicsDeviceManager gDevManager;
         public static float worldWidth { private set; get; }
         public static float ratio { private set; get; }
         private static Vector2 target;
@@ -76,6 +76,11 @@ namespace TDJ_ProjectoFinal
             pixelPoint.Y = Camera.gDevManager.PreferredBackBufferHeight - pixelPoint.Y;
 
             return pixelPoint;
+        }
+
+        public static Vector2 WorldPoint2Pixels(int x, int y)
+        {
+            return WorldPoint2Pixels(new Vector2(x, y));
         }
 
         public static Rectangle WorldSize2PixelRectangle(Vector2 pos, Vector2 size)

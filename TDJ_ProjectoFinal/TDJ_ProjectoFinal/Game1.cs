@@ -120,9 +120,10 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
 
             //PowerUP
-            scene.AddSprite(new PowerUp(Content, "PowerUp-Vida",TipoPowerUp.Vida, -1).Scl(0.1f).At(new Vector2(Camera.worldWidth, 0f)));
-            scene.AddSprite(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Vida, -1).Scl(0.1f).At(new Vector2(Camera.worldWidth-0.2f, 1f)));
-            scene.AddSprite(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Vida, -1).Scl(0.1f).At(new Vector2(Camera.worldWidth - 0.2f, -1f)));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Vida, -1,0.3f, 1.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Vida, -1, 0.3f, 0.5f));
+            
         }
     }
 }

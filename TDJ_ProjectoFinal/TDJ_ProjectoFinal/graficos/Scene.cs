@@ -5,18 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TDJ_ProjectoFinal.graficos;
+using TDJ_ProjectoFinal.entidades;
 
 namespace TDJ_ProjectoFinal
 {
     public class Scene
     {
         public SpriteBatch SpriteBatch { get; private set; }
-        private List<Sprite> sprites;
+        public List<Sprite> sprites;
+        public List<Sprite> powerUps;
 
         public Scene(SpriteBatch sb)
         {
             this.SpriteBatch = sb;
             this.sprites = new List<Sprite>();
+            this.powerUps = new List<Sprite>();
         }
 
         public void AddSprite(Sprite s)
@@ -25,9 +28,16 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
+        public void AddPowerUp(PowerUp s)
+        {
+            this.powerUps.Add(s);
+            s.SetScene(this);
+        }
+
         public void RemoveSprite(Sprite s)
         {
             this.sprites.Remove(s);
+            this.powerUps.Remove(s);
         }
 
         public void Update(GameTime gameTime)
@@ -35,6 +45,10 @@ namespace TDJ_ProjectoFinal
             foreach (var sprite in sprites.ToList())
             {
                 sprite.Update(gameTime);
+            }
+            foreach (var powerUp in powerUps.ToList())
+            {
+                powerUp.Update(gameTime);
             }
         }
 
@@ -47,18 +61,22 @@ namespace TDJ_ProjectoFinal
                 {
                     sprite.Draw(gameTime);
                 }
+                foreach (var powerUp in powerUps.ToList())
+                {
+                    powerUp.Draw(gameTime);
+                }
                 this.SpriteBatch.End();
             }
         }
 
         public bool Collides(Sprite s, out Sprite collided,
-                                       out Vector2 collisionPoint)
+                                       out Vector2 collisionPoint,List<Sprite> list)
         {
             bool collisionExists = false;
             collided = s;  // para calar o compilador
             collisionPoint = Vector2.Zero; // para calar o compilador
 
-            foreach (var sprite in sprites)
+            foreach (var sprite in list)
             {
                 if (s == sprite) continue;
                 if (s.CollidesWith(sprite, out collisionPoint))
