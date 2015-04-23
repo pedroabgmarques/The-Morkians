@@ -72,7 +72,7 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 if (contador >= shootTime) { 
                     
-                    scene.AddSprite(new Bala(contents, "balasimples", TipoBala.Duplo, 1).Scl(0.09f).
+                    scene.AddSprite(new Bala(contents, "balasimples", TipoBala.Triplo, 1).Scl(0.09f).
                     At(new Vector2(position.X + 0.3f, position.Y)));
                     contador = 0;
                     

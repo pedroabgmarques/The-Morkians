@@ -35,13 +35,13 @@ namespace TDJ_ProjectoFinal.entidades
             switch (this.tipoPowerUp)
             {
                 case TipoPowerUp.Vida:
-                    base.position.X += speed * direcao;
+                    base.position.Y += speed * direcao;
                     break;
                 case TipoPowerUp.BalaDupla:
-                    base.position.X += speed * direcao;
+                    base.position.Y += speed * direcao;
                     break;
                 case TipoPowerUp.BalaTripla:
-                    base.position.X += speed * direcao;
+                    base.position.Y = speed * direcao;
                     break;
             }
                 
