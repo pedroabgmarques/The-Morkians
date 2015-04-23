@@ -24,14 +24,16 @@ namespace TDJ_ProjectoFinal.entidades
         private Vector2 thrustPosition;
         private float speed;
         private int direccao;
+        private FlyingEntity alvo;
 
-        public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao) 
+        public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, FlyingEntity alvo = null) 
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoMissil = tipoMissil;
             this.speed = Camera.speed * 3;
             this.direccao = direccao;
+            this.alvo = alvo;
 
         }
 
@@ -43,8 +45,9 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.X += speed * direccao;
                     break;
                 case TipoMissil.Teleguiado:
-                    //TODO: algoritmo para seguir a nave
-                    base.position.X += speed * direccao;
+                    base.position = Vector2.SmoothStep(position, alvo.position, 0.1f);
+                    
+                    
                     break;
                 default:
                     base.position.X += speed * direccao;

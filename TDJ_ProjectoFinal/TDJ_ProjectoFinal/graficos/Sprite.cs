@@ -13,7 +13,7 @@ namespace TDJ_ProjectoFinal.graficos
         public bool HasCollisions { protected set; get; }
 
         protected Texture2D image;
-        protected Vector2 position;
+        public Vector2 position;
         protected float radius; // raio da "bounding box"
         protected Vector2 size;
         protected float rotation;

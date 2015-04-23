@@ -15,6 +15,7 @@ namespace TDJ_ProjectoFinal
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
+        Player player;
         
         
         public Game1()
@@ -52,7 +53,8 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
             
             //Nave do jogador
-            scene.AddSprite(new Player(Content, "nave",TipoBala.Triplo).Scl(0.5f));
+            player=new Player(Content, "nave",TipoBala.Triplo);
+            scene.AddSprite(player.Scl(0.5f));
 
             newEnemyWave();
          
@@ -117,7 +119,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
 
             //Missil
-            scene.AddSprite(new Missil(Content, "missil", TipoMissil.EmFrente, -1).Scl(0.2f).
+            scene.AddSprite(new Missil(Content, "missil", TipoMissil.Teleguiado, -1, player).Scl(0.2f).
                 At(new Vector2(Camera.worldWidth, 0f)));
 
             //PowerUP
