@@ -26,6 +26,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             base.spriteEffects = SpriteEffects.FlipHorizontally;
             this.tipoNave = tipoNave;
+            this.EnableCollisions();
         }
 
         public override void Update(GameTime gameTime)
