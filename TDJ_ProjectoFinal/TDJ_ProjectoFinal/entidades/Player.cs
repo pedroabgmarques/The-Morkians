@@ -12,9 +12,18 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
+
+    public enum TipoBala
+    {
+        Simples,
+        Duplo,
+        Triplo
+
+    }
+
     public class Player : FlyingEntity
     {
-
+        
 
         
         KeyboardState currentKeyboardState;
@@ -22,11 +31,19 @@ namespace TDJ_ProjectoFinal.entidades
         private int contador;
         private ContentManager contents;
         private int shootTime = 500;
+        public TipoBala tipobala;
 
-        public Player(ContentManager contents, string assetName) 
+
+        public TipoBala GetTipoBala() 
+        {
+            return tipobala;
+        }
+
+        public Player(ContentManager contents, string assetName,TipoBala tipobala) 
             : base(contents, assetName){
                 contador = 0;
                 this.contents = contents;
+                this.tipobala = tipobala;
                 //Velocidade da nave
                 this.speed = 0.008f;
         }
@@ -71,11 +88,35 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.Space)) 
             {
                 if (contador >= shootTime) { 
+                     switch( tipobala)
+                     {
+                case TipoBala.Simples:
+                             scene.AddSprite(new Bala(this.cManager, "balasimples", 1,tipobala).Scl(0.09f).
+                             At(new Vector2(position.X+0.3f, position.Y )));
                     
-                    scene.AddSprite(new Bala(contents, "balasimples", TipoBala.Triplo, 1).Scl(0.09f).
-                    At(new Vector2(position.X + 0.3f, position.Y)));
-                    contador = 0;
+                    break;
+                case TipoBala.Duplo:
+
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    At(new Vector2(position.X + 0.2f, position.Y - 0.1f)));
                     
+                    
+                    break;
+                case TipoBala.Triplo:
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    At(new Vector2(position.X+0.2f, position.Y - 0.1f)));
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                     At(new Vector2(position.X + 0.2f, position.Y )));
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
+                    
+                    break;
+                default:
+                    break;
+                     }
+                     contador = 0;
                 }
             }
 

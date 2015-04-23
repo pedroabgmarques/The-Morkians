@@ -29,6 +29,7 @@ namespace TDJ_ProjectoFinal
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
+            
 
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
@@ -51,7 +52,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
             
             //Nave do jogador
-            scene.AddSprite(new Player(Content, "nave").Scl(0.5f));
+            scene.AddSprite(new Player(Content, "nave",TipoBala.Simples).Scl(0.5f));
 
             newEnemyWave();
          

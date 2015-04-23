@@ -9,50 +9,56 @@ using TDJ_ProjectoFinal.entidades;
 
 namespace TDJ_ProjectoFinal
 {
-    public enum TipoBala
-    {
-        Simples,
-        Duplo,
-        Triplo
-        
-    }
+    
     class Bala : FlyingEntity
     {
-        public TipoBala tipoBala { get; set; }
+       
         private float speed;
         private int direccao;
+        private TipoBala tipobala;
+        
 
 
-        public Bala(ContentManager contents, string assetName, TipoBala tipoBala, int direccao) 
-            : base(contents, assetName)
+        public Bala(ContentManager contents, string assetName, int direccao, TipoBala tipobala ) 
+            : base(contents,"balasimples")
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            this.tipoBala = tipoBala;
             this.speed = Camera.speed * 9;
+            this.tipobala = tipobala;
             this.direccao = direccao;
         }
+
+        //public void UpdatePowerUp(TipoBala tipobala) 
+        //{
+        //    if (tipobala == TipoBala.Duplo) 
+        //    {
+        //        scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
+        //            At(new Vector2(position.X, position.Y - 0.1f)));
+        //    }
+        //}
         public override void Update(GameTime gameTime)
         {
-            switch (this.tipoBala)
+            switch ( tipobala )
             {
                 case TipoBala.Simples:
-                    base.position.X += speed * direccao;
+                    this.position.X += speed * direccao;
+                    this.position.Y += speed * direccao;
+
                     break;
                 case TipoBala.Duplo:
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
-                    At(new Vector2(position.X , position.Y-0.1f)));
-                    base.position.X += speed * direccao;
+                    this.position.X += speed * direccao;
+                    this.position.Y += speed * direccao;
+
                     break;
                 case TipoBala.Triplo:
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
-                    At(new Vector2(position.X, position.Y - 0.1f)));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
-                    At(new Vector2(position.X, position.Y + 0.1f)));
-                    
-                    base.position.X += speed * direccao;
+                    this.position.X += speed * direccao;
+                    this.position.Y += speed * direccao;
+                   
+
+
                     break;
                 default:
-                    base.position.X += speed * direccao;
+                    //base.position.X += speed * direccao;
                     break;
             }
         }
