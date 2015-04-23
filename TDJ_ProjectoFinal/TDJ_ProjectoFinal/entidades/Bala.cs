@@ -39,10 +39,15 @@ namespace TDJ_ProjectoFinal
                     base.position.X += speed * direccao;
                     break;
                 case TipoBala.Duplo:
-                    
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
+                    At(new Vector2(position.X , position.Y-0.1f)));
                     base.position.X += speed * direccao;
                     break;
                 case TipoBala.Triplo:
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
+                    At(new Vector2(position.X, position.Y - 0.1f)));
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", TipoBala.Simples, 1).Scl(0.09f).
+                    At(new Vector2(position.X, position.Y + 0.1f)));
                     
                     base.position.X += speed * direccao;
                     break;
@@ -50,8 +55,6 @@ namespace TDJ_ProjectoFinal
                     base.position.X += speed * direccao;
                     break;
             }
-
-            
         }
     }
 }
