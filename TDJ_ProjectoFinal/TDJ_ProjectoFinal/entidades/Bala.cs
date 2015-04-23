@@ -9,22 +9,29 @@ using TDJ_ProjectoFinal.entidades;
 
 namespace TDJ_ProjectoFinal
 {
+
+    public enum DireccaoBala 
+    {
+        EmFrente,
+        Cima,
+        Baixo
+    }
     
     class Bala : FlyingEntity
     {
        
         private float speed;
         private int direccao;
-        private TipoBala tipobala;
-        
+        private DireccaoBala direccaobala;
 
 
-        public Bala(ContentManager contents, string assetName, int direccao, TipoBala tipobala ) 
+
+        public Bala(ContentManager contents, string assetName, int direccao, DireccaoBala direccaobala) 
             : base(contents,"balasimples")
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.speed = Camera.speed * 9;
-            this.tipobala = tipobala;
+            this.direccaobala = direccaobala;
             this.direccao = direccao;
         }
 
@@ -38,21 +45,21 @@ namespace TDJ_ProjectoFinal
         //}
         public override void Update(GameTime gameTime)
         {
-            switch ( tipobala )
+            switch ( direccaobala )
             {
-                case TipoBala.Simples:
+                case DireccaoBala.EmFrente:
                     this.position.X += speed * direccao;
-                    this.position.Y += speed * direccao;
+                    
 
                     break;
-                case TipoBala.Duplo:
+                case DireccaoBala.Cima:
                     this.position.X += speed * direccao;
-                    this.position.Y += speed * direccao;
+                    this.position.Y -= speed * 0.5f * direccao;
 
                     break;
-                case TipoBala.Triplo:
-                    this.position.X += speed * direccao;
-                    this.position.Y += speed * direccao;
+                case DireccaoBala.Baixo:
+                    this.position.X += speed *direccao;
+                    this.position.Y += speed*0.5f * direccao;
                    
 
 

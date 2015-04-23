@@ -91,25 +91,25 @@ namespace TDJ_ProjectoFinal.entidades
                      switch( tipobala)
                      {
                 case TipoBala.Simples:
-                             scene.AddSprite(new Bala(this.cManager, "balasimples", 1,tipobala).Scl(0.09f).
+                             scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                              At(new Vector2(position.X+0.3f, position.Y )));
                     
                     break;
                 case TipoBala.Duplo:
 
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.2f, position.Y - 0.1f)));
                     
                     
                     break;
                 case TipoBala.Triplo:
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Cima).Scl(0.09f).
                     At(new Vector2(position.X+0.2f, position.Y - 0.1f)));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                      At(new Vector2(position.X + 0.2f, position.Y )));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, tipobala).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Baixo).Scl(0.09f).
                     At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
                     
                     break;
