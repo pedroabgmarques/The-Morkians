@@ -38,7 +38,7 @@ namespace TDJ_ProjectoFinal.entidades
         
         Sprite collided;
         Vector2 collisionPoint;
-        public Player(ContentManager contents, string assetName) 
+        
         public TipoBala tipobala;
 
 
