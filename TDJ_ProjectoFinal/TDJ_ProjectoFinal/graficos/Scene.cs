@@ -15,13 +15,14 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> sprites;
         public List<Sprite> powerUps;
         public List<Sprite> enimigos;
-
+        public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
         {
             this.SpriteBatch = sb;
             this.sprites = new List<Sprite>();
             this.powerUps = new List<Sprite>();
             this.enimigos = new List<Sprite>();
+            
         }
 
         public void AddSprite(Sprite s)

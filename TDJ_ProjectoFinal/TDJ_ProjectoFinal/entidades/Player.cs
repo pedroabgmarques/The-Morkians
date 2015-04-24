@@ -151,8 +151,19 @@ namespace TDJ_ProjectoFinal.entidades
                 this.position.X -= 0.01f;
 
             }
-       
+            //para a nave quando chega ao limite superior da camara
             
+            if (this.position.Y >= Camera.target.Y + 1.4f )//1.4f -> valor martelado.
+            {
+                this.position.Y -= 0.01f;
+
+            }
+            ////para a nave quando chega ao limite inferior da camara
+            if (this.position.Y <= Camera.target.Y - 1.4f)//1.4f -> valor martelado.
+            {
+                this.position.Y += 0.01f;
+
+            }
 
             base.position.X += Camera.speed / 2;
 
