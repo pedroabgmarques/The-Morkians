@@ -53,7 +53,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
             
             //Nave do jogador
-            player=new Player(Content, "nave",TipoBala.Triplo);
+            player=new Player(Content, "nave",TipoBala.Duplo);
             scene.AddSprite(player.Scl(0.5f));
 
             newEnemyWave();

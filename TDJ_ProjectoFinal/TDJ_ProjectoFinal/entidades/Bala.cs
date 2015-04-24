@@ -71,21 +71,8 @@ namespace TDJ_ProjectoFinal
                     //base.position.X += speed * direccao;
                     break;
             }
-            //detetat colisao das balas com os enimigos
-            if(this.scene.Collides(this,out collided,out collisionPoint,this.scene.enimigos))
-            {
-                //destroi bala
-                this.Destroy();
-                //cria explosao
-                explosao = new AnimatedSprite(cManager, "explosao", 9, 9);
-                explosao.position.X = this.position.X;
-                explosao.position.Y = this.position.Y;
-                explosao.Loop = false;
-                explosao.Scl(0.2f);
-                
-                
-                this.scene.AddSprite(explosao);
-            }
+            //deteta colisao das balas com os enimigos
+            BulletColision();
 
             //Destroi bala quando sai ddo limite da camara
             if(this.position.X > (Camera.target.X + (Camera.worldWidth/2)))
@@ -95,6 +82,22 @@ namespace TDJ_ProjectoFinal
           
         }
 
-       
+        private void BulletColision()
+        {
+            if (this.scene.Collides(this, out collided, out collisionPoint, this.scene.enimigos))
+            {
+                //destroi bala
+                this.Destroy();
+                //cria explosao
+                explosao = new AnimatedSprite(cManager, "explosao", 9, 9);
+                explosao.position.X = this.position.X;
+                explosao.position.Y = this.position.Y;
+                explosao.Loop = false;
+                explosao.Scl(0.2f);
+
+
+                this.scene.AddSprite(explosao);
+            }
+        }
     }
 }
