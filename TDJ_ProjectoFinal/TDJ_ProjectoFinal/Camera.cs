@@ -11,7 +11,7 @@ namespace TDJ_ProjectoFinal
         public static GraphicsDeviceManager gDevManager;
         public static float worldWidth { private set; get; }
         public static float ratio { private set; get; }
-        private static Vector2 target;
+        public static Vector2 target;
         private static int lastSeenPixelWidth = 0;
         public static float speed { get; set; }
 
