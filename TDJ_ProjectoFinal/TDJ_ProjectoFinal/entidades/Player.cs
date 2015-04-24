@@ -108,9 +108,9 @@ namespace TDJ_ProjectoFinal.entidades
                 case TipoBala.Duplo:
 
                     scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
-                    At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
+                    At(new Vector2(position.X + 0.4f, position.Y + 0.05f)));
                     scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
-                    At(new Vector2(position.X + 0.2f, position.Y - 0.1f)));
+                    At(new Vector2(position.X + 0.4f, position.Y - 0.05f)));
                     
                     
                     break;
