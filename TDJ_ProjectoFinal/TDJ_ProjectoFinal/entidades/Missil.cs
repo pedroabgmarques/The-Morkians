@@ -22,18 +22,21 @@ namespace TDJ_ProjectoFinal.entidades
         public TipoMissil tipoMissil { get; set; }
         private AnimatedSprite thrust;
         private Vector2 thrustPosition;
-        private float speed;
         private int direccao;
         private FlyingEntity alvo;
+        bool passouPeloAlvo;
+        Vector2 direction = Vector2.UnitX;
+
 
         public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, FlyingEntity alvo = null) 
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoMissil = tipoMissil;
-            this.speed = Camera.speed * 3;
+            this.speed = 0.02f;
             this.direccao = direccao;
             this.alvo = alvo;
+            this.passouPeloAlvo = false;
 
         }
 
@@ -45,8 +48,21 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.X += speed * direccao;
                     break;
                 case TipoMissil.Teleguiado:
-                    base.position = Vector2.SmoothStep(position, alvo.position, 0.1f);
+
+                    if (!passouPeloAlvo)
+                    {
+                        //Encontrar a direção do alvo
+                        direction = alvo.position - this.position;
+                    }
                     
+                    if (direction.Length() < 0.5f && !passouPeloAlvo)
+                    {
+                        //Já passou pelo alvo, deixamos de atualizar a direção
+                        passouPeloAlvo = true;
+                    }
+                    direction.Normalize();
+                    //Mover na direção para onde estamos virados
+                    position += direction * speed;
                     
                     break;
                 default:
