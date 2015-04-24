@@ -79,7 +79,7 @@ namespace TDJ_ProjectoFinal
             {
                 this.Destroy();
             }
-          
+   
         }
 
         private void BulletColision()
@@ -91,6 +91,7 @@ namespace TDJ_ProjectoFinal
                 //cria explosao
                 this.scene.AddSprite(new AnimatedSprite(cManager, "explosao", 9, 9, false).
                     At(new Vector2(this.position.X,this.position.Y)).Scl(0.2f));
+                
             }
         }
     }

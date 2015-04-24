@@ -101,25 +101,25 @@ namespace TDJ_ProjectoFinal.entidades
                      switch( tipobala)
                      {
                 case TipoBala.Simples:
-                             scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
+                             scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                              At(new Vector2(position.X+0.3f, position.Y )));
                     
                     break;
                 case TipoBala.Duplo:
 
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y + 0.05f)));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y - 0.05f)));
                     
                     
                     break;
                 case TipoBala.Triplo:
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Cima).Scl(0.09f).
+                    scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Cima).Scl(0.09f).
                     At(new Vector2(position.X+0.2f, position.Y - 0.1f)));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.EmFrente).Scl(0.09f).
                      At(new Vector2(position.X + 0.3f, position.Y )));
-                    scene.AddSprite(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Baixo).Scl(0.09f).
+                    scene.AddBala(new Bala(this.cManager, "balasimples", 1, DireccaoBala.Baixo).Scl(0.09f).
                     At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
                     
                     break;
@@ -129,12 +129,13 @@ namespace TDJ_ProjectoFinal.entidades
                      contador = 0;
                 }
             }
-
+            //colisao com power ups
             if(this.scene.Collides(this,out this.collided,out this.collisionPoint,this.scene.powerUps))
             {
                 this.collided.Destroy();
             }
-            if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.sprites))
+            //colisao com inimigos
+            if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.enimigos))
             {
                 this.collided.Destroy();
             }
