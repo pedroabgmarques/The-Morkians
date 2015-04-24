@@ -79,6 +79,14 @@ namespace TDJ_ProjectoFinal.graficos
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Garante que a animação é desenhada por cima das outras sprites
+        /// </summary>
+        public void setOnTop()
+        {
+            this.zIndex = 1;
+        }
+
         public override void EnableCollisions()
         {
             this.HasCollisions = true;
