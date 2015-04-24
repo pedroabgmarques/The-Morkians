@@ -89,14 +89,8 @@ namespace TDJ_ProjectoFinal
                 //destroi bala
                 this.Destroy();
                 //cria explosao
-                explosao = new AnimatedSprite(cManager, "explosao", 9, 9);
-                explosao.position.X = this.position.X;
-                explosao.position.Y = this.position.Y;
-                explosao.Loop = false;
-                explosao.Scl(0.2f);
-
-
-                this.scene.AddSprite(explosao);
+                this.scene.AddSprite(new AnimatedSprite(cManager, "explosao", 9, 9, false).
+                    At(new Vector2(this.position.X,this.position.Y)).Scl(0.2f));
             }
         }
     }

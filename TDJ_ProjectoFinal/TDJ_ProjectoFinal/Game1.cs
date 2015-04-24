@@ -48,15 +48,18 @@ namespace TDJ_ProjectoFinal
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
             
+            
             //Fundo do universo (imóvel)
             scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
-            
-            //Nave do jogador
-            player=new Player(Content, "nave",TipoBala.Duplo);
-            scene.AddSprite(player.Scl(0.5f));
 
             newEnemyWave();
+            
+            //Nave do jogador
+            player=new Player(Content, "nave",TipoBala.Triplo);
+            scene.AddSprite(player.Scl(0.5f));
+
+            
          
         }
 
