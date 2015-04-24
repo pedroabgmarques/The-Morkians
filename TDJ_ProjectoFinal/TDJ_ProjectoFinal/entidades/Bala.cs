@@ -72,7 +72,7 @@ namespace TDJ_ProjectoFinal
                     break;
             }
 
-            if(this.scene.Collides(this,out collided,out collisionPoint,this.scene.enimigos) || this.position.X > (Camera.target.X + (Camera.worldWidth/3) ))
+            if(this.scene.Collides(this,out collided,out collisionPoint,this.scene.enimigos) || this.position.X > (Camera.target.X + (Camera.worldWidth/2) ))
             {
                 this.Destroy();
             }
