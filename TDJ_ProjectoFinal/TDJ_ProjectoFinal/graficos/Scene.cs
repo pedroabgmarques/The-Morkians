@@ -70,10 +70,7 @@ namespace TDJ_ProjectoFinal
             if (sprites.Count > 0)
             {
                 this.SpriteBatch.Begin();
-                foreach (var sprite in sprites)
-                {
-                    sprite.Draw(gameTime);
-                }
+                
                 foreach (var powerUp in powerUps.ToList())
                 {
                     powerUp.Draw(gameTime);
@@ -82,6 +79,11 @@ namespace TDJ_ProjectoFinal
                 foreach (var enimigo in enimigos.ToList())
                 {
                     enimigo.Draw(gameTime);
+                }
+
+                foreach (var sprite in sprites)
+                {
+                    sprite.Draw(gameTime);
                 }
                 this.SpriteBatch.End();
             }
