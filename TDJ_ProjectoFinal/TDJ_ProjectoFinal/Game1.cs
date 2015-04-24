@@ -106,9 +106,13 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 0f));
-            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 1f));
-            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, -1f));
+            scene.AddEnimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f));
+            scene.AddEnimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 1f));
+            scene.AddEnimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, -1f));
+
+            scene.AddEnimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.5f, 0f));
+            scene.AddEnimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.5f, 1f));
+            scene.AddEnimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.5f, -1f));
             //scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
             //    At(new Vector2(Camera.worldWidth, 1f)));
             //scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).

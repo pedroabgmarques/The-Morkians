@@ -41,7 +41,7 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.X -= Camera.speed;
                     break;
                 case TipoNave.Bomber:
-                    base.position.X -= Camera.speed / 2;
+                    base.position.X -= Camera.speed / 3;
                     break;
                 case TipoNave.Mothership:
                     base.position.X -= Camera.speed / 4;
