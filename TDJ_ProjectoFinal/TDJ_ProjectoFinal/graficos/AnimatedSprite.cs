@@ -17,7 +17,7 @@ namespace TDJ_ProjectoFinal.graficos
 
 
         public AnimatedSprite(ContentManager content,
-            string filename, int nrows, int ncols) :
+            string filename, int nrows, int ncols, bool loop) :
             base(content, filename)
         {
             this.ncols = ncols;
@@ -27,7 +27,7 @@ namespace TDJ_ProjectoFinal.graficos
             this.size = new Vector2(1f,
                 (float)pixelsize.Y / (float)pixelsize.X);
             this.currentFrame = Point.Zero;
-            this.Loop = true;
+            this.Loop = loop;
 
 
         }
