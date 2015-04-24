@@ -101,22 +101,23 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, 0f)));
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, 1f)));
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, -1f)));
+            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 0f));
+            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 1f));
+            scene.AddEnimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, -1f));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, 1f)));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Hunter).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, -1f)));
 
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, 0f)));
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, 1f)));
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, -1f)));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, 0f)));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, 1f)));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Bomber).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, -1f)));
 
-            scene.AddSprite(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
-                At(new Vector2(Camera.worldWidth, 0f)));
+            //scene.AddSprite(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
+            //    At(new Vector2(Camera.worldWidth, 0f)));
 
             //Missil
             scene.AddSprite(new Missil(Content, "missil", TipoMissil.Teleguiado, -1, player).Scl(0.2f).

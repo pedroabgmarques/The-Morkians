@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TDJ_ProjectoFinal.entidades;
+using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
@@ -23,7 +24,8 @@ namespace TDJ_ProjectoFinal
         private float speed;
         private int direccao;
         private DireccaoBala direccaobala;
-
+        Sprite collided;
+        Vector2 collisionPoint;
 
 
         public Bala(ContentManager contents, string assetName, int direccao, DireccaoBala direccaobala) 
@@ -33,6 +35,7 @@ namespace TDJ_ProjectoFinal
             this.speed = Camera.speed * 9;
             this.direccaobala = direccaobala;
             this.direccao = direccao;
+            this.EnableCollisions();
         }
 
         //public void UpdatePowerUp(TipoBala tipobala) 
@@ -67,6 +70,11 @@ namespace TDJ_ProjectoFinal
                 default:
                     //base.position.X += speed * direccao;
                     break;
+            }
+
+            if(this.scene.Collides(this,out collided,out collisionPoint,this.scene.enimigos))
+            {
+                this.Destroy();
             }
         }
     }

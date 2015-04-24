@@ -21,12 +21,15 @@ namespace TDJ_ProjectoFinal.entidades
 
         public TipoNave tipoNave { get; set; }
 
-        public NPC(ContentManager contents, string assetName, TipoNave tipoNave) 
+        public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, float posY) 
             : base(contents, assetName)
         {
             base.spriteEffects = SpriteEffects.FlipHorizontally;
             this.tipoNave = tipoNave;
             this.EnableCollisions();
+            this.Scl(Scl);
+            this.position.X = Camera.worldWidth;
+            this.position.Y = posY;
         }
 
         public override void Update(GameTime gameTime)
