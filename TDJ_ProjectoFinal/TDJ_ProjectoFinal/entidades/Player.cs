@@ -139,6 +139,21 @@ namespace TDJ_ProjectoFinal.entidades
                 this.collided.Destroy();
             }
 
+            //Para a nave quando chega ao limite esquerdo da camara.
+            if (this.position.X - 0.1f /*- (this.position.X - (this.image.Width/2))*/ <= Camera.target.X - (Camera.worldWidth / 2))
+            {
+                this.position.X += 0.01f;
+                
+            }
+            //para a nave quando chega ao limite direito da camara
+            if (this.position.X + 0.2f >= Camera.target.X + (Camera.worldWidth / 2))
+            {
+                this.position.X -= 0.01f;
+
+            }
+       
+            
+
             base.position.X += Camera.speed / 2;
 
             
