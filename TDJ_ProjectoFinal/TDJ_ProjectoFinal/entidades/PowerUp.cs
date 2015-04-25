@@ -51,7 +51,7 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.Y += speed * direcao;
                     break;
                 case TipoPowerUp.Triplo:
-                    base.position.Y = speed * direcao;
+                    base.position.Y += speed * direcao;
                     break;
             }
 

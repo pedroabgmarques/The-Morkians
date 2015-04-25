@@ -131,14 +131,17 @@ namespace TDJ_ProjectoFinal.entidades
             //colisao com power ups
             if(this.scene.Collides(this,out this.collided,out this.collisionPoint,this.scene.powerUps))
             {
+              
                 if(this.collided is PowerUp)
                 {
                     PowerUp powerUp = (PowerUp)collided;
-                    this.tipobala = (TipoBala)powerUp.tipoPowerUp;
-                    if(powerUp.tipoPowerUp==TipoPowerUp.Vida)
+                    if (powerUp.tipoPowerUp == TipoPowerUp.Vida)
                     {
                         this.Vida++;
                     }
+                    else
+                        this.tipobala = (TipoBala)powerUp.tipoPowerUp;
+                
                 }
                 this.collided.Destroy();
             }
