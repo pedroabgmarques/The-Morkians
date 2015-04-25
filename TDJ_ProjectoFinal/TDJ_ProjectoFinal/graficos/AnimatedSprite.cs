@@ -11,7 +11,7 @@ namespace TDJ_ProjectoFinal.graficos
     {
         private int ncols, nrows;
         private Point currentFrame;
-        private float animationInterval = 1f / 20f;
+        private float animationInterval = 1f / 60f;
         private float animationTimer = 0f;
         public bool Loop;
 
