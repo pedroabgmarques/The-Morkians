@@ -65,8 +65,8 @@ namespace TDJ_ProjectoFinal
 
             //PowerUP
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Duplo, -1, 0.3f, 1.5f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Triplo, -1, 0.3f, 0.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Armas, -1, 0.3f, 0.5f));
          
         }
 

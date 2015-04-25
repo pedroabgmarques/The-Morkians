@@ -11,8 +11,7 @@ namespace TDJ_ProjectoFinal.entidades
        public enum TipoPowerUp
         {
             Vida,
-            Duplo,
-            Triplo
+            Armas
         }
     public class PowerUp : FlyingEntity
     {
@@ -47,10 +46,7 @@ namespace TDJ_ProjectoFinal.entidades
                 case TipoPowerUp.Vida:
                     base.position.Y += speed * direcao;
                     break;
-                case TipoPowerUp.Duplo:
-                    base.position.Y += speed * direcao;
-                    break;
-                case TipoPowerUp.Triplo:
+                case TipoPowerUp.Armas:
                     base.position.Y += speed * direcao;
                     break;
             }
