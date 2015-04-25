@@ -88,8 +88,7 @@ namespace TDJ_ProjectoFinal
                 //destroi bala
                 this.Destroy();
                 //cria explosao
-                this.scene.AddSprite(new AnimatedSprite(cManager, "explosao", 9, 9, false).
-                    At(new Vector2(this.position.X,this.position.Y)).Scl(0.2f));
+                this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
 
                 if (collided is NPC)
                 {

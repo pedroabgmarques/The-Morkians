@@ -15,6 +15,7 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> sprites;
         public List<Sprite> powerUps;
         public List<Sprite> inimigos;
+        public List<Sprite> explosoes;
         public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
         {
@@ -22,6 +23,7 @@ namespace TDJ_ProjectoFinal
             this.sprites = new List<Sprite>();
             this.powerUps = new List<Sprite>();
             this.inimigos = new List<Sprite>();
+            this.explosoes = new List<Sprite>();
         }
 
         public void AddSprite(Sprite s)
@@ -42,11 +44,18 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
+        public void AddExplosao(AnimatedSprite s)
+        {
+            this.explosoes.Add(s);
+            s.SetScene(this);
+        }
+
         public void RemoveSprite(Sprite s)
         {
             this.sprites.Remove(s);
             this.powerUps.Remove(s);
             this.inimigos.Remove(s);
+            this.explosoes.Remove(s);
         }
 
         public void Update(GameTime gameTime)
@@ -59,9 +68,13 @@ namespace TDJ_ProjectoFinal
             {
                 powerUp.Update(gameTime);
             }
-            foreach (var enimigo in inimigos.ToList())
+            foreach (var inimigo in inimigos.ToList())
             {
-                enimigo.Update(gameTime);
+                inimigo.Update(gameTime);
+            }
+            foreach (var explosao in explosoes.ToList())
+            {
+                explosao.Update(gameTime);
             }
         }
 
@@ -81,9 +94,13 @@ namespace TDJ_ProjectoFinal
                     powerUp.Draw(gameTime);
                 }
                 
-                foreach (var enimigo in inimigos.ToList())
+                foreach (var inimigo in inimigos.ToList())
                 {
-                    enimigo.Draw(gameTime);
+                    inimigo.Draw(gameTime);
+                }
+                foreach (var explosao in explosoes.ToList())
+                {
+                    explosao.Draw(gameTime);
                 }
                 
                 this.SpriteBatch.End();

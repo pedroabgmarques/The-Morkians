@@ -55,7 +55,7 @@ namespace TDJ_ProjectoFinal.entidades
                         direction = alvo.position - this.position;
                     }
                     
-                    if (direction.Length() < 0.5f && !passouPeloAlvo)
+                    if (direction.Length() < 0.7f && !passouPeloAlvo)
                     {
                         //Já passou pelo alvo, deixamos de atualizar a direção
                         passouPeloAlvo = true;
@@ -77,11 +77,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             if (thrust == null)
             {
-                thrust = new AnimatedSprite(cManager, "thrust", 8, 1,true);
-                thrustPosition.X = position.X;
-                thrustPosition.Y = position.Y;
-                thrust.SetPosition(thrustPosition);
-                thrust.Scale(.3f);          
+                thrust = new AnimatedSprite(cManager, "thrust", 8, 1,true, position, 0.3f);     
                 thrust.spriteEffects = direccao > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 scene.AddSprite(thrust);
             }

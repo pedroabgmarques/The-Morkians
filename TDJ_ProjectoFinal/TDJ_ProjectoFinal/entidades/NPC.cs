@@ -70,6 +70,7 @@ namespace TDJ_ProjectoFinal.entidades
             //Verificar vida
             if (this.Vida <= 0)
             {
+                this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
                 this.Destroy();
             }
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace TDJ_ProjectoFinal.graficos
 {
-    class AnimatedSprite : Sprite
+    public class AnimatedSprite : Sprite
     {
         private int ncols, nrows;
         private Point currentFrame;
@@ -17,7 +17,7 @@ namespace TDJ_ProjectoFinal.graficos
 
 
         public AnimatedSprite(ContentManager content,
-            string filename, int nrows, int ncols, bool loop) :
+            string filename, int nrows, int ncols, bool loop, Vector2 position, float scale) :
             base(content, filename)
         {
             this.ncols = ncols;
@@ -28,6 +28,8 @@ namespace TDJ_ProjectoFinal.graficos
                 (float)pixelsize.Y / (float)pixelsize.X);
             this.currentFrame = Point.Zero;
             this.Loop = loop;
+            this.position = position;
+            this.Scale(scale);
 
 
         }

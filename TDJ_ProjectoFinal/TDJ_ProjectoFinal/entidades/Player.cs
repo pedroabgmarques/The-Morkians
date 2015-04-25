@@ -34,7 +34,6 @@ namespace TDJ_ProjectoFinal.entidades
 
 
         public Rectangle boundingBox;
-        private List<PowerUp> PowerUps;
         
         Sprite collided;
         Vector2 collisionPoint;

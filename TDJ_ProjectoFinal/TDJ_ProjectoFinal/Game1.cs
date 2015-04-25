@@ -54,7 +54,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
 
             //Nave do jogador
-            player=new Player(Content, "nave",TipoBala.Triplo);
+            player=new Player(Content, "nave", TipoBala.Duplo);
             scene.AddSprite(player.Scl(0.5f));
 
             newEnemyWave();
@@ -110,16 +110,16 @@ namespace TDJ_ProjectoFinal
 
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth, 1f)));
+                At(new Vector2(Camera.worldWidth + 5, 1f)));
             scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth, -1f)));
+                At(new Vector2(Camera.worldWidth + 10, -1f)));
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth, 0f)));
+                At(new Vector2(Camera.worldWidth + 2, 0f)));
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth, 1f)));
+                At(new Vector2(Camera.worldWidth + 3, 0.5f)));
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth, -1f)));
+                At(new Vector2(Camera.worldWidth + 4, -0.8f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
             //    At(new Vector2(Camera.worldWidth, 0f)));
