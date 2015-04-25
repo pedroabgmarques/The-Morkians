@@ -19,7 +19,7 @@ namespace TDJ_ProjectoFinal
     }
     public enum OrigemBala
     {
-        enimiga,
+        inimigo,
         player
     }
     class Bala : FlyingEntity
@@ -28,8 +28,7 @@ namespace TDJ_ProjectoFinal
         private int direccao;
         private DireccaoBala direccaobala;
         private OrigemBala origemBala;
-        Sprite collided;
-        Vector2 collisionPoint;
+        
 
         public Bala(ContentManager contents, string assetName, int direccao,OrigemBala origemBala, DireccaoBala direccaobala)
             : base(contents, assetName)
@@ -91,36 +90,7 @@ namespace TDJ_ProjectoFinal
 
         private void BulletColision()
         {
-            //Colisao com enimigos
-            if (this.scene.Collides(this, out collided, out collisionPoint, this.scene.inimigos))
-            {
-                if (origemBala == OrigemBala.player)
-                {
-                    //destroi bala
-                    this.Destroy();
-                    //cria explosao
-                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
-
-                    if (collided is NPC)
-                    {
-                        NPC inimigo = (NPC)collided;
-                        inimigo.Vida--;
-                    }
-                }
-                
-            }
-            //colisao com player
-            if(this.scene.Collides(this, out collided, out collisionPoint, this.scene.sprites))
-            {
-                if (collided is Player)
-                {
-                    Player player = (Player)collided;
-                    player.Vida--;
-                    this.Destroy();
-                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
-                }
-            }
-           
+            Colisoes.Colision(cManager, this.scene, this, origemBala);
         }
     }
 }

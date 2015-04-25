@@ -16,6 +16,7 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> powerUps;
         public List<Sprite> inimigos;
         public List<Sprite> explosoes;
+        public Player player;
         
         public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
@@ -40,7 +41,7 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
-        public void AddInimigo(NPC s)
+        public void AddInimigo(Sprite s)
         {
             this.inimigos.Add(s);
             s.SetScene(this);
@@ -114,7 +115,7 @@ namespace TDJ_ProjectoFinal
         }
 
         public bool Collides(Sprite s, out Sprite collided,
-                                       out Vector2 collisionPoint,List<Sprite> list)
+                                       out Vector2 collisionPoint, List<Sprite> list)
         {
             bool collisionExists = false;
             collided = s;  // para calar o compilador

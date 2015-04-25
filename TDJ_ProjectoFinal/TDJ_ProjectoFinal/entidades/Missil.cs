@@ -20,15 +20,16 @@ namespace TDJ_ProjectoFinal.entidades
     {
 
         public TipoMissil tipoMissil { get; set; }
-        private AnimatedSprite thrust;
+        public AnimatedSprite thrust;
         private Vector2 thrustPosition;
         private int direccao;
         private FlyingEntity alvo;
         bool passouPeloAlvo;
         Vector2 direction = Vector2.UnitX;
+        OrigemBala origemBala;
 
 
-        public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, FlyingEntity alvo = null) 
+        public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, OrigemBala origemBala, FlyingEntity alvo = null) 
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -37,6 +38,8 @@ namespace TDJ_ProjectoFinal.entidades
             this.direccao = direccao;
             this.alvo = alvo;
             this.passouPeloAlvo = false;
+            this.origemBala = origemBala;
+            this.EnableCollisions();
 
         }
 
@@ -71,19 +74,26 @@ namespace TDJ_ProjectoFinal.entidades
             }
 
             UpdateThrust();
+
+            MissilColision();
         }
 
         public void UpdateThrust()
         {
             if (thrust == null)
             {
-                thrust = new AnimatedSprite(cManager, "thrust", 8, 1,true, position, 0.3f);     
+                thrust = new AnimatedSprite(cManager, "thrust", 8, 1,true, position, 0.2f);     
                 thrust.spriteEffects = direccao > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 scene.AddSprite(thrust);
             }
-            thrustPosition.X = direccao > 0 ? position.X - 0.2f : position.X + 0.2f;
+            thrustPosition.X = direccao > 0 ? position.X - 0.15f : position.X + 0.15f;
             thrustPosition.Y = position.Y;
             thrust.SetPosition(thrustPosition);
+        }
+
+        private void MissilColision()
+        {
+            Colisoes.Colision(cManager, this.scene, this, origemBala);
         }
 
     }

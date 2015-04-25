@@ -16,6 +16,7 @@ namespace TDJ_ProjectoFinal
         SpriteBatch spriteBatch;
         Scene scene;
         Player player;
+        Random random;
         
         
         public Game1()
@@ -30,6 +31,8 @@ namespace TDJ_ProjectoFinal
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
+
+            random = new Random();
             
 
             Camera.SetGraphicsDeviceManager(graphics);
@@ -56,19 +59,15 @@ namespace TDJ_ProjectoFinal
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             scene.AddSprite(player.Scl(0.5f));
+            scene.player = player;
 
 
             newEnemyWave();
-            //Missil
-            scene.AddSprite(new Missil(Content, "missil", TipoMissil.Teleguiado, -1, player).Scl(0.2f).
-                At(new Vector2(Camera.worldWidth, 0f)));
 
             //PowerUP
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Duplo, -1, 0.3f, 1.5f));
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Triplo, -1, 0.3f, 0.5f));
-
-            
          
         }
 
@@ -119,24 +118,24 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f).
+            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
-            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f).
-                At(new Vector2(Camera.worldWidth + player.position.X+1f, -1f)));
-            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f).
-                At(new Vector2(Camera.worldWidth + player.position.X+2f, -1f)));
+            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
+                At(new Vector2(Camera.worldWidth + player.position.X+1f, 0f)));
+            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
+                At(new Vector2(Camera.worldWidth + player.position.X+2f, 1f)));
 
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f).
+            scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 10, -1f)));
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).

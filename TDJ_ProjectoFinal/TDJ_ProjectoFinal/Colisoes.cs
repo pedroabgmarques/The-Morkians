@@ -1,0 +1,78 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TDJ_ProjectoFinal.entidades;
+using TDJ_ProjectoFinal.graficos;
+
+namespace TDJ_ProjectoFinal
+{
+    public static class Colisoes
+    {
+
+        static private Sprite collided;
+        static private Vector2 collisionPoint;
+
+        static public void Colision(ContentManager cManager, Scene scene, Sprite sprite, OrigemBala origemBala)
+        {
+            //Colisao com enimigos
+            if (scene.Collides(sprite, out collided, out collisionPoint, scene.inimigos))
+            {
+                if (origemBala == OrigemBala.player)
+                {
+                    //destroi bala
+                    sprite.Destroy();
+                    if (sprite is Missil)
+                    {
+                        Missil missil = (Missil)sprite;
+                        missil.thrust.Destroy();
+                    }
+                    //cria explosao
+                    scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
+
+                    if (collided is NPC)
+                    {
+                        NPC inimigo = (NPC)collided;
+                        inimigo.Vida--;
+                    }
+
+                    if (collided is Missil)
+                    {
+                        Missil missil = (Missil)collided;
+                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
+                        missil.thrust.Destroy();
+                        missil.Destroy();
+                    }
+                }
+
+            }
+            //colisao com player
+            if (scene.Collides(sprite, out collided, out collisionPoint, scene.sprites))
+            {
+                if (collided is Player)
+                {
+                    Player player = (Player)collided;
+                    player.Destroy();
+                    if (sprite is Missil)
+                    {
+                        Missil missil = (Missil)sprite;
+                        missil.thrust.Destroy();
+                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, player.position, 1.5f));
+                        player.Destroy();
+                    }
+                    else
+                    {
+                        player.Vida--;
+                    }
+                    
+                    sprite.Destroy();
+                    scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
+                }
+            }
+
+        }
+
+    }
+}
