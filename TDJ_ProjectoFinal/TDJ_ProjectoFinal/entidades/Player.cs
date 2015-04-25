@@ -131,6 +131,15 @@ namespace TDJ_ProjectoFinal.entidades
             //colisao com power ups
             if(this.scene.Collides(this,out this.collided,out this.collisionPoint,this.scene.powerUps))
             {
+                if(this.collided is PowerUp)
+                {
+                    PowerUp powerUp = (PowerUp)collided;
+                    this.tipobala = (TipoBala)powerUp.tipoPowerUp;
+                    if(powerUp.tipoPowerUp==TipoPowerUp.Vida)
+                    {
+                        this.Vida++;
+                    }
+                }
                 this.collided.Destroy();
             }
             //colisao com inimigos
@@ -181,21 +190,7 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
-        //public override void Draw(GameTime gameTime)
-        //{
-        //    //desenhar rectangulo
-        //    Texture2D rect = new Texture2D(Camera.gDevManager.GraphicsDevice, boundingBox.Width, boundingBox.Height);
-
-        //    Color[] data = new Color[boundingBox.Width * boundingBox.Height];
-        //    for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
-        //    rect.SetData(data);
-            
-        //    Vector2 coor = new Vector2(this.boundingBox.X, this.boundingBox.Y);
-        //    scene.SpriteBatch.Draw(rect, coor, Color.White);
-
-        //    base.Draw(gameTime);
-
-        //}
+        
 
     }
 }

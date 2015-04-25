@@ -54,7 +54,7 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth, 0f)));
 
             //Nave do jogador
-            player=new Player(Content, "nave", TipoBala.Duplo);
+            player=new Player(Content, "nave", TipoBala.Simples);
             scene.AddSprite(player.Scl(0.5f));
 
 
@@ -65,8 +65,8 @@ namespace TDJ_ProjectoFinal
 
             //PowerUP
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Vida, -1, 0.3f, 1.5f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Vida, -1, 0.3f, 0.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Duplo, -1, 0.3f, 1.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Triplo, -1, 0.3f, 0.5f));
 
             
          
