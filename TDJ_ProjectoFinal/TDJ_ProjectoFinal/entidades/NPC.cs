@@ -86,6 +86,13 @@ namespace TDJ_ProjectoFinal.entidades
                 contador = 0;
             }
             contador += gameTime.ElapsedGameTime.Milliseconds;
+
+            //enimgos sao destruidos se passarem o limite esquerdo da camara
+            if (this.position.X < (Camera.target.X - (Camera.worldWidth / 2)))
+            {
+                this.Destroy();
+            }
+
             base.Update(gameTime);
         }
 
