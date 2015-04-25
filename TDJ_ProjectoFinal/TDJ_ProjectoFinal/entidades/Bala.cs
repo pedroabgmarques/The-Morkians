@@ -17,23 +17,29 @@ namespace TDJ_ProjectoFinal
         Cima,
         Baixo
     }
-    
+    public enum OrigemBala
+    {
+        enimiga,
+        player
+    }
     class Bala : FlyingEntity
     {
        
         private float speed;
         private int direccao;
         private DireccaoBala direccaobala;
+        private OrigemBala origemBala;
         Sprite collided;
         Vector2 collisionPoint;
 
-        public Bala(ContentManager contents, string assetName, int direccao, DireccaoBala direccaobala) 
+        public Bala(ContentManager contents, string assetName, int direccao,OrigemBala origemBala, DireccaoBala direccaobala) 
             : base(contents,"balasimples")
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.speed = Camera.speed * 9;
             this.direccaobala = direccaobala;
             this.direccao = direccao;
+            this.origemBala = origemBala;
             this.EnableCollisions();
         }
 
@@ -83,21 +89,25 @@ namespace TDJ_ProjectoFinal
 
         private void BulletColision()
         {
+            //Colisao com enimigos
             if (this.scene.Collides(this, out collided, out collisionPoint, this.scene.inimigos))
             {
-                //destroi bala
-                this.Destroy();
-                //cria explosao
-                this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
-
-                if (collided is NPC)
+                if (origemBala == OrigemBala.player)
                 {
-                    NPC inimigo = (NPC)collided;
-                    inimigo.Vida--;
+                    //destroi bala
+                    this.Destroy();
+                    //cria explosao
+                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
+
+                    if (collided is NPC)
+                    {
+                        NPC inimigo = (NPC)collided;
+                        inimigo.Vida--;
+                    }
                 }
-          
                 
             }
+            //colisao com player
             if(this.scene.Collides(this, out collided, out collisionPoint, this.scene.sprites))
             {
                 if (collided is Player)
@@ -108,6 +118,7 @@ namespace TDJ_ProjectoFinal
                     this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
                 }
             }
+           
         }
     }
 }

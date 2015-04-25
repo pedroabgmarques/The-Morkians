@@ -16,6 +16,7 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> powerUps;
         public List<Sprite> inimigos;
         public List<Sprite> explosoes;
+        
         public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
         {
@@ -24,6 +25,7 @@ namespace TDJ_ProjectoFinal
             this.powerUps = new List<Sprite>();
             this.inimigos = new List<Sprite>();
             this.explosoes = new List<Sprite>();
+            
         }
 
         public void AddSprite(Sprite s)
@@ -50,12 +52,15 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
+        
+
         public void RemoveSprite(Sprite s)
         {
             this.sprites.Remove(s);
             this.powerUps.Remove(s);
             this.inimigos.Remove(s);
             this.explosoes.Remove(s);
+            
         }
 
         public void Update(GameTime gameTime)
@@ -76,6 +81,7 @@ namespace TDJ_ProjectoFinal
             {
                 explosao.Update(gameTime);
             }
+        
         }
 
         public void Draw(GameTime gameTime)
@@ -102,7 +108,7 @@ namespace TDJ_ProjectoFinal
                 {
                     explosao.Draw(gameTime);
                 }
-                
+         
                 this.SpriteBatch.End();
             }
         }
