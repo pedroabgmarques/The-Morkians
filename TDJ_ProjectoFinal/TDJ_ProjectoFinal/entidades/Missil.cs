@@ -29,6 +29,7 @@ namespace TDJ_ProjectoFinal.entidades
         OrigemBala origemBala;
 
 
+
         public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, OrigemBala origemBala, FlyingEntity alvo = null) 
             : base(contents, assetName)
         {
@@ -76,6 +77,13 @@ namespace TDJ_ProjectoFinal.entidades
             UpdateThrust();
 
             MissilColision();
+
+            //Destroi missil quando sai ddo limite da camara
+            if (this.position.X > (Camera.target.X + (Camera.worldWidth/2)) || this.position.X < 0)
+            {
+                this.Destroy();
+                this.thrust.Destroy();
+            }
         }
 
         public void UpdateThrust()

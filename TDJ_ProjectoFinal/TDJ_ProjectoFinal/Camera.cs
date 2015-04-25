@@ -36,6 +36,7 @@ namespace TDJ_ProjectoFinal
             {
                 target.X += Camera.speed; 
             }
+            
         }
 
         public static void SetWorldWidth(float w)

@@ -46,30 +46,33 @@ namespace TDJ_ProjectoFinal
                         missil.Destroy();
                     }
                 }
+                
 
             }
-            //colisao com player
+
+
             if (scene.Collides(sprite, out collided, out collisionPoint, scene.sprites))
             {
                 if (collided is Player)
                 {
                     Player player = (Player)collided;
-                    player.Destroy();
                     if (sprite is Missil)
                     {
                         Missil missil = (Missil)sprite;
                         missil.thrust.Destroy();
-                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, player.position, 1.5f));
-                        player.Destroy();
+                        missil.Destroy();
+                        player.Vida -= 2;
+                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.4f));
                     }
                     else
                     {
                         player.Vida--;
+                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
                     }
-                    
+
                     sprite.Destroy();
-                    scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
-                }
+                    
+                } 
             }
 
         }
