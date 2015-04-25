@@ -57,7 +57,16 @@ namespace TDJ_ProjectoFinal
             player=new Player(Content, "nave", TipoBala.Duplo);
             scene.AddSprite(player.Scl(0.5f));
 
+
             newEnemyWave();
+            //Missil
+            scene.AddSprite(new Missil(Content, "missil", TipoMissil.Teleguiado, -1, player).Scl(0.2f).
+                At(new Vector2(Camera.worldWidth, 0f)));
+
+            //PowerUP
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Vida, -1, 0.3f, 1.5f));
+            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Vida, -1, 0.3f, 0.5f));
 
             
          
@@ -83,6 +92,12 @@ namespace TDJ_ProjectoFinal
           
 
             scene.Update(gameTime);
+
+            if (scene.inimigos.Count <= 0)
+            {
+                //Matámos todos os inimigos, nova ronda
+                newEnemyWave();
+            }
             
             base.Update(gameTime);
         }
@@ -104,34 +119,30 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 1f));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, -1f));
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+                At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 1f).
+                At(new Vector2(Camera.worldWidth + player.position.X, 0f)));
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, -1f).
+                At(new Vector2(Camera.worldWidth + player.position.X, 1f)));
 
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth + 5, 1f)));
+                At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
             scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth + 10, -1f)));
+                At(new Vector2(Camera.worldWidth + player.position.X + 10, -1f)));
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth + 2, 0f)));
+                At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth + 3, 0.5f)));
+                At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
-                At(new Vector2(Camera.worldWidth + 4, -0.8f)));
+                At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
             //    At(new Vector2(Camera.worldWidth, 0f)));
 
-            //Missil
-            scene.AddSprite(new Missil(Content, "missil", TipoMissil.Teleguiado, -1, player).Scl(0.2f).
-                At(new Vector2(Camera.worldWidth, 0f)));
-
-            //PowerUP
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Vida, -1,0.3f, 1.5f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Vida, -1, 0.3f, 0.5f));
+            
             
         }
     }
