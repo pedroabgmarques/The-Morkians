@@ -23,7 +23,7 @@ namespace TDJ_ProjectoFinal.entidades
         public TipoNave tipoNave { get; set; }
         public int Vida;
         int contador;
-        private int shootTime = 2000;
+        private int shootTime = 4000;
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, float posY) 
             : base(contents, assetName)
         {

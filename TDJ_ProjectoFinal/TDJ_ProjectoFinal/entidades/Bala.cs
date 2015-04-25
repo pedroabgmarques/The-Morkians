@@ -53,12 +53,14 @@ namespace TDJ_ProjectoFinal
         //}
         public override void Update(GameTime gameTime)
         {
+            
             switch ( direccaobala )
-            {
+                {
                 case DireccaoBala.EmFrente:
-                    this.position.X += speed * direccao;
-                    
-
+                    if(origemBala==OrigemBala.player)
+                        this.position.X += speed * direccao;
+                    else
+                        this.position.X += speed * direccao + 0.03f;
                     break;
                 case DireccaoBala.Cima:
                     this.position.X += speed * direccao;
@@ -75,7 +77,8 @@ namespace TDJ_ProjectoFinal
                 default:
                     //base.position.X += speed * direccao;
                     break;
-            }
+                }
+            
             //deteta colisao das balas com os enimigos
             BulletColision();
 
