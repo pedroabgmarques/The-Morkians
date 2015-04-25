@@ -31,7 +31,7 @@ namespace TDJ_ProjectoFinal.entidades
         private int contador;
         private ContentManager contents;
         private int shootTime = 500;
-
+        public int Vida;
 
         public Rectangle boundingBox;
         
@@ -53,7 +53,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.tipobala = tipobala;
                 //Velocidade da nave
                 this.speed = 0.008f;
-                              
+                this.Vida = 5;              
                 this.EnableCollisions();
         }
 
@@ -165,6 +165,12 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 this.position.Y += 0.01f;
 
+            }
+
+            if(this.Vida<=0)
+            {
+                this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, this.position, 1.5f));
+                this.Destroy();
             }
 
             base.position.X += Camera.speed / 2;

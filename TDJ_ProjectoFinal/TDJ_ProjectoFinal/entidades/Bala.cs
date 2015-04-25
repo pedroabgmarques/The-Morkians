@@ -95,7 +95,18 @@ namespace TDJ_ProjectoFinal
                     NPC inimigo = (NPC)collided;
                     inimigo.Vida--;
                 }
+          
                 
+            }
+            if(this.scene.Collides(this, out collided, out collisionPoint, this.scene.sprites))
+            {
+                if (collided is Player)
+                {
+                    Player player = (Player)collided;
+                    player.Vida--;
+                    this.Destroy();
+                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.2f));
+                }
             }
         }
     }
