@@ -119,24 +119,24 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f).
                 At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 1f).
-                At(new Vector2(Camera.worldWidth + player.position.X, 0f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, -1f).
-                At(new Vector2(Camera.worldWidth + player.position.X, 1f)));
+            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f).
+                At(new Vector2(Camera.worldWidth + player.position.X+1f, -1f)));
+            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f).
+                At(new Vector2(Camera.worldWidth + player.position.X+2f, -1f)));
 
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
                 At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f).
                 At(new Vector2(Camera.worldWidth + player.position.X + 10, -1f)));
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
                 At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
                 At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, 0f).
+            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f).
                 At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).

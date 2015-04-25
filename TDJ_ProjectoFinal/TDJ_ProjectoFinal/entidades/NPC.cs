@@ -24,7 +24,7 @@ namespace TDJ_ProjectoFinal.entidades
         public int Vida;
         int contador;
         private int shootTime = 4000;
-        public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, float posY) 
+        public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl) 
             : base(contents, assetName)
         {
             base.spriteEffects = SpriteEffects.FlipHorizontally;
@@ -32,7 +32,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.EnableCollisions();
             this.Scl(Scl);
             this.position.X = Camera.worldWidth;
-            this.position.Y = posY;
+            
             this.contador = 0;
             switch (tipoNave)
             {
