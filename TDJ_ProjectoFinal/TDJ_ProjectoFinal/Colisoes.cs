@@ -59,8 +59,8 @@ namespace TDJ_ProjectoFinal
                     if (sprite is Missil)
                     {
                         Missil missil = (Missil)sprite;
-                        missil.thrust.Destroy();
                         missil.Destroy();
+                        missil.thrust.Destroy();
                         player.Vida -= 2;
                         scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.4f));
                     }

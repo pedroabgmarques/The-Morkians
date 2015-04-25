@@ -24,13 +24,13 @@ namespace TDJ_ProjectoFinal
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 1000;
+            graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferHeight = 600;
-            graphics.PreferredBackBufferWidth = 1000;
-            graphics.ApplyChanges();
 
             random = new Random();
             
