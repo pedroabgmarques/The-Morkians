@@ -22,8 +22,6 @@ namespace TDJ_ProjectoFinal.entidades
 
         public TipoNave tipoNave { get; set; }
         public int Vida;
-        Sprite collided;
-        Vector2 collisionPoint;
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, float posY) 
             : base(contents, assetName)
         {
@@ -36,13 +34,13 @@ namespace TDJ_ProjectoFinal.entidades
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
-                    this.Vida = 1;
-                    break;
-                case TipoNave.Bomber:
                     this.Vida = 3;
                     break;
+                case TipoNave.Bomber:
+                    this.Vida = 5;
+                    break;
                 case TipoNave.Mothership:
-                    this.Vida = 4;
+                    this.Vida = 10;
                     break;
                 default:
                     this.Vida = 1;
@@ -68,19 +66,20 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.X -= Camera.speed;
                     break;
             }
-            Console.WriteLine(this.Vida);
-            //quando enimigo colide com bala
-            if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.balas))
+
+            //Verificar vida
+            if (this.Vida <= 0)
             {
-                this.Vida -= 1;
-                if(this.Vida==0)
-                {
-                    this.Destroy();
-                    
-                }
+                this.Destroy();
             }
 
             base.Update(gameTime);
+        }
+
+        new public NPC At(Vector2 p)
+        {
+            this.SetPosition(p);
+            return this;
         }
 
     }

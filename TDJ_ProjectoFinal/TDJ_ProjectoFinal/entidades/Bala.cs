@@ -26,7 +26,6 @@ namespace TDJ_ProjectoFinal
         private DireccaoBala direccaobala;
         Sprite collided;
         Vector2 collisionPoint;
-        AnimatedSprite explosao;
 
         public Bala(ContentManager contents, string assetName, int direccao, DireccaoBala direccaobala) 
             : base(contents,"balasimples")
@@ -84,13 +83,19 @@ namespace TDJ_ProjectoFinal
 
         private void BulletColision()
         {
-            if (this.scene.Collides(this, out collided, out collisionPoint, this.scene.enimigos))
+            if (this.scene.Collides(this, out collided, out collisionPoint, this.scene.inimigos))
             {
                 //destroi bala
                 this.Destroy();
                 //cria explosao
                 this.scene.AddSprite(new AnimatedSprite(cManager, "explosao", 9, 9, false).
                     At(new Vector2(this.position.X,this.position.Y)).Scl(0.2f));
+
+                if (collided is NPC)
+                {
+                    NPC inimigo = (NPC)collided;
+                    inimigo.Vida--;
+                }
                 
             }
         }

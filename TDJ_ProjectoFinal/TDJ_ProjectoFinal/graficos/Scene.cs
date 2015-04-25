@@ -14,7 +14,7 @@ namespace TDJ_ProjectoFinal
         public SpriteBatch SpriteBatch { get; private set; }
         public List<Sprite> sprites;
         public List<Sprite> powerUps;
-        public List<Sprite> enimigos;
+        public List<Sprite> inimigos;
         public List<Sprite> balas;
         public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
@@ -22,7 +22,7 @@ namespace TDJ_ProjectoFinal
             this.SpriteBatch = sb;
             this.sprites = new List<Sprite>();
             this.powerUps = new List<Sprite>();
-            this.enimigos = new List<Sprite>();
+            this.inimigos = new List<Sprite>();
             this.balas = new List<Sprite>();
         }
 
@@ -38,9 +38,9 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
-        public void AddEnimigo(NPC s)
+        public void AddInimigo(NPC s)
         {
-            this.enimigos.Add(s);
+            this.inimigos.Add(s);
             s.SetScene(this);
         }
 
@@ -53,7 +53,7 @@ namespace TDJ_ProjectoFinal
         {
             this.sprites.Remove(s);
             this.powerUps.Remove(s);
-            this.enimigos.Remove(s);
+            this.inimigos.Remove(s);
             this.balas.Remove(s);
         }
 
@@ -67,7 +67,7 @@ namespace TDJ_ProjectoFinal
             {
                 powerUp.Update(gameTime);
             }
-            foreach (var enimigo in enimigos.ToList())
+            foreach (var enimigo in inimigos.ToList())
             {
                 enimigo.Update(gameTime);
             }
@@ -93,7 +93,7 @@ namespace TDJ_ProjectoFinal
                     powerUp.Draw(gameTime);
                 }
                 
-                foreach (var enimigo in enimigos.ToList())
+                foreach (var enimigo in inimigos.ToList())
                 {
                     enimigo.Draw(gameTime);
                 }

@@ -135,7 +135,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.collided.Destroy();
             }
             //colisao com inimigos
-            if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.enimigos))
+            if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.inimigos))
             {
                 this.collided.Destroy();
             }
