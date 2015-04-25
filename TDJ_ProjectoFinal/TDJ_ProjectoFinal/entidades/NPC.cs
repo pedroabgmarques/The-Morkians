@@ -22,6 +22,8 @@ namespace TDJ_ProjectoFinal.entidades
 
         public TipoNave tipoNave { get; set; }
         public int Vida;
+        int contador;
+        private int shootTime = 2000;
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, float posY) 
             : base(contents, assetName)
         {
@@ -31,6 +33,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.Scl(Scl);
             this.position.X = Camera.worldWidth;
             this.position.Y = posY;
+            this.contador = 0;
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
@@ -65,8 +68,10 @@ namespace TDJ_ProjectoFinal.entidades
                 default:
                     base.position.X -= Camera.speed;
                     break;
+                    
             }
 
+            
             //Verificar vida
             if (this.Vida <= 0)
             {
@@ -74,6 +79,13 @@ namespace TDJ_ProjectoFinal.entidades
                 this.Destroy();
             }
 
+            if (contador >= shootTime)
+            {
+                scene.AddSprite(new Bala(this.cManager, "balasimples", -1, DireccaoBala.EmFrente).Scl(0.09f).
+                        At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
+                contador = 0;
+            }
+            contador += gameTime.ElapsedGameTime.Milliseconds;
             base.Update(gameTime);
         }
 
