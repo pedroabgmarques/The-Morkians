@@ -25,15 +25,14 @@ namespace TDJ_ProjectoFinal
     class Bala : FlyingEntity
     {
        
-        private float speed;
         private int direccao;
         private DireccaoBala direccaobala;
         private OrigemBala origemBala;
         Sprite collided;
         Vector2 collisionPoint;
 
-        public Bala(ContentManager contents, string assetName, int direccao,OrigemBala origemBala, DireccaoBala direccaobala) 
-            : base(contents,"balasimples")
+        public Bala(ContentManager contents, string assetName, int direccao,OrigemBala origemBala, DireccaoBala direccaobala)
+            : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.speed = Camera.speed * 9;
