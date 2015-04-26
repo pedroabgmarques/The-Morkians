@@ -22,31 +22,45 @@ namespace TDJ_ProjectoFinal
             {
                 if (origemBala == OrigemBala.player)
                 {
-                    //destroi bala
-                    sprite.Destroy();
+
                     if (sprite is Missil)
                     {
                         Missil missil = (Missil)sprite;
                         missil.thrust.Destroy();
+                        missil.Destroy();
                     }
+                    
                     //cria explosao
                     scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
 
                     if (collided is NPC)
                     {
                         NPC inimigo = (NPC)collided;
-                        inimigo.Vida--;
+                        if (sprite is Missil)
+                        {
+                            scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.9f));
+                            inimigo.Destroy();
+                        }
+                        else
+                        {
+                            inimigo.Vida--;
+                        }
+                        
                     }
 
-                    if (collided is Missil)
-                    {
-                        Missil missil = (Missil)collided;
-                        scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
-                        missil.thrust.Destroy();
-                        missil.Destroy();
-                    }
+                    
+
+                    sprite.Destroy();
+
                 }
-                
+
+                if (collided is Missil)
+                {
+                    Missil missil = (Missil)collided;
+                    scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
+                    missil.thrust.Destroy();
+                    missil.Destroy();
+                }
 
             }
 
@@ -59,10 +73,12 @@ namespace TDJ_ProjectoFinal
                     if (sprite is Missil)
                     {
                         Missil missil = (Missil)sprite;
-                        missil.Destroy();
                         missil.thrust.Destroy();
+                        missil.Destroy();
                         player.Vida -= 2;
                         scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.4f));
+                        
+                        
                     }
                     else
                     {
@@ -70,9 +86,9 @@ namespace TDJ_ProjectoFinal
                         scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
                     }
 
-                    sprite.Destroy();
-                    
-                } 
+                }
+
+                if(!(collided is Bala)) sprite.Destroy();
             }
 
         }

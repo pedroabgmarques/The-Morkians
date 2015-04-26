@@ -16,7 +16,7 @@ namespace TDJ_ProjectoFinal
         SpriteBatch spriteBatch;
         Scene scene;
         Player player;
-        Random random;
+        static public Random random;
         
         
         public Game1()

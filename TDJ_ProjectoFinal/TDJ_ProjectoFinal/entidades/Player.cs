@@ -39,6 +39,7 @@ namespace TDJ_ProjectoFinal.entidades
         Vector2 collisionPoint;
         
         public TipoBala tipobala;
+        private int contadorMisseis;
 
 
         public TipoBala GetTipoBala() 
@@ -55,6 +56,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.speed = 0.008f;
                 this.Vida = 5;              
                 this.EnableCollisions();
+                this.contadorMisseis = 0;
         }
 
         public override void Update(GameTime gameTime)
@@ -115,12 +117,31 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoBala.Triplo:
                     scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Cima).Scl(0.09f).
-                    At(new Vector2(position.X+0.2f, position.Y - 0.1f)));
+                    At(new Vector2(position.X + 0.4f, position.Y - 0.03f)));
+
                     scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
-                     At(new Vector2(position.X + 0.3f, position.Y )));
+                    At(new Vector2(position.X + 0.4f, position.Y - 0.05f )));
+
+                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    At(new Vector2(position.X + 0.4f, position.Y + 0.05f )));
+
                     scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Baixo).Scl(0.09f).
-                    At(new Vector2(position.X + 0.2f, position.Y + 0.1f)));
+                    At(new Vector2(position.X + 0.4f, position.Y + 0.03f)));
+
                     
+
+                    if (contadorMisseis > 3000)
+                    {
+                        List<Sprite> listaAlvos = this.scene.inimigos.FindAll(x => (x is NPC || x is Missil));
+                        if (listaAlvos.Count > 0)
+                        {
+                            FlyingEntity alvo = (FlyingEntity)listaAlvos[Game1.random.Next(listaAlvos.Count)];
+                            scene.AddSprite(new Missil(this.cManager, "missilPlayer", TipoMissil.Teleguiado, 1, OrigemBala.player, alvo).Scl(0.15f).
+                            At(new Vector2(position.X + 0.4f, position.Y)));
+                            contadorMisseis = 0;
+                        }
+                        
+                    }
                     break;
                 default:
                     break;
@@ -151,12 +172,16 @@ namespace TDJ_ProjectoFinal.entidades
             //colisao com inimigos
             if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.inimigos))
             {
-                if (!(collided is Missil))
+
+                if (collided is Missil)
                 {
-                    this.collided.Destroy();
-                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position + new Vector2(0.2f, 0f), 1.5f));
-                    this.Destroy();
+                    Missil missil = (Missil)collided;
+                    missil.thrust.Destroy();
                 }
+                this.collided.Destroy();
+                this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position + new Vector2(0.2f, 0f), 1.5f));
+                if (!(collided is Missil)) this.Destroy();
+                
                 
             }
 
@@ -196,6 +221,7 @@ namespace TDJ_ProjectoFinal.entidades
 
             
             contador += gameTime.ElapsedGameTime.Milliseconds;
+            contadorMisseis += gameTime.ElapsedGameTime.Milliseconds;
 
             base.Update(gameTime);
         }

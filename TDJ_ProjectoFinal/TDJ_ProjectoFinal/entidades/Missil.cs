@@ -26,7 +26,7 @@ namespace TDJ_ProjectoFinal.entidades
         private FlyingEntity alvo;
         bool passouPeloAlvo;
         Vector2 direction = Vector2.UnitX;
-        OrigemBala origemBala;
+        public OrigemBala origemBala;
 
 
 
@@ -53,13 +53,13 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoMissil.Teleguiado:
 
-                    if (!passouPeloAlvo)
+                    if (!passouPeloAlvo && alvo != null)
                     {
                         //Encontrar a direção do alvo
                         direction = alvo.position - this.position;
                     }
                     
-                    if (direction.Length() < 0.7f && !passouPeloAlvo)
+                    if ((direction.Length() < 0.7f && !passouPeloAlvo) || alvo == null)
                     {
                         //Já passou pelo alvo, deixamos de atualizar a direção
                         passouPeloAlvo = true;
@@ -81,8 +81,8 @@ namespace TDJ_ProjectoFinal.entidades
             //Destroi missil quando sai ddo limite da camara
             if (this.position.X > (Camera.target.X + (Camera.worldWidth/2)) || this.position.X < 0)
             {
-                this.Destroy();
                 this.thrust.Destroy();
+                this.Destroy();
             }
         }
 

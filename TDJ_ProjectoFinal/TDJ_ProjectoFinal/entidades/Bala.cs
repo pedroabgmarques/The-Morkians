@@ -62,12 +62,12 @@ namespace TDJ_ProjectoFinal
                     break;
                 case DireccaoBala.Cima:
                     this.position.X += speed * direccao;
-                    this.position.Y -= speed * 0.5f * direccao;
+                    this.position.Y -= speed * 0.2f * direccao;
 
                     break;
                 case DireccaoBala.Baixo:
                     this.position.X += speed *direccao;
-                    this.position.Y += speed*0.5f * direccao;
+                    this.position.Y += speed * 0.2f * direccao;
                    
 
 
