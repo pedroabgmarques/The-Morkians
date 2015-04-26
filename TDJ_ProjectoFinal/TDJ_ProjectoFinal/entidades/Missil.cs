@@ -51,12 +51,9 @@ namespace TDJ_ProjectoFinal.entidades
                 case TipoMissil.EmFrente:
                     base.position.X += speed * direccao;
                     break;
+                    
                 case TipoMissil.Teleguiado:
 
-                        if (this.scene.player.position.X > this.position.X)
-                        { 
-                            this.position.X +=speed*direccao;//precisamos solucao aqui
-                        }
                         if (!passouPeloAlvo && alvo != null)
                         {
                             //Encontrar a direção do alvo
