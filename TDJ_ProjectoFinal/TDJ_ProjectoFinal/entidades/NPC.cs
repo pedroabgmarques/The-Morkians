@@ -92,6 +92,7 @@ namespace TDJ_ProjectoFinal.entidades
                 }
                 else
                 {
+                    
                     //Bombardeiros disparam misseis teleguidados
                     scene.AddInimigo(new Missil(this.cManager, "missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
                         At(this.position));

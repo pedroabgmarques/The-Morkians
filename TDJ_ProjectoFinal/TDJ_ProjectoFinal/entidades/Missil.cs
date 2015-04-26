@@ -41,7 +41,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.passouPeloAlvo = false;
             this.origemBala = origemBala;
             this.EnableCollisions();
-
+         
         }
 
         public override void Update(GameTime gameTime)
@@ -53,17 +53,22 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoMissil.Teleguiado:
 
-                    if (!passouPeloAlvo && alvo != null)
-                    {
-                        //Encontrar a direção do alvo
-                        direction = alvo.position - this.position;
-                    }
+                        if (this.scene.player.position.X > this.position.X)
+                        { 
+                            this.position.X +=speed*direccao;//precisamos solucao aqui
+                        }
+                        if (!passouPeloAlvo && alvo != null)
+                        {
+                            //Encontrar a direção do alvo
+                            direction = alvo.position - this.position;
+                        }
+
+                        if ((direction.Length() < 0.7f && !passouPeloAlvo) || alvo == null)
+                        {
+                            //Já passou pelo alvo, deixamos de atualizar a direção
+                            passouPeloAlvo = true;
+                        }
                     
-                    if ((direction.Length() < 0.7f && !passouPeloAlvo) || alvo == null)
-                    {
-                        //Já passou pelo alvo, deixamos de atualizar a direção
-                        passouPeloAlvo = true;
-                    }
                     direction.Normalize();
                     //Mover na direção para onde estamos virados
                     position += direction * speed;
