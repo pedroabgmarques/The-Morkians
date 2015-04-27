@@ -17,6 +17,7 @@ namespace TDJ_ProjectoFinal
         Scene scene;
         Player player;
         static public Random random;
+        bool novopowerup = false;
         
         
         public Game1()
@@ -65,8 +66,8 @@ namespace TDJ_ProjectoFinal
 
             //PowerUP
             scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroDuplo", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-TiroTriplo", TipoPowerUp.Armas, -1, 0.3f, 0.5f));
+            //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+            
          
         }
 
@@ -95,6 +96,17 @@ namespace TDJ_ProjectoFinal
             {
                 //Matámos todos os inimigos, nova ronda
                 newEnemyWave();
+                novopowerup = false;
+            }
+            
+            if ( !novopowerup) 
+            {
+                // os inimigos estão a terminar...
+                // nova ronda surgitrá
+                // (apenas teste)
+                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas,-1,0.3f,0f));
+                novopowerup = true;
+
             }
             
             base.Update(gameTime);
