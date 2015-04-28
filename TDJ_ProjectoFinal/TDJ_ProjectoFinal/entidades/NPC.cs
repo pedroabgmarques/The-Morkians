@@ -24,6 +24,7 @@ namespace TDJ_ProjectoFinal.entidades
         public int Vida;
         int contador;
         private int shootTime;
+        private float posY;
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, Random random) 
             : base(contents, assetName)
         {
@@ -56,6 +57,9 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
+            // variavel usada pelo coseno
+            // Contradominio de cos(x)=[-1,1]
+            posY+=0.01f;
 
             switch (this.tipoNave)
             {
@@ -64,6 +68,10 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoNave.Bomber:
                     base.position.X -= Camera.speed / 3;
+                    // algoritmo para criar o efeito de onda nos NPC'S
+                    // coseno(x)+posição do npc
+                    
+                    base.position.Y = (float)Math.Cos(posY)+0.1f;
                     break;
                 case TipoNave.Mothership:
                     base.position.X -= Camera.speed / 4;

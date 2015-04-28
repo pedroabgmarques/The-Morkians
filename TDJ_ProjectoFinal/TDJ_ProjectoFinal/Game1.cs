@@ -92,7 +92,7 @@ namespace TDJ_ProjectoFinal
 
             scene.Update(gameTime);
 
-            if (scene.inimigos.Count <= 0)
+            if (scene.inimigos.Count <= 5)
             {
                 //Matámos todos os inimigos, nova ronda
                 newEnemyWave();
@@ -104,7 +104,8 @@ namespace TDJ_ProjectoFinal
                 // os inimigos estão a terminar...
                 // nova ronda surgitrá
                 // (apenas teste)
-                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas,-1,0.3f,0f));
+                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0.3f ));
+                  
                 novopowerup = true;
 
             }
@@ -129,7 +130,7 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f, random).
+            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f,random).
                 At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
             scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X+1f, 0f)));
