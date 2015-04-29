@@ -199,7 +199,7 @@ namespace TDJ_ProjectoFinal.entidades
                         this.Vida++;
                     }
                     else
-                        if (this.tipobala != TipoBala.Triplo)
+                        if (this.tipobala != TipoBala.Quadruplo)
                         {
                             this.tipobala++;
                         }
