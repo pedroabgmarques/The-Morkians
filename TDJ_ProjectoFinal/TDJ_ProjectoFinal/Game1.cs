@@ -20,6 +20,7 @@ namespace TDJ_ProjectoFinal
         bool novopowerup = false;
         
         
+        
         public Game1()
             : base()
         {
@@ -87,6 +88,7 @@ namespace TDJ_ProjectoFinal
             scene.Update(gameTime);
 
             Camera.Update();
+            
 
           
 
@@ -104,7 +106,7 @@ namespace TDJ_ProjectoFinal
                 // os inimigos estão a terminar...
                 // nova ronda surgitrá
                 // (apenas teste)
-                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0.3f ));
+                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0f ));
                   
                 novopowerup = true;
 
@@ -140,8 +142,8 @@ namespace TDJ_ProjectoFinal
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            scene.AddInimigo(new NPC(Content, "nave", TipoNave.Hunter, 1, 0.5f, random).
-                At(new Vector2(Camera.worldWidth + player.position.X + 10, -1f)));
+            scene.AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
+                At(new Vector2(Camera.worldWidth + player.position.X + 6, -1f)));
 
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
@@ -149,6 +151,9 @@ namespace TDJ_ProjectoFinal
                 At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
             scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
+
+            scene.AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
+                At(new Vector2(Camera.worldWidth + player.position.X + 10, 1f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
             //    At(new Vector2(Camera.worldWidth, 0f)));

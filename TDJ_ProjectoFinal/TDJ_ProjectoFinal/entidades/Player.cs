@@ -33,6 +33,7 @@ namespace TDJ_ProjectoFinal.entidades
         private ContentManager contents;
         private int shootTime = 500;
         public int Vida;
+        public int pontuacao;
 
         public Rectangle boundingBox;
         
@@ -58,6 +59,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.Vida = 5;              
                 this.EnableCollisions();
                 this.contadorMisseis = 0;
+            this.pontuacao=0;
         }
 
         public override void Update(GameTime gameTime)

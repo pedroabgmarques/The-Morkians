@@ -46,7 +46,7 @@ namespace TDJ_ProjectoFinal.entidades
                     this.shootTime = random.Next(6000, 10000);
                     break;
                 case TipoNave.Mothership:
-                    this.Vida = 10;
+                    this.Vida = 50;
                     this.shootTime = 4000;
                     break;
                 default:
@@ -88,6 +88,7 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
                 this.Destroy();
+                
             }
 
             if (contador >= shootTime)

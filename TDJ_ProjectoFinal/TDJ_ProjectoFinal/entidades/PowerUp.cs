@@ -48,6 +48,7 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoPowerUp.Armas:
                     base.position.Y += speed * direcao;
+                    
                     break;
             }
 
