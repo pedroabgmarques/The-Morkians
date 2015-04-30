@@ -87,6 +87,7 @@ namespace TDJ_ProjectoFinal.entidades
             if (this.Vida <= 0)
             {
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
+                som.playExplosao(cManager);
                 this.Destroy();
                 
             }
@@ -127,5 +128,7 @@ namespace TDJ_ProjectoFinal.entidades
             return this;
         }
 
+
+        
     }
 }
