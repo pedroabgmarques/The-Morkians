@@ -220,6 +220,7 @@ namespace TDJ_ProjectoFinal.entidades
                 }
                 this.collided.Destroy();
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position + new Vector2(0.2f, 0f), 1.5f));
+                Camera.addShake(500);
                 if (!(collided is Missil)) this.Destroy();
                 
                 
@@ -255,6 +256,7 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, this.position, 1.5f));
                 som.playExplosao(cManager);
+                Camera.addShake(500);
                 this.Destroy();
             }
 

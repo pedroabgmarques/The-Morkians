@@ -14,7 +14,8 @@ namespace TDJ_ProjectoFinal
         public static Vector2 target;
         private static int lastSeenPixelWidth = 0;
         public static float speed { get; set; }
-
+        static private Vector2 shake;
+        static private int shakeAmount;
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
             Camera.gDevManager = gdm;
@@ -30,13 +31,34 @@ namespace TDJ_ProjectoFinal
             return Camera.target;
         }
 
-        public static void Update()
+        static public void addShake(int valor)
+        {
+            shakeAmount += valor;
+        }
+
+        static public void resetShake()
+        {
+            shakeAmount = 0;
+        }
+        public static void Update(Random random)
         {
             if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
             {
                 target.X += Camera.speed; 
             }
-            
+            //camera shake
+            if (shakeAmount > 0)
+            {
+                int denominador = 20;
+                shake.X = random.Next(-(shakeAmount / denominador), shakeAmount / denominador);
+                shake.Y = random.Next(-(shakeAmount / denominador), shakeAmount / denominador);
+                shakeAmount -= shakeAmount / denominador;
+            }
+            else
+            {
+                shake = Vector2.Zero;
+                shakeAmount = 0;
+            }
         }
 
         public static void SetWorldWidth(float w)
@@ -76,7 +98,7 @@ namespace TDJ_ProjectoFinal
             // inverter coordenadas Y
             pixelPoint.Y = Camera.gDevManager.PreferredBackBufferHeight - pixelPoint.Y;
 
-            return pixelPoint;
+            return pixelPoint + shake;
         }
 
         public static Vector2 WorldPoint2Pixels(int x, int y)

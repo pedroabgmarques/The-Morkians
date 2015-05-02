@@ -17,10 +17,10 @@ namespace TDJ_ProjectoFinal
         SpriteBatch spriteBatch;
         Scene scene,scene2;
         Player player;
-        static public Random random;
+        public static Random random;
         bool novopowerup = false;
         List<Scene> Cenas;
-        
+        Random randomShake;
         
         public Game1()
             : base()
@@ -35,7 +35,7 @@ namespace TDJ_ProjectoFinal
         {
 
             random = new Random();
-
+            randomShake = new Random();
             Cenas = new List<Scene>();
             
             Camera.SetGraphicsDeviceManager(graphics);
@@ -99,7 +99,7 @@ namespace TDJ_ProjectoFinal
                 {
                     scene.Update(gameTime);
 
-                    Camera.Update();
+                    Camera.Update(randomShake);
 
                     scene.Update(gameTime);
                 }

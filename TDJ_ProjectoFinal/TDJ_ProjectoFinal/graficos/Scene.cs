@@ -64,6 +64,7 @@ namespace TDJ_ProjectoFinal
             if (s is NPC)
             {
                 this.enemiesKilled++;
+                
             }
             this.inimigos.Remove(s);
         
