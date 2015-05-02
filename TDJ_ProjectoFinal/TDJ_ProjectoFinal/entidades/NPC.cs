@@ -65,13 +65,14 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 case TipoNave.Hunter:
                     base.position.X -= Camera.speed;
+                    // algoritmo para criar o efeito de onda nos NPC'S
+                    // coseno(x)+posição do npc
+
+                    base.position.Y = (float)Math.Cos(posY) + 0.1f;
                     break;
                 case TipoNave.Bomber:
                     base.position.X -= Camera.speed / 3;
-                    // algoritmo para criar o efeito de onda nos NPC'S
-                    // coseno(x)+posição do npc
                     
-                    base.position.Y = (float)Math.Cos(posY)+0.1f;
                     break;
                 case TipoNave.Mothership:
                     base.position.X -= Camera.speed / 4;

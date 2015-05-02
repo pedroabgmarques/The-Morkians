@@ -55,7 +55,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.contents = contents;
                 this.tipobala = tipobala;
                 //Velocidade da nave
-                this.speed = 0.008f;
+                this.speed = 0.009f;
                 this.Vida = 5;              
                 this.EnableCollisions();
                 this.contadorMisseis = 0;
