@@ -64,7 +64,7 @@ namespace TDJ_ProjectoFinal
             //planeta
             Cenas[0].AddSprite(new SlidingBackground(Content, "planeta",0.001f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
-            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 0.0001f).Scl(4f).At(new Vector2(20f, 0.8f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 0.00001f).Scl(4f).At(new Vector2(20f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             Cenas[0].AddSprite(player.Scl(0.5f));
