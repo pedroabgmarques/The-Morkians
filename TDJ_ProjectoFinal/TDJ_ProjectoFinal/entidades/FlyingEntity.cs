@@ -15,11 +15,12 @@ namespace TDJ_ProjectoFinal.entidades
     public class FlyingEntity : Sprite
     {
         protected Sprite sprite;
-        protected float speed;
+        public float speed;
         public FlyingEntity(ContentManager contents, string assetName) 
             : base(contents, assetName)
         {
             this.sprite = new Sprite(contents, assetName);
+            
         }
 
         public override void Update(GameTime gameTime)

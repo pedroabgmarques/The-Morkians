@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using TDJ_ProjectoFinal.graficos;
 using TDJ_ProjectoFinal.entidades;
+using Microsoft.Xna.Framework.Content;
 
 namespace TDJ_ProjectoFinal
 {

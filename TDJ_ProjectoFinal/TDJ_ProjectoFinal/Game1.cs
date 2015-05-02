@@ -39,7 +39,7 @@ namespace TDJ_ProjectoFinal
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
-
+            
             
             
            
@@ -54,9 +54,11 @@ namespace TDJ_ProjectoFinal
             
             
             //Fundo do universo (imóvel)
-            scene.AddSprite(new Sprite(Content, "universe").Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+            scene.AddSprite(new SlidingBackground(Content, "universe",0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
-
+            //planeta
+            scene.AddSprite(new SlidingBackground(Content, "planeta",0.001f).Scl(8f).At(new Vector2(8,-2.7f)));
+            
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             scene.AddSprite(player.Scl(0.5f));
@@ -86,7 +88,7 @@ namespace TDJ_ProjectoFinal
                 Exit();
 
             scene.Update(gameTime);
-
+            
             Camera.Update();
             
 
@@ -121,7 +123,7 @@ namespace TDJ_ProjectoFinal
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
            
-
+            
             scene.Draw(gameTime);
 
             base.Draw(gameTime);
