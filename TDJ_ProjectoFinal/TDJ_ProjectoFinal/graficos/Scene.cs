@@ -18,7 +18,8 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> inimigos;
         public List<Sprite> explosoes;
         public Player player;
-        
+        public bool active = true;
+        public int enemiesKilled;
         public GraphicsDevice gDevice;
         public Scene(SpriteBatch sb)
         {
@@ -27,7 +28,7 @@ namespace TDJ_ProjectoFinal
             this.powerUps = new List<Sprite>();
             this.inimigos = new List<Sprite>();
             this.explosoes = new List<Sprite>();
-            
+            this.enemiesKilled = 0;
         }
 
         public void AddSprite(Sprite s)
@@ -60,7 +61,12 @@ namespace TDJ_ProjectoFinal
         {
             this.sprites.Remove(s);
             this.powerUps.Remove(s);
+            if (s is NPC)
+            {
+                this.enemiesKilled++;
+            }
             this.inimigos.Remove(s);
+        
             this.explosoes.Remove(s);
             
         }

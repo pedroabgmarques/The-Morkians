@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
@@ -14,11 +15,11 @@ namespace TDJ_ProjectoFinal
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Scene scene;
+        Scene scene,scene2;
         Player player;
         static public Random random;
         bool novopowerup = false;
-        
+        List<Scene> Cenas;
         
         
         public Game1()
@@ -34,8 +35,9 @@ namespace TDJ_ProjectoFinal
         {
 
             random = new Random();
-            
 
+            Cenas = new List<Scene>();
+            
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
@@ -51,27 +53,28 @@ namespace TDJ_ProjectoFinal
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
+            Cenas.Add(scene);
             
             
             //Fundo do universo (imóvel)
-            scene.AddSprite(new SlidingBackground(Content, "universe",0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+            Cenas[0].AddSprite(new SlidingBackground(Content, "universe",0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             //lua
-            scene.AddSprite(new SlidingBackground(Content, "fullMoon", 0.0015f).Scl(1f).At(new Vector2(6, 1f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 0.0015f).Scl(1f).At(new Vector2(6, 1f)));
             //planeta
-            scene.AddSprite(new SlidingBackground(Content, "planeta",0.001f).Scl(8f).At(new Vector2(8,-2.7f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta",0.001f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
-            scene.AddSprite(new SlidingBackground(Content, "spaceStaion", 0.0001f).Scl(4f).At(new Vector2(20f, 0.8f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 0.0001f).Scl(4f).At(new Vector2(20f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
-            scene.AddSprite(player.Scl(0.5f));
-            scene.player = player;
+            Cenas[0].AddSprite(player.Scl(0.5f));
+            Cenas[0].player = player;
 
 
             newEnemyWave();
 
             //PowerUP
-            scene.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
+            Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
             //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
             
          
@@ -89,34 +92,43 @@ namespace TDJ_ProjectoFinal
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            foreach (var scene in Cenas)
+            {
 
-            scene.Update(gameTime);
-            
-            Camera.Update();
-            
+                if (scene.active == true)
+                {
+                    scene.Update(gameTime);
 
-          
+                    Camera.Update();
 
-            scene.Update(gameTime);
-
-            if (scene.inimigos.Count <= 5)
+                    scene.Update(gameTime);
+                }
+            }
+            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active==true)
             {
                 //Matámos todos os inimigos, nova ronda
                 newEnemyWave();
                 novopowerup = false;
             }
-            
-            if ( !novopowerup) 
+
+            if (!novopowerup && Cenas[0].active == true) 
             {
                 // os inimigos estão a terminar...
                 // nova ronda surgitrá
                 // (apenas teste)
-                scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0f ));
+                Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0f ));
                   
                 novopowerup = true;
 
             }
-            
+            if(Cenas[0].enemiesKilled==20 && Cenas[0].active==true)
+            {
+                Cenas[0].active = false;
+                cena2();
+                
+            }
+       
+
             base.Update(gameTime);
         }
 
@@ -125,10 +137,14 @@ namespace TDJ_ProjectoFinal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-           
-            
-            scene.Draw(gameTime);
 
+            foreach (var scene in Cenas)
+            {
+                if(scene.active==true)
+                scene.Draw(gameTime);
+            }
+               
+                
             base.Draw(gameTime);
         }
 
@@ -137,27 +153,27 @@ namespace TDJ_ProjectoFinal
         {
 
             //Alguns inimigos
-            scene.AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f,random).
+            Cenas[0].AddInimigo(new NPC(Content, "Kamikaze", TipoNave.Hunter, 1, 0.3f,random).
                 At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
-            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X+1f, 0f)));
-            scene.AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "kamikaze", TipoNave.Hunter, 1, 0.3f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X+2f, 1f)));
 
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            scene.AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 6, -1f)));
 
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
-            scene.AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "bombardeiro", TipoNave.Bomber, 1, 0.5f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
-            scene.AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
+            Cenas[0].AddInimigo(new NPC(Content, "caça", TipoNave.Hunter, 1, 0.4f, random).
                 At(new Vector2(Camera.worldWidth + player.position.X + 10, 1f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
@@ -166,5 +182,18 @@ namespace TDJ_ProjectoFinal
             
             
         }
+
+        public void cena2()
+        {
+            scene2 = new Scene(spriteBatch);
+            Cenas.Add(scene2);
+            Camera.SetTarget(Vector2.Zero);
+            Cenas[1].AddSprite(new SlidingBackground(Content, "universe", 0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                At(new Vector2(Camera.worldWidth, 0f)));
+            player = new Player(Content, "nave", TipoBala.Simples);
+            Cenas[1].AddSprite(player.Scl(0.5f));
+            Cenas[1].player = player;
+        }
+
     }
 }
