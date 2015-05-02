@@ -121,11 +121,18 @@ namespace TDJ_ProjectoFinal
                 novopowerup = true;
 
             }
-            if(Cenas[0].enemiesKilled==20 && Cenas[0].active==true)
+            //muda para cena2
+            if (/*Cenas[0].enemiesKilled==80*/ Camera.target.X >= 25f && Cenas[0].active == true)
             {
-                Cenas[0].active = false;
-                cena2();
+                Cenas[0].inimigos.Clear();
+                Cenas[0].powerUps.Clear();
+                player.position.X += 0.02f;
                 
+                if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth/2)-0.5f)
+                {
+                    Cenas[0].active = false;
+                    cena2();
+                }
             }
        
 
@@ -193,6 +200,7 @@ namespace TDJ_ProjectoFinal
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[1].AddSprite(player.Scl(0.5f));
             Cenas[1].player = player;
+            player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
         }
 
     }
