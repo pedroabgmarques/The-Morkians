@@ -22,9 +22,9 @@ namespace TDJ_ProjectoFinal.graficos
             : base(contents, assetName)
         {
             texture = contents.Load<Texture2D>(assetName);
-            origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
+            //origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
             lastCameraPosition = Camera.GetTarget();
-            size = new Vector2(Camera.worldWidth, Camera.worldWidth * texture.Height / texture.Width);
+            //size = new Vector2(Camera.worldWidth, Camera.worldWidth * texture.Height / texture.Width);
             position = Camera.GetTarget();
             this.speed = speed;
         }

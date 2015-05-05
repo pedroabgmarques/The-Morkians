@@ -4,23 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TDJ_ProjectoFinal.graficos;
+using TDJ_ProjectoFinal.entidades;
 
-namespace TDJ_ProjectoFinal.entidades
+namespace TDJ_ProjectoFinal.graficos
 {
-    
-    /// <summary>
-    /// Representa qualquer coisa que voe no jogo
-    /// </summary>
-    public class FlyingEntity : Sprite
+    class Cenario:Sprite
     {
-        protected Sprite sprite;
-        public float speed;
-        public FlyingEntity(ContentManager contents, string assetName) 
+        public Cenario(ContentManager contents, string assetName) 
             : base(contents, assetName)
         {
-            //this.sprite = new Sprite(contents, assetName);
             
+            this.EnableCollisions();
+
         }
 
         public override void Update(GameTime gameTime)
