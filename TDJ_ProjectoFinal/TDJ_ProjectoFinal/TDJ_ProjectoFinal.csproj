@@ -41,6 +41,7 @@
     <Compile Include="Colisoes.cs" />
     <Compile Include="entidades\Bala.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="entidades\Defence.cs" />
     <Compile Include="entidades\FlyingEntity.cs" />
     <Compile Include="entidades\Missil.cs" />
     <Compile Include="entidades\NPC.cs" />
@@ -125,6 +126,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\thrust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\turret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\universe.png">
