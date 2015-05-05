@@ -24,6 +24,15 @@ namespace TDJ_ProjectoFinal.entidades
             this.sprite = new Sprite(contents, assetName);
 
         }
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
 
     }
 }
