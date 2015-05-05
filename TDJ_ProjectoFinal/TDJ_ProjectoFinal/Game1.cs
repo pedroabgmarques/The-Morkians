@@ -20,6 +20,7 @@ namespace TDJ_ProjectoFinal
         public static Random random;
         bool novopowerup = false;
         List<Scene> Cenas;
+        
         Random randomShake;
         
         public Game1()
@@ -204,6 +205,11 @@ namespace TDJ_ProjectoFinal
            Cenas[1].AddSprite(new Sprite(Content,"mapaFinal").Scl(45f).At(new Vector2(5,0f)));
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[1].AddSprite(player.Scl(0.5f));
+            
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+0.6f, -1.35f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+ 10f, -1.35f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
             Cenas[1].player = player;
             player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
         }
