@@ -68,7 +68,7 @@ namespace TDJ_ProjectoFinal
             Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 0.00001f).Scl(4f).At(new Vector2(20f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
-            Cenas[0].AddSprite(player.Scl(0.65f));
+            Cenas[0].AddSprite(player.Scl(0.62f));
             Cenas[0].player = player;
 
 
@@ -204,7 +204,7 @@ namespace TDJ_ProjectoFinal
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
             player = new Player(Content, "nave", TipoBala.Simples);
-            Cenas[1].AddSprite(player.Scl(0.65f));
+            Cenas[1].AddSprite(player.Scl(0.62f));
             Defesas();
             
             Cenas[1].player = player;
