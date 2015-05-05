@@ -15,7 +15,7 @@ namespace TDJ_ProjectoFinal.graficos
         {
             
             this.EnableCollisions();
-
+            
         }
 
     }
