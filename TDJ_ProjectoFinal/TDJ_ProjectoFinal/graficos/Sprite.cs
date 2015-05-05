@@ -175,7 +175,7 @@ namespace TDJ_ProjectoFinal.graficos
         {
             this.position = position;
         }
-        new public Sprite At(Vector2 p)
+        public Sprite At(Vector2 p)
         {
             this.SetPosition(p);
             return this;

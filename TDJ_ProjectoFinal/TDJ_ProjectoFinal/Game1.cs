@@ -195,13 +195,13 @@ namespace TDJ_ProjectoFinal
             scene2 = new Scene(spriteBatch);
             Cenas.Add(scene2);
             Camera.SetTarget(new Vector2(0,0));
-            Camera.SetWorldWidth(5);
+            //Camera.SetWorldWidth(5);
             //Cenas[1].AddSprite(new SlidingBackground(Content, "mapa", 0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
               //  At(new Vector2(Camera.worldWidth, 0f)));Cenas[1].AddSprite(new Sprite(Content,"mapa3").Scl(45f).At(new Vector2(5,0f)));
             //Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).At(new Vector2(5, 0f)));
-            Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 0.002f).Scl(45f).
-                At(new Vector2(Camera.worldWidth, 0f)));
-           Cenas[1].AddSprite(new Sprite(Content,"mapaFinal").Scl(45f).At(new Vector2(5,0f)));
+            //Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 0.002f).Scl(45f).
+              //  At(new Vector2(Camera.worldWidth, 0f)));
+            Cenas[1].AddSprite(new Cenario(Content, "mapaFinal").Scl(45f).At(new Vector2(5, 0)));
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[1].AddSprite(player.Scl(0.5f));
             Cenas[1].player = player;
