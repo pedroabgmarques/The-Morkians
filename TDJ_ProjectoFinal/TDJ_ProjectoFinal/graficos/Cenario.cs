@@ -10,10 +10,10 @@ namespace TDJ_ProjectoFinal.graficos
 {
     class Cenario : Sprite
     {
-        public Cenario(ContentManager contents, string assetName) 
+        public Cenario(ContentManager contents, string assetName, float Scl) 
             : base(contents, assetName)
         {
-            
+            this.Scl(Scl);
             this.EnableCollisions();
             
         }
