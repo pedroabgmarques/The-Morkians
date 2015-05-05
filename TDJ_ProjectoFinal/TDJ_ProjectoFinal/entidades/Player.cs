@@ -209,6 +209,18 @@ namespace TDJ_ProjectoFinal.entidades
                 }
                 this.collided.Destroy();
             }
+            //colisao con cenario
+            if(this.scene.Collides(this,out this.collided, out this.collisionPoint,this.scene.sprites))
+            {
+                if(collided is Cenario)
+                {
+                    this.Destroy();
+                    this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position + new Vector2(0.2f, 0f), 1.5f));
+                    Camera.addShake(500);
+                    
+                }
+            }
+
             //colisao com inimigos
             if (this.scene.Collides(this, out this.collided, out this.collisionPoint, this.scene.inimigos))
             {

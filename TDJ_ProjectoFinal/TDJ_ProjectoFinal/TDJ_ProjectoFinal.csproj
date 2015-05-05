@@ -49,6 +49,7 @@
     <Compile Include="entidades\PowerUp.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="graficos\AnimatedSprite.cs" />
+    <Compile Include="graficos\Cenario.cs" />
     <Compile Include="graficos\SlidingBackground.cs" />
     <Compile Include="graficos\Sprite.cs" />
     <Compile Include="Program.cs" />
