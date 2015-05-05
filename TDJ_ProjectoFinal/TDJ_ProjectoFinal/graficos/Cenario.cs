@@ -8,7 +8,7 @@ using TDJ_ProjectoFinal.entidades;
 
 namespace TDJ_ProjectoFinal.graficos
 {
-    class Cenario:Sprite
+    class Cenario : Sprite
     {
         public Cenario(ContentManager contents, string assetName) 
             : base(contents, assetName)
@@ -18,14 +18,5 @@ namespace TDJ_ProjectoFinal.graficos
 
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-        }
     }
 }

@@ -8,15 +8,12 @@ using System.Text;
 
 namespace TDJ_ProjectoFinal.graficos
 {
-    class SlidingBackground:Sprite
+    class SlidingBackground : Sprite
     {
         private Texture2D texture;
-        private Vector2 position;
-        private Vector2 size; //world size
-        private Vector2 origin; //center of the image in pixels
         private Vector2 lastCameraPosition;
         private float speed; //sliding speed
-        private Scene scene;
+
 
         public SlidingBackground(ContentManager contents, string assetName, float speed)
             : base(contents, assetName)
@@ -29,23 +26,11 @@ namespace TDJ_ProjectoFinal.graficos
             this.speed = speed;
         }
 
-        public void SetScene(Scene cena)
-        {
-            this.scene = cena;
-        }
-
-        public virtual void Draw(GameTime gameTime)
-        {
-
-        }
         public override void Update(GameTime gametime)
         {
             base.position.X += this.speed;
             
         }
-        public void Dispose()
-        {
-            texture.Dispose();
-        }
+
     }
 }
