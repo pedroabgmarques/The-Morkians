@@ -122,7 +122,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if (/*Cenas[0].enemiesKilled==80*/ Camera.target.X >= 25f && Cenas[0].active == true)
+            if (/*Cenas[0].enemiesKilled==80*/ Camera.target.X >= 2f && Cenas[0].active == true)
             {
                 Cenas[0].inimigos.Clear();
                 Cenas[0].powerUps.Clear();
@@ -194,9 +194,11 @@ namespace TDJ_ProjectoFinal
         {
             scene2 = new Scene(spriteBatch);
             Cenas.Add(scene2);
-            Camera.SetTarget(Vector2.Zero);
-            Cenas[1].AddSprite(new SlidingBackground(Content, "universe", 0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
-                At(new Vector2(Camera.worldWidth, 0f)));
+            Camera.SetTarget(new Vector2(0,0));
+            Camera.SetWorldWidth(5);
+            //Cenas[1].AddSprite(new SlidingBackground(Content, "mapa", 0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+              //  At(new Vector2(Camera.worldWidth, 0f)));
+           Cenas[1].AddSprite(new Sprite(Content,"mapa3").Scl(45f).At(new Vector2(5,-0.3f)));
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[1].AddSprite(player.Scl(0.5f));
             Cenas[1].player = player;
