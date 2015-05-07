@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,26 @@ namespace TDJ_ProjectoFinal.entidades
     class Defence : Sprite
     {
         public TipoDefesa tipodefesa { get; set; }
-        protected Sprite sprite;
+        
+        
 
         public Defence(ContentManager contents, string assetName): base(contents, assetName) 
         {
-            this.sprite = new Sprite(contents, assetName);
+            
+            this.SetRotation((float)Math.PI / 4);
+            this.EnableCollisions();
 
         }
         public override void Update(GameTime gameTime)
         {
+           
+            Vector2 tpos =this.position;
+            float a = (float)this.scene.player.position.Y - tpos.Y;
+            float l = (float)this.scene.player.position.X - tpos.X;
+            float rot = -(float)Math.Atan2(a, l);
+            rot += (float)Math.PI / 2f;
+            SetRotation(rot);
+
             base.Update(gameTime);
         }
 
