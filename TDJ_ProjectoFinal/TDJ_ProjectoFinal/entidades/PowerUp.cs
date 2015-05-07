@@ -16,7 +16,6 @@ namespace TDJ_ProjectoFinal.entidades
     public class PowerUp : FlyingEntity
     {
         private int direcao;
-        private float speed;
         public Rectangle boundingBox;
         Vector2 worldPixels;
         public TipoPowerUp tipoPowerUp {get; set;}

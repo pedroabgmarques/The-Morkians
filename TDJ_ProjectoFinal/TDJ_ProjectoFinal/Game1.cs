@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using TDJ_ProjectoFinal.entidades;
@@ -20,7 +22,6 @@ namespace TDJ_ProjectoFinal
         public static Random random;
         bool novopowerup = false;
         List<Scene> Cenas;
-        
         Random randomShake;
         
         public Game1()
@@ -42,10 +43,9 @@ namespace TDJ_ProjectoFinal
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
-            
-            
-            
-           
+
+            som.Initialize(Content);
+
             base.Initialize();
         }
 
@@ -71,12 +71,15 @@ namespace TDJ_ProjectoFinal
             Cenas[0].AddSprite(player.Scl(0.62f));
             Cenas[0].player = player;
 
-
             newEnemyWave();
 
             //PowerUP
             Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
             //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+
+
+            Song background_cena1 = Content.Load<Song>("som/musicacena1");
+            som.PlaySong(background_cena1);
             
          
         }

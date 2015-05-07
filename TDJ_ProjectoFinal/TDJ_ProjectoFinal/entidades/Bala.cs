@@ -42,7 +42,7 @@ namespace TDJ_ProjectoFinal
             //this.EnableCollisions();
             if (origemBala == OrigemBala.player)
             {
-                som.playTiro(contents);
+                som.playTiro();
             }
             //else
             //{

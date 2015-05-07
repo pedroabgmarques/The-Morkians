@@ -20,7 +20,7 @@ namespace TDJ_ProjectoFinal.entidades
     {
         public TipoDefesa tipodefesa { get; set; }
         private float shootTime ;
-        private Vector2 direction;
+        private Vector2 direction = Vector2.Zero;
         private Vector2 posBala;
         private int contadordisparo = 10;
         

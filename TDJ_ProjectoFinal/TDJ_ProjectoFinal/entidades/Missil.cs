@@ -41,7 +41,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.passouPeloAlvo = false;
             this.origemBala = origemBala;
             this.EnableCollisions();
-            som.playRocket(cManager);
+            som.playRocket();
         }
 
         public override void Update(GameTime gameTime)

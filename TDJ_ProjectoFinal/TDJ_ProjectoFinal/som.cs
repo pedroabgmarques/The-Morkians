@@ -4,16 +4,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Media;
 
 namespace TDJ_ProjectoFinal
 {
-    class som
+    static class som
     {
         private static SoundEffect tiro;
         private static SoundEffect explosao;
         private static SoundEffect rocket;
+        private static ContentManager content;
+        private static Dictionary<string, SoundEffect> soundEffects;
+        private static Dictionary<string, SoundEffectInstance> loopedSounds;
+        private static Dictionary<string, Song> songs;
 
-        public static void playTiro(ContentManager content)
+        public static void Initialize(ContentManager contentManager)
+        {
+            content = contentManager;
+            soundEffects = new Dictionary<string, SoundEffect>();
+            loopedSounds = new Dictionary<string, SoundEffectInstance>();
+            songs = new Dictionary<string, Song>();
+        }
+
+        public static void playTiro()
         {
             if (tiro == null)
             {
@@ -23,7 +36,7 @@ namespace TDJ_ProjectoFinal
             
         }
 
-        public static void playTiroEnimigo(ContentManager content)
+        public static void playTiroEnimigo()
         {
             if (tiro == null)
             {
@@ -32,7 +45,7 @@ namespace TDJ_ProjectoFinal
             tiro.Play(0.1f, 1, 0f);
         }
 
-        public static void playExplosao(ContentManager content)
+        public static void playExplosao()
         {
             if (explosao == null)
             {
@@ -42,7 +55,7 @@ namespace TDJ_ProjectoFinal
             explosao.Play(0.1f, 1, 0f);
         }
 
-        public static void playRocket(ContentManager content)
+        public static void playRocket()
         {
             if (rocket == null)
             {
@@ -50,6 +63,63 @@ namespace TDJ_ProjectoFinal
 
             }
             rocket.Play(0.1f, 1, 0f);
+        }
+
+        public static void AddSongs(string songName, Song song)
+        {
+            if (songs.ContainsKey(songName))
+            {
+                songs[songName].Dispose();
+                songs[songName] = song;
+            }
+            else
+            {
+                songs.Add(songName, song);
+            }
+        }
+
+        public static void PlaySong(Song song)
+        {
+            MediaPlayer.Play(song);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        public static void AddSoundEffect(string effectName, SoundEffect soundEffect)
+        {
+            if (soundEffects.ContainsKey(effectName))
+            {
+                soundEffects[effectName].Dispose();
+                soundEffects[effectName] = soundEffect;
+            }
+            else
+            {
+                soundEffects.Add(effectName, soundEffect);
+            }
+        }
+
+        public static void PlayLoopedSoundEffect(string effectName, string instanceName)
+        {
+            if (soundEffects.ContainsKey(effectName) && !loopedSounds.ContainsKey(instanceName))
+            {
+                SoundEffectInstance instance = soundEffects[effectName].CreateInstance();
+
+                instance.IsLooped = true;
+                loopedSounds.Add(instanceName, instance);
+                instance.Play();
+            }
+            else if (soundEffects.ContainsKey(effectName) && loopedSounds.ContainsKey(instanceName))
+            {
+                if (loopedSounds[instanceName].State == SoundState.Playing)
+                {
+                    loopedSounds[instanceName].Stop();
+                }
+
+                loopedSounds[instanceName].Dispose();
+
+                loopedSounds[instanceName] = soundEffects[effectName].CreateInstance();
+                loopedSounds[instanceName].IsLooped = true;
+                loopedSounds[instanceName].Play();
+            }
         }
     }
 }

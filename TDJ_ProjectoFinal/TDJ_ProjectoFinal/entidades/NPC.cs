@@ -88,7 +88,7 @@ namespace TDJ_ProjectoFinal.entidades
             if (this.Vida <= 0)
             {
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
-                som.playExplosao(cManager);
+                som.playExplosao();
                 Camera.addShake(100);
                 this.Destroy();
                 
