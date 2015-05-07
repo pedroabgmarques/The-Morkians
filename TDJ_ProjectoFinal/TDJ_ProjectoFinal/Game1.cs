@@ -218,11 +218,20 @@ namespace TDJ_ProjectoFinal
             //inferiores
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.26f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.00f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+13f, -1.05f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.26f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.19f)));
+            
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 15.5f, -1.10f)));
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X +18.6f, -1.35f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 23f, -1.30f)));
+
+            // superiores
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
+
+            
             
 
 
