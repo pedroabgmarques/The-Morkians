@@ -15,7 +15,7 @@ namespace TDJ_ProjectoFinal
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Scene scene,scene2;
+        Scene scene,scene2,scene3;
         Player player;
         public static Random random;
         bool novopowerup = false;
@@ -123,7 +123,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if (/*Cenas[0].enemiesKilled==80*/ Camera.target.X >= 2f && Cenas[0].active == true)
+            if ( Camera.target.X >= 2f && Cenas[0].active == true)
             {
                 Cenas[0].inimigos.Clear();
                 Cenas[0].powerUps.Clear();
@@ -134,6 +134,17 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].active = false;
                     cena2();
                     
+                }
+            }
+
+            if(Camera.target.X >= 25f && Cenas[1].active==true)
+            {
+                player.position.X += 0.02f;
+
+                if(player.position.X >= (Camera.GetTarget().X + Camera.worldWidth/2)-0.5f)
+                {
+                    Cenas[1].active=false;
+                    cena3();
                 }
             }
             
@@ -211,6 +222,21 @@ namespace TDJ_ProjectoFinal
             player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
             
         }
+
+        public void cena3()
+        {
+            scene3 = new Scene(spriteBatch);
+            Cenas.Add(scene3);
+            Camera.SetTarget(Vector2.Zero);
+
+            Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
+               At(new Vector2(Camera.worldWidth, 0f)));
+            Cenas[2].AddInimigo(new Sprite(Content, "boss").Scl(2f).At(new Vector2(Camera.worldWidth,0f)));
+            player = new Player(Content, "nave", TipoBala.Simples);
+            Cenas[2].AddSprite(player.Scl(0.62f));
+            player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
+        }
+
         public void Defesas()
         {
             // conjunto de ddefesas do nivel dois
