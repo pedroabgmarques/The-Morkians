@@ -18,13 +18,14 @@ namespace TDJ_ProjectoFinal.entidades
     class Defence : Sprite
     {
         public TipoDefesa tipodefesa { get; set; }
-        public float rotatio;
+        
         
 
         public Defence(ContentManager contents, string assetName): base(contents, assetName) 
         {
-            this.rotation = rotatio;
+            
             this.SetRotation((float)Math.PI / 4);
+            this.EnableCollisions();
 
         }
         public override void Update(GameTime gameTime)

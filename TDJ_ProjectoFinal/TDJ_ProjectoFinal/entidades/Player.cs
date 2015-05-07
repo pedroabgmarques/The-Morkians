@@ -212,7 +212,7 @@ namespace TDJ_ProjectoFinal.entidades
             //colisao con cenario
             if(this.scene.Collides(this,out this.collided, out this.collisionPoint,this.scene.sprites))
             {
-                if(collided is Cenario)
+                if(collided is Cenario|| collided is Defence)
                 {
                     this.Destroy();
                     this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position + new Vector2(0.2f, 0f), 1.5f));
