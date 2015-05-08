@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using TDJ_ProjectoFinal.entidades;
@@ -20,7 +22,6 @@ namespace TDJ_ProjectoFinal
         public static Random random;
         bool novopowerup = false;
         List<Scene> Cenas;
-        
         Random randomShake;
         
         public Game1()
@@ -42,10 +43,9 @@ namespace TDJ_ProjectoFinal
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
-            
-            
-            
-           
+
+            som.Initialize(Content);
+
             base.Initialize();
         }
 
@@ -71,12 +71,15 @@ namespace TDJ_ProjectoFinal
             Cenas[0].AddSprite(player.Scl(0.62f));
             Cenas[0].player = player;
 
-
             newEnemyWave();
 
             //PowerUP
             Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
             //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+
+
+            Song background_cena1 = Content.Load<Song>("som/musicacena1");
+            som.PlaySong(background_cena1);
             
          
         }
@@ -98,7 +101,6 @@ namespace TDJ_ProjectoFinal
 
                 if (scene.active == true)
                 {
-                    scene.Update(gameTime);
 
                     Camera.Update(randomShake);
 
@@ -123,7 +125,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if ( Camera.target.X >= 2f && Cenas[0].active == true)
+            if ( Camera.target.X >= 25f && Cenas[0].active == true)
             {
                 Cenas[0].inimigos.Clear();
                 Cenas[0].powerUps.Clear();
@@ -136,8 +138,8 @@ namespace TDJ_ProjectoFinal
                     
                 }
             }
-            //muda para cena3
-            if(Camera.target.X >= 25f && Cenas[1].active==true)
+
+            if(Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active==true)
             {
                 player.position.X += 0.02f;
 
@@ -251,11 +253,20 @@ namespace TDJ_ProjectoFinal
             //inferiores
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.26f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.00f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+13f, -1.05f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.26f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.19f)));
+            
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 15.5f, -1.10f)));
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X +18.6f, -1.35f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 23f, -1.30f)));
+
+            // superiores
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
+
+            
             
 
 

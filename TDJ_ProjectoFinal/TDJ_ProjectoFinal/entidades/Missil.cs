@@ -27,6 +27,8 @@ namespace TDJ_ProjectoFinal.entidades
         bool passouPeloAlvo;
         Vector2 direction = Vector2.UnitX;
         public OrigemBala origemBala;
+        private float aceleracao;
+        private float speedInicial;
 
 
 
@@ -36,12 +38,14 @@ namespace TDJ_ProjectoFinal.entidades
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoMissil = tipoMissil;
             this.speed = 0.02f;
+            this.speedInicial = this.speed;
+            this.aceleracao = this.speed / 20;
             this.direccao = direccao;
             this.alvo = alvo;
             this.passouPeloAlvo = false;
             this.origemBala = origemBala;
             this.EnableCollisions();
-            som.playRocket(cManager);
+            som.playRocket();
         }
 
         public override void Update(GameTime gameTime)
@@ -50,6 +54,8 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 case TipoMissil.EmFrente:
                     base.position.X += speed * direccao;
+                    if(this.speed < this.speedInicial * 5)
+                        this.speed += this.aceleracao;
                     break;
                     
                 case TipoMissil.Teleguiado:
@@ -69,10 +75,14 @@ namespace TDJ_ProjectoFinal.entidades
                     direction.Normalize();
                     //Mover na direção para onde estamos virados
                     position += direction * speed;
+                    if (this.speed < this.speedInicial * 5)
+                        this.speed += this.aceleracao;
                     
                     break;
                 default:
                     base.position.X += speed * direccao;
+                    if (this.speed < this.speedInicial * 5)
+                        this.speed += this.aceleracao;
                     break;
             }
 

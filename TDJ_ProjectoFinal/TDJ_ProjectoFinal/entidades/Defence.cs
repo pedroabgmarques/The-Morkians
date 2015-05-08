@@ -9,6 +9,7 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
+    
 
     public enum TipoDefesa
     {
@@ -18,6 +19,10 @@ namespace TDJ_ProjectoFinal.entidades
     class Defence : Sprite
     {
         public TipoDefesa tipodefesa { get; set; }
+        private float shootTime ;
+        private Vector2 direction = Vector2.Zero;
+        private Vector2 posBala;
+        private int contadordisparo = 10;
         
         
 
@@ -25,11 +30,13 @@ namespace TDJ_ProjectoFinal.entidades
         {
             
             this.SetRotation((float)Math.PI / 4);
+            
             this.EnableCollisions();
 
         }
         public override void Update(GameTime gameTime)
         {
+            posBala = this.position + direction;
            
             Vector2 tpos =this.position;
             float a = (float)this.scene.player.position.Y - tpos.Y;
@@ -37,6 +44,22 @@ namespace TDJ_ProjectoFinal.entidades
             float rot = -(float)Math.Atan2(a, l);
             rot += (float)Math.PI / 2f;
             SetRotation(rot);
+
+            shootTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (shootTime >= contadordisparo)
+            {
+                Vector2 pos = this.position
+                         + new Vector2((float)Math.Sin(rot) * size.Y / 2,
+                                       (float)Math.Cos(rot) * size.Y / 2);
+                Bala bala = new Bala(cManager, "baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente);
+                bala.At(new Vector2(this.position.X, this.position.Y));
+                bala.Scale(0.03f);
+                scene.AddSprite(bala);
+                shootTime = 0f;
+            }
+            
+
+            
 
             base.Update(gameTime);
         }

@@ -20,8 +20,10 @@ namespace TDJ_ProjectoFinal
     public enum OrigemBala
     {
         inimigo,
+        player
         player,
         boss
+        defesa
     }
     class Bala : FlyingEntity
     {
@@ -35,18 +37,11 @@ namespace TDJ_ProjectoFinal
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            if (origemBala == OrigemBala.boss)
-                this.speed = -0.05f;
-            else
             this.speed = Camera.speed * 9;
             this.direccaobala = direccaobala;
             this.direccao = direccao;
             this.origemBala = origemBala;
             this.EnableCollisions();
-            if (origemBala == OrigemBala.player)
-            {
-                som.playTiro(contents);
-            }
             //else
             //{
             //    som.playTiroEnimigo(contents);
@@ -85,7 +80,7 @@ namespace TDJ_ProjectoFinal
 
                     break;
                 default:
-                    //base.position.X += speed * direccao;
+                    base.position.X += speed * direccao;
                     break;
                 }
             
@@ -96,6 +91,12 @@ namespace TDJ_ProjectoFinal
             if(this.position.X > (Camera.target.X + (Camera.worldWidth/2)))
             {
                 this.Destroy();
+            }
+            if (origemBala == OrigemBala.defesa) 
+            {
+                this.position+=new Vector2((float)Math.Sin(rotation),
+                                         (float)Math.Cos(rotation))*speed/2;
+                
             }
    
         }
