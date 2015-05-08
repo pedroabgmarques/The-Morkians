@@ -101,7 +101,6 @@ namespace TDJ_ProjectoFinal
 
                 if (scene.active == true)
                 {
-                    scene.Update(gameTime);
 
                     Camera.Update(randomShake);
 
@@ -126,7 +125,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if ( Camera.target.X >= 2f && Cenas[0].active == true)
+            if ( Camera.target.X >= 25f && Cenas[0].active == true)
             {
                 Cenas[0].inimigos.Clear();
                 Cenas[0].powerUps.Clear();
@@ -140,7 +139,7 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
-            if(Camera.target.X >= 25f && Cenas[1].active==true)
+            if(Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active==true)
             {
                 player.position.X += 0.02f;
 

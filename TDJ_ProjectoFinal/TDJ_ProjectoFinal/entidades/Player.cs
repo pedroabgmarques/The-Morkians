@@ -101,7 +101,8 @@ namespace TDJ_ProjectoFinal.entidades
             }
             if (currentKeyboardState.IsKeyDown(Keys.Space)) 
             {
-                if (contador >= shootTime) { 
+                if (contador >= shootTime) {
+                    som.playTiro();
                      switch( tipobala)
                      {
                 case TipoBala.Simples:

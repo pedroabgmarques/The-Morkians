@@ -67,6 +67,11 @@ namespace TDJ_ProjectoFinal
 
             if (scene.Collides(sprite, out collided, out collisionPoint, scene.sprites))
             {
+                if (collided is Cenario && sprite is Bala)
+                {
+                    scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
+                }
+
                 if (collided is Player)
                 {
                     Player player = (Player)collided;

@@ -39,11 +39,7 @@ namespace TDJ_ProjectoFinal
             this.direccaobala = direccaobala;
             this.direccao = direccao;
             this.origemBala = origemBala;
-            //this.EnableCollisions();
-            if (origemBala == OrigemBala.player)
-            {
-                som.playTiro();
-            }
+            this.EnableCollisions();
             //else
             //{
             //    som.playTiroEnimigo(contents);
