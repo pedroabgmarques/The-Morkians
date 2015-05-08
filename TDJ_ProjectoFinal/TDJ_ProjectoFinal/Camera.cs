@@ -16,10 +16,12 @@ namespace TDJ_ProjectoFinal
         public static float speed { get; set; }
         static private Vector2 shake;
         static private int shakeAmount;
+        public static float velocidadegeral;
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
             Camera.gDevManager = gdm;
-            Camera.speed = 0.005f;
+            Camera.velocidadegeral = 0.009f;
+            Camera.speed = Camera.velocidadegeral;
         }
 
         /// <summary>
@@ -42,6 +44,9 @@ namespace TDJ_ProjectoFinal
         }
         public static void Update(Random random)
         {
+            Camera.speed = Camera.velocidadegeral;
+
+
             if (target.X <= 27.4)// valor martelado e nada exato.....(a melhorar)
             {
                 target.X += Camera.speed; 

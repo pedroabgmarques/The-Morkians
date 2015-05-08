@@ -23,7 +23,9 @@ namespace TDJ_ProjectoFinal.graficos
 
         public override void Update(GameTime gametime)
         {
-            base.position.X += this.speed;
+            
+
+            base.position.X += Camera.velocidadegeral / speed;
             
         }
 

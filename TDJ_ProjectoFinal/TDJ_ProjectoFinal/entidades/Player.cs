@@ -55,7 +55,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.contents = contents;
                 this.tipobala = tipobala;
                 //Velocidade da nave
-                this.speed = Camera.speed * 3;
+                this.speed = Camera.velocidadegeral * 3;
                 this.Vida = 5;              
                 this.EnableCollisions();
                 this.contadorMisseis = 0;
@@ -97,6 +97,20 @@ namespace TDJ_ProjectoFinal.entidades
             {
 
                 this.position.X += speed;
+
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+
+                Camera.velocidadegeral += 0.005f;
+
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                if (Camera.velocidadegeral > 0f) 
+                { Camera.velocidadegeral -= 0.005f; }
+                else { Camera.velocidadegeral = 0f; }
+                
 
             }
             if (currentKeyboardState.IsKeyDown(Keys.Space)) 

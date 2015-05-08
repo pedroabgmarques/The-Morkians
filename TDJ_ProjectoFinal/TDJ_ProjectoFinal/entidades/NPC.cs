@@ -65,14 +65,14 @@ namespace TDJ_ProjectoFinal.entidades
             switch (this.tipoNave)
             {
                 case TipoNave.Hunter:
-                    base.position.X -= Camera.speed;
+                    base.position.X -= Camera.velocidadegeral;
                     // algoritmo para criar o efeito de onda nos NPC'S
                     // coseno(x)+posição do npc
 
                     base.position.Y = (float)Math.Cos(posY) + 0.1f;
                     break;
                 case TipoNave.Bomber:
-                    base.position.X -= Camera.speed / 3;
+                    base.position.X -= Camera.velocidadegeral / 3;
                     
                     break;
                 case TipoNave.Mothership:
@@ -80,7 +80,7 @@ namespace TDJ_ProjectoFinal.entidades
                     //base.position.X = Camera.worldWidth;
                     break;
                 default:
-                    base.position.X -= Camera.speed;
+                    base.position.X -= Camera.velocidadegeral;
                     break;
                     
             }

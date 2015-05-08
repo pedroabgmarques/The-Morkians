@@ -58,14 +58,14 @@ namespace TDJ_ProjectoFinal
             
             
             //Fundo do universo (imóvel)
-            Cenas[0].AddSprite(new SlidingBackground(Content, "universe",0.002f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+            Cenas[0].AddSprite(new SlidingBackground(Content, "universe",5f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             //lua
-            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 0.0015f).Scl(1f).At(new Vector2(6, 1f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 3f).Scl(1f).At(new Vector2(6, 1f)));
             //planeta
-            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta",0.001f).Scl(8f).At(new Vector2(8,-2.7f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta",5f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
-            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 0.00001f).Scl(4f).At(new Vector2(20f, 0.8f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 4f).Scl(4f).At(new Vector2(12f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             Cenas[0].AddSprite(player.Scl(0.62f));
@@ -107,6 +107,7 @@ namespace TDJ_ProjectoFinal
                     scene.Update(gameTime);
                 }
             }
+            
             if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active==true)
             {
                 //Matámos todos os inimigos, nova ronda
