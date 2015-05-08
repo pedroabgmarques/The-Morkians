@@ -52,7 +52,7 @@ namespace TDJ_ProjectoFinal.entidades
                          + new Vector2((float)Math.Sin(rot) * size.Y / 2,
                                        (float)Math.Cos(rot) * size.Y / 2);
                 Bala bala = new Bala(cManager, "baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente);
-                bala.At(new Vector2(this.position.X, this.position.Y));
+                bala.At(new Vector2(pos.X,pos.Y));
                 bala.Scale(0.03f);
                 scene.AddSprite(bala);
                 shootTime = 0f;

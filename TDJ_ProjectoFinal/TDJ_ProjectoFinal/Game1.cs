@@ -220,7 +220,7 @@ namespace TDJ_ProjectoFinal
             Cenas.Add(scene2);
             Camera.SetTarget(Vector2.Zero);
             
-            Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 0.002f).Scl(45f).
+            Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 2f).Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));

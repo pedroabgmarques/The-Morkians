@@ -36,7 +36,7 @@ namespace TDJ_ProjectoFinal
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            this.speed =0f;
+            this.speed =Camera.velocidadegeral;
             this.direccaobala = direccaobala;
             this.direccao = direccao;
             this.origemBala = origemBala;
@@ -95,9 +95,8 @@ namespace TDJ_ProjectoFinal
             }
             if (origemBala == OrigemBala.defesa) 
             {
-                this.position+=new Vector2((float)Math.Sin(rotation),
-                                         (float)Math.Cos(rotation))*speed/2;
-                
+                this.position.X += (float)Math.PI / 2f;
+                this.position.Y -= (float)Math.PI / 2f;
             }
    
         }
