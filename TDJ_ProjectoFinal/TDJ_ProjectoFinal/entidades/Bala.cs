@@ -20,9 +20,8 @@ namespace TDJ_ProjectoFinal
     public enum OrigemBala
     {
         inimigo,
-        player
         player,
-        boss
+        boss,
         defesa
     }
     class Bala : FlyingEntity
