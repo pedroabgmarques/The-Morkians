@@ -35,7 +35,7 @@ namespace TDJ_ProjectoFinal
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            this.speed = Camera.speed * 9;
+            this.speed = Camera.speed * 15;
             this.direccaobala = direccaobala;
             this.direccao = direccao;
             this.origemBala = origemBala;

@@ -31,7 +31,7 @@ namespace TDJ_ProjectoFinal.entidades
         
         private int contador;
         private ContentManager contents;
-        private int shootTime = 500;
+        private float shootTime = Camera.speed * 50000f;
         public int Vida;
         public int pontuacao;
 
@@ -55,7 +55,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.contents = contents;
                 this.tipobala = tipobala;
                 //Velocidade da nave
-                this.speed = 0.013f;
+                this.speed = Camera.speed * 3;
                 this.Vida = 5;              
                 this.EnableCollisions();
                 this.contadorMisseis = 0;
@@ -273,7 +273,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.Destroy();
             }
 
-            base.position.X += Camera.speed / 2;
+            base.position.X += Camera.speed;
 
             
             contador += gameTime.ElapsedGameTime.Milliseconds;
