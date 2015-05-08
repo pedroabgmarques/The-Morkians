@@ -58,7 +58,15 @@ namespace TDJ_ProjectoFinal
         public override void Update(GameTime gameTime)
         {
 
-            speed = Camera.velocidadegeral/0.12f;
+            if (origemBala == OrigemBala.player)
+            {
+                speed = Camera.velocidadegeral / 0.12f;
+            }
+            else
+            {
+                speed = Camera.velocidadegeral / 0.20f;
+            }
+            
             
             switch ( direccaobala )
                 {

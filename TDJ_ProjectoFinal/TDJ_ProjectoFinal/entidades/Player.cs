@@ -122,7 +122,7 @@ namespace TDJ_ProjectoFinal.entidades
                      switch( tipobala)
                      {
                 case TipoBala.Simples:
-                             scene.AddSprite(new Bala(this.cManager, "balaplayer", 1,OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1,OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                              At(new Vector2(position.X+0.4f, position.Y )));
                     
                     break;
