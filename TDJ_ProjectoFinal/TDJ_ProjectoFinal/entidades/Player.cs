@@ -102,7 +102,7 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.Up))
             {
 
-                Camera.velocidadegeral += 0.005f;
+                Camera.velocidadegeral += 0.0005f;
 
             }
             if (currentKeyboardState.IsKeyDown(Keys.Down))
