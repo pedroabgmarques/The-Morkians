@@ -243,6 +243,7 @@ namespace TDJ_ProjectoFinal
             Cenas[2].AddInimigo(new NPC(Content, "boss",TipoNave.Mothership,0,2f,random).At(new Vector2(3f,0f)));
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[2].AddSprite(player.Scl(0.62f));
+            Cenas[2].player = player;
             player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
         }
 
