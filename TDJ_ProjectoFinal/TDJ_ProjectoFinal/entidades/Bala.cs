@@ -20,7 +20,8 @@ namespace TDJ_ProjectoFinal
     public enum OrigemBala
     {
         inimigo,
-        player
+        player,
+        boss
     }
     class Bala : FlyingEntity
     {
@@ -34,6 +35,9 @@ namespace TDJ_ProjectoFinal
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            if (origemBala == OrigemBala.boss)
+                this.speed = -0.05f;
+            else
             this.speed = Camera.speed * 9;
             this.direccaobala = direccaobala;
             this.direccao = direccao;

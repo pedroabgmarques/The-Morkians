@@ -136,7 +136,7 @@ namespace TDJ_ProjectoFinal
                     
                 }
             }
-
+            //muda para cena3
             if(Camera.target.X >= 25f && Cenas[1].active==true)
             {
                 player.position.X += 0.02f;
@@ -147,8 +147,15 @@ namespace TDJ_ProjectoFinal
                     cena3();
                 }
             }
-            
-       
+
+
+            if (Cenas.Count == 3)
+            {
+                if (Cenas[2].active == true && Camera.target.X >= 2f)
+                {
+                    Camera.speed = 0f;
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -231,7 +238,7 @@ namespace TDJ_ProjectoFinal
 
             Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
-            Cenas[2].AddInimigo(new Sprite(Content, "boss").Scl(2f).At(new Vector2(Camera.worldWidth,0f)));
+            Cenas[2].AddInimigo(new NPC(Content, "boss",TipoNave.Mothership,0,2f,random).At(new Vector2(3f,0f)));
             player = new Player(Content, "nave", TipoBala.Simples);
             Cenas[2].AddSprite(player.Scl(0.62f));
             player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;

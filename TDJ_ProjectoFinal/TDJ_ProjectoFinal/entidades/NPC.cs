@@ -14,7 +14,7 @@ namespace TDJ_ProjectoFinal.entidades
     {
         Hunter,
         Bomber,
-        Mothership
+        Mothership,
     }
 
     public class NPC : FlyingEntity
@@ -28,6 +28,7 @@ namespace TDJ_ProjectoFinal.entidades
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, Random random) 
             : base(contents, assetName)
         {
+            
             base.spriteEffects = SpriteEffects.FlipHorizontally;
             this.tipoNave = tipoNave;
             this.Scl(Scl);
@@ -75,7 +76,8 @@ namespace TDJ_ProjectoFinal.entidades
                     
                     break;
                 case TipoNave.Mothership:
-                    base.position.X -= Camera.speed / 4;
+                    base.position.Y = (float)Math.Cos(posY) + 0.1f;
+                    //base.position.X = Camera.worldWidth;
                     break;
                 default:
                     base.position.X -= Camera.speed;
@@ -96,11 +98,22 @@ namespace TDJ_ProjectoFinal.entidades
 
             if (contador >= shootTime)
             {
-                if (this.tipoNave == TipoNave.Hunter || this.tipoNave == TipoNave.Mothership)
+              
+                if (this.tipoNave == TipoNave.Hunter || this.tipoNave==TipoNave.Mothership)
                 {
-                    //Caças e Nave Mãe disparam balas
-                    scene.AddSprite(new Bala(this.cManager, "balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
-                        At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
+                    if (this.tipoNave == TipoNave.Mothership)
+                    {
+                        //scene.AddSprite(new Bala(this.cManager, "balainimigo", 1, OrigemBala.boss, DireccaoBala.EmFrente).Scl(0.09f).
+                          //  At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
+                        scene.AddInimigo(new Missil(this.cManager, "missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                            At(this.position));
+                    }
+                    else
+                    {
+                        //Caças e Nave Mãe disparam balas
+                        scene.AddSprite(new Bala(this.cManager, "balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
+                            At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
+                    }
                 }
                 else
                 {
