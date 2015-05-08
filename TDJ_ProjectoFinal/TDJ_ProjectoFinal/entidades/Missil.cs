@@ -37,7 +37,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.tipoMissil = tipoMissil;
-            this.speed = 0.02f;
+            this.speed = Camera.velocidadegeral * 5;
             this.speedInicial = this.speed;
             this.aceleracao = this.speed / 20;
             this.direccao = direccao;
@@ -50,6 +50,8 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
+            this.speed = Camera.velocidadegeral * 5;
+
             switch (this.tipoMissil)
             {
                 case TipoMissil.EmFrente:
@@ -74,6 +76,7 @@ namespace TDJ_ProjectoFinal.entidades
                     
                     direction.Normalize();
                     //Mover na direção para onde estamos virados
+                    position += direction * speed;
                     if (this.speed < this.speedInicial * 5)
                         this.speed += this.aceleracao;
                     

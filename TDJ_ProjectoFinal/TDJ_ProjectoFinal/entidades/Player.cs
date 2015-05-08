@@ -31,7 +31,7 @@ namespace TDJ_ProjectoFinal.entidades
         
         private int contador;
         private ContentManager contents;
-        private float shootTime = Camera.speed * 50000f;
+        private float shootTime;
         public int Vida;
         public int pontuacao;
 
@@ -59,12 +59,14 @@ namespace TDJ_ProjectoFinal.entidades
                 this.Vida = 5;              
                 this.EnableCollisions();
                 this.contadorMisseis = 0;
-            this.pontuacao=0;
+                this.shootTime = 0; //setted no update
+                this.pontuacao = 0;
         }
 
         public override void Update(GameTime gameTime)
         {
-            //Todo: atualizar o player de acordo com o teclado
+            this.shootTime = 2f / Camera.velocidadegeral;
+            this.speed = Camera.velocidadegeral * 3;
             
             //Movimento da nave atraves do teclado
 
@@ -102,13 +104,13 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.Up))
             {
 
-                Camera.velocidadegeral += 0.0005f;
+                Camera.velocidadegeral += 0.00005f;
 
             }
             if (currentKeyboardState.IsKeyDown(Keys.Down))
             {
                 if (Camera.velocidadegeral > 0f) 
-                { Camera.velocidadegeral -= 0.005f; }
+                { Camera.velocidadegeral -= 0.00005f; }
                 else { Camera.velocidadegeral = 0f; }
                 
 
@@ -121,7 +123,7 @@ namespace TDJ_ProjectoFinal.entidades
                      {
                 case TipoBala.Simples:
                              scene.AddSprite(new Bala(this.cManager, "balaplayer", 1,OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
-                             At(new Vector2(position.X+0.3f, position.Y )));
+                             At(new Vector2(position.X+0.4f, position.Y )));
                     
                     break;
                 case TipoBala.Duplo:
@@ -289,7 +291,7 @@ namespace TDJ_ProjectoFinal.entidades
 
             base.position.X += Camera.speed;
 
-            
+
             contador += gameTime.ElapsedGameTime.Milliseconds;
             contadorMisseis += gameTime.ElapsedGameTime.Milliseconds;
 

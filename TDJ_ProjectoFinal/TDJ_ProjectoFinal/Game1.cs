@@ -31,6 +31,7 @@ namespace TDJ_ProjectoFinal
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 1000;
+            
         }
 
         protected override void Initialize()
@@ -58,12 +59,12 @@ namespace TDJ_ProjectoFinal
             
             
             //Fundo do universo (imóvel)
-            Cenas[0].AddSprite(new SlidingBackground(Content, "universe",5f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+            Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 5f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             //lua
-            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 3f).Scl(1f).At(new Vector2(6, 1f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 4.5f).Scl(1f).At(new Vector2(6, 1f)));
             //planeta
-            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta",5f).Scl(8f).At(new Vector2(8,-2.7f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 5f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
             Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 4f).Scl(4f).At(new Vector2(12f, 0.8f)));
             //Nave do jogador
