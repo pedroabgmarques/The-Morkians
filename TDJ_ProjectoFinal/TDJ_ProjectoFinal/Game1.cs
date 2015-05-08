@@ -62,11 +62,11 @@ namespace TDJ_ProjectoFinal
             Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             //lua
-            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(6, 1f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
             //planeta
             Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
-            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(12f, 0.8f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             Cenas[0].AddSprite(player.Scl(0.62f));

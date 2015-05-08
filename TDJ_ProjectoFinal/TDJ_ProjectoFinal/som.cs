@@ -80,7 +80,7 @@ namespace TDJ_ProjectoFinal
 
         public static void PlaySong(Song song)
         {
-            MediaPlayer.Play(song);
+            //MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
         }
 
