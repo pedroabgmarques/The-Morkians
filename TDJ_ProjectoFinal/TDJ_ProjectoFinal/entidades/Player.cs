@@ -65,7 +65,7 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
-            this.shootTime = 2f / Camera.velocidadegeral;
+            this.shootTime = 1.5f / Camera.velocidadegeral;
             this.speed = Camera.velocidadegeral * 3;
             
             //Movimento da nave atraves do teclado
