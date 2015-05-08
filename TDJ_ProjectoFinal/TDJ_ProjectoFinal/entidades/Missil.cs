@@ -74,7 +74,6 @@ namespace TDJ_ProjectoFinal.entidades
                     
                     direction.Normalize();
                     //Mover na direção para onde estamos virados
-                    position += direction * speed;
                     if (this.speed < this.speedInicial * 5)
                         this.speed += this.aceleracao;
                     

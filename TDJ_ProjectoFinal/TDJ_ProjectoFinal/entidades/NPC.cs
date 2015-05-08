@@ -60,7 +60,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             // variavel usada pelo coseno
             // Contradominio de cos(x)=[-1,1]
-            posY+=0.01f;
+            posY += Camera.velocidadegeral*1.5f;
 
             switch (this.tipoNave)
             {
@@ -69,7 +69,7 @@ namespace TDJ_ProjectoFinal.entidades
                     // algoritmo para criar o efeito de onda nos NPC'S
                     // coseno(x)+posição do npc
 
-                    base.position.Y = (float)Math.Cos(posY) + 0.1f;
+                    base.position.Y = (float)Math.Sin(posY) ;
                     break;
                 case TipoNave.Bomber:
                     base.position.X -= Camera.velocidadegeral / 3;

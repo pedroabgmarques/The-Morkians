@@ -24,7 +24,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             base.spriteEffects = direcao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             this.direcao = direcao;
-            this.speed = Camera.speed * 0.3f;
+            
             worldPixels = Camera.WorldPoint2Pixels((int)this.position.X, (int)this.position.Y);
             boundingBox = new Rectangle((int)worldPixels.X, (int)worldPixels.Y, (int)this.image.Width, (int)this.image.Height);
             this.Scl(Scl);
@@ -36,7 +36,9 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
-            base.position.X += speed * direcao;
+
+            this.speed = Camera.velocidadegeral * 0.3f;
+            
             worldPixels = Camera.WorldPoint2Pixels((int)this.position.X, (int)this.position.Y);
             this.boundingBox.X = (int)worldPixels.X;
             this.boundingBox.Y = (int)worldPixels.Y;
