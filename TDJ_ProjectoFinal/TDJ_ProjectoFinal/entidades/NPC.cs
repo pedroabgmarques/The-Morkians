@@ -23,8 +23,9 @@ namespace TDJ_ProjectoFinal.entidades
         public TipoNave tipoNave { get; set; }
         public int Vida;
         int contador;
-        private int shootTime;
+        private float shootTime;
         private float posY;
+        Random random;
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, Random random) 
             : base(contents, assetName)
         {
@@ -34,21 +35,23 @@ namespace TDJ_ProjectoFinal.entidades
             this.Scl(Scl);
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
+
+            this.random = random;
             
             this.contador = 0;
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
                     this.Vida = 3;
-                    this.shootTime = 3000;
+                    this.shootTime = 15f / Camera.velocidadegeral;
                     break;
                 case TipoNave.Bomber:
                     this.Vida = 5;
-                    this.shootTime = random.Next(6000, 10000);
+                    this.shootTime = random.Next(15, 30) / Camera.velocidadegeral;
                     break;
                 case TipoNave.Mothership:
                     this.Vida = 50;
-                    this.shootTime = 4000;
+                    this.shootTime = 15f / Camera.velocidadegeral;
                     break;
                 default:
                     this.Vida = 1;
@@ -61,6 +64,22 @@ namespace TDJ_ProjectoFinal.entidades
             // variavel usada pelo coseno
             // Contradominio de cos(x)=[-1,1]
             posY += Camera.velocidadegeral*1.5f;
+
+            switch (tipoNave)
+            {
+                case TipoNave.Hunter:
+                    this.shootTime = 15f / Camera.velocidadegeral;
+                    break;
+                case TipoNave.Bomber:
+                    this.shootTime = random.Next(15, 30) / Camera.velocidadegeral;
+                    break;
+                case TipoNave.Mothership:
+                    this.shootTime = 15f / Camera.velocidadegeral;
+                    break;
+                default:
+                    this.Vida = 1;
+                    break;
+            }
 
             switch (this.tipoNave)
             {
