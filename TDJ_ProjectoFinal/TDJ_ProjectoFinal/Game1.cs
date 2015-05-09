@@ -221,7 +221,7 @@ namespace TDJ_ProjectoFinal
             Cenas.Add(scene2);
             Camera.SetTarget(Vector2.Zero);
             
-            Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 2f).Scl(45f).
+            Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
@@ -239,7 +239,7 @@ namespace TDJ_ProjectoFinal
             scene3 = new Scene(spriteBatch);
             Cenas.Add(scene3);
             Camera.SetTarget(Vector2.Zero);
-
+            
             Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
             Cenas[2].AddInimigo(new NPC(Content, "boss",TipoNave.Mothership,0,2f,random).At(new Vector2(3f,0f)));
