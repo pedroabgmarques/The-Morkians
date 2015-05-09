@@ -77,7 +77,7 @@ namespace TDJ_ProjectoFinal.entidades
                     break;
                 case TipoNave.Mothership:
                     base.position.Y = (float)Math.Cos(posY) + 0.1f;
-                    //base.position.X = Camera.worldWidth;
+                    base.position.X = Camera.target.X + 1f;
                     break;
                 default:
                     base.position.X -= Camera.velocidadegeral;

@@ -64,11 +64,11 @@ namespace TDJ_ProjectoFinal
             Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                 At(new Vector2(Camera.worldWidth, 0f)));
             //lua
-            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(6, 1f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
             //planeta
             Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8,-2.7f)));
             //estacao espacial
-            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(12f, 0.8f)));
+            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
             //Nave do jogador
             player=new Player(Content, "nave", TipoBala.Simples);
             Cenas[0].AddSprite(player.Scl(0.62f));
@@ -229,7 +229,7 @@ namespace TDJ_ProjectoFinal
             Cenas.Add(scene2);
             Camera.SetTarget(Vector2.Zero);
             
-            Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal", 2f).Scl(45f).
+            Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
             Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
@@ -247,7 +247,7 @@ namespace TDJ_ProjectoFinal
             scene3 = new Scene(spriteBatch);
             Cenas.Add(scene3);
             Camera.SetTarget(Vector2.Zero);
-
+            
             Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                At(new Vector2(Camera.worldWidth, 0f)));
             Cenas[2].AddInimigo(new NPC(Content, "boss",TipoNave.Mothership,0,2f,random).At(new Vector2(3f,0f)));
