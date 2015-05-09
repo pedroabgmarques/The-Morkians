@@ -68,13 +68,13 @@ namespace TDJ_ProjectoFinal.entidades
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
-                    this.shootTime = 15f / Camera.velocidadegeral;
+                    this.shootTime = 25f / Camera.velocidadegeral;
                     break;
                 case TipoNave.Bomber:
-                    this.shootTime = random.Next(15, 30) / Camera.velocidadegeral;
+                    this.shootTime = random.Next(50, 100) / Camera.velocidadegeral;
                     break;
                 case TipoNave.Mothership:
-                    this.shootTime = 15f / Camera.velocidadegeral;
+                    this.shootTime = 25f / Camera.velocidadegeral;
                     break;
                 default:
                     this.Vida = 1;
