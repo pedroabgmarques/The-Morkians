@@ -80,9 +80,9 @@ namespace TDJ_ProjectoFinal
 
         public static void PlaySong(Song song)
         {
-            //MediaPlayer.Play(song);
+            MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.0f;
+            MediaPlayer.Volume = 0.4f;
         }
 
         public static void AddSoundEffect(string effectName, SoundEffect soundEffect)

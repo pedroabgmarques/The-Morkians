@@ -12,6 +12,7 @@ namespace TDJ_ProjectoFinal.entidades
 
     public enum TipoNave
     {
+        Interceptor,
         Hunter,
         Bomber,
         Mothership,
@@ -26,13 +27,12 @@ namespace TDJ_ProjectoFinal.entidades
         private float shootTime;
         private float posY;
         Random random;
-        public NPC(ContentManager contents, string assetName, TipoNave tipoNave, int direcao, float Scl, Random random) 
+        public NPC(ContentManager contents, string assetName, TipoNave tipoNave, float Scl, Random random) 
             : base(contents, assetName)
         {
             
             base.spriteEffects = SpriteEffects.FlipHorizontally;
             this.tipoNave = tipoNave;
-            this.Scl(Scl);
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
 
@@ -42,6 +42,10 @@ namespace TDJ_ProjectoFinal.entidades
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
+                    this.Vida = 3;
+                    this.shootTime = 15f / Camera.velocidadegeral;
+                    break;
+                case TipoNave.Interceptor:
                     this.Vida = 3;
                     this.shootTime = 15f / Camera.velocidadegeral;
                     break;
@@ -57,6 +61,8 @@ namespace TDJ_ProjectoFinal.entidades
                     this.Vida = 1;
                     break;
             }
+
+            this.Scale(Scl);
         }
 
         public override void Update(GameTime gameTime)
@@ -68,6 +74,9 @@ namespace TDJ_ProjectoFinal.entidades
             switch (tipoNave)
             {
                 case TipoNave.Hunter:
+                    this.shootTime = 25f / Camera.velocidadegeral;
+                    break;
+                case TipoNave.Interceptor:
                     this.shootTime = 25f / Camera.velocidadegeral;
                     break;
                 case TipoNave.Bomber:
@@ -89,6 +98,13 @@ namespace TDJ_ProjectoFinal.entidades
                     // coseno(x)+posição do npc
 
                     base.position.Y = (float)Math.Sin(posY) ;
+                    break;
+                case TipoNave.Interceptor:
+                    base.position.X -= Camera.velocidadegeral;
+                    // algoritmo para criar o efeito de onda nos NPC'S
+                    // coseno(x)+posição do npc
+
+                    base.position.Y = (float)Math.Sin(posY);
                     break;
                 case TipoNave.Bomber:
                     base.position.X -= Camera.velocidadegeral / 3;
@@ -117,8 +133,8 @@ namespace TDJ_ProjectoFinal.entidades
 
             if (contador >= shootTime)
             {
-              
-                if (this.tipoNave == TipoNave.Hunter || this.tipoNave==TipoNave.Mothership)
+
+                if (this.tipoNave == TipoNave.Hunter || this.tipoNave == TipoNave.Mothership || this.tipoNave == TipoNave.Interceptor)
                 {
                     if (this.tipoNave == TipoNave.Mothership)
                     {
@@ -155,6 +171,7 @@ namespace TDJ_ProjectoFinal.entidades
 
             base.Update(gameTime);
         }
+
 
         new public NPC At(Vector2 p)
         {

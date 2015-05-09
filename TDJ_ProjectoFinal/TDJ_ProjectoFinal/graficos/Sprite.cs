@@ -19,7 +19,7 @@ namespace TDJ_ProjectoFinal.graficos
         public Vector2 size;
         protected float rotation;
         protected Scene scene;
-        protected Vector2 pixelsize;
+        public Vector2 pixelsize;
         protected Rectangle? source = null;
         protected Color[] pixels;
         protected ContentManager cManager;
@@ -140,7 +140,9 @@ namespace TDJ_ProjectoFinal.graficos
         }
         public Sprite Scl(float scale)
         {
+            
             this.Scale(scale);
+           
             return this;
         }
 
@@ -170,6 +172,7 @@ namespace TDJ_ProjectoFinal.graficos
         {
             if (this is Bala) WeaponsManager.removeBala((Bala)this);
             if (this is Missil) WeaponsManager.removeMissil((Missil)this);
+            if (this is NPC) EnemyManager.removeEnemy((NPC)this);
             this.scene.RemoveSprite(this);
         }
 

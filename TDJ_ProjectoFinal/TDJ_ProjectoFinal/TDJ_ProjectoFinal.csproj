@@ -42,6 +42,7 @@
     <Compile Include="entidades\Bala.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="entidades\Defence.cs" />
+    <Compile Include="entidades\EnemyManager.cs" />
     <Compile Include="entidades\FlyingEntity.cs" />
     <Compile Include="entidades\Missil.cs" />
     <Compile Include="entidades\NPC.cs" />

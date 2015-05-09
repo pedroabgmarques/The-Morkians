@@ -30,8 +30,8 @@ namespace TDJ_ProjectoFinal.entidades
 
             content = contents;
 
-            balasAtivas = new List<Bala>(50);
-            balasMortas = new List<Bala>(50);
+            balasAtivas = new List<Bala>(100);
+            balasMortas = new List<Bala>(100);
 
             misseisAtivos = new List<Missil>(50);
             misseisMortos = new List<Missil>(50);
@@ -43,14 +43,14 @@ namespace TDJ_ProjectoFinal.entidades
 
             vectorTemp = Vector2.Zero;
             
-            //gerar 200 balas vazias
-            for (int i = 0; i < 50; i++)
+            //gerar 100 balas vazias
+            for (int i = 0; i < 100; i++)
             {
                 balaTemp = new Bala(content, "balaplayer", 0, OrigemBala.player, DireccaoBala.EmFrente);
                 balasMortas.Add(balaTemp);
             }
 
-            //gerar 100 misseis vazios
+            //gerar 50 misseis vazios
             for (int i = 0; i < 50; i++) 
             {
                 missilTemp = new Missil(content, "missilPlayer", TipoMissil.EmFrente, 0, OrigemBala.player);
