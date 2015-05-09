@@ -105,13 +105,13 @@ namespace TDJ_ProjectoFinal.entidades
                     {
                         //scene.AddSprite(new Bala(this.cManager, "balainimigo", 1, OrigemBala.boss, DireccaoBala.EmFrente).Scl(0.09f).
                           //  At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
-                        scene.AddInimigo(new Missil(this.cManager, "missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                        scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
                             At(this.position));
                     }
                     else
                     {
                         //Caças e Nave Mãe disparam balas
-                        scene.AddSprite(new Bala(this.cManager, "balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
+                        scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
                             At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
                     }
                 }
@@ -120,7 +120,7 @@ namespace TDJ_ProjectoFinal.entidades
                     if (this.scene.player.position.X < this.position.X)
                     {
                         //Bombardeiros disparam misseis teleguidados
-                        scene.AddInimigo(new Missil(this.cManager, "missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                        scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
                             At(this.position));
                     }
                 }

@@ -82,6 +82,7 @@ namespace TDJ_ProjectoFinal
         {
             MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.0f;
         }
 
         public static void AddSoundEffect(string effectName, SoundEffect soundEffect)

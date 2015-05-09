@@ -122,21 +122,21 @@ namespace TDJ_ProjectoFinal.entidades
                      switch( tipobala)
                      {
                 case TipoBala.Simples:
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1,OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1,OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                              At(new Vector2(position.X+0.4f, position.Y )));
                     
                     break;
                 case TipoBala.Duplo:
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y + 0.05f)));
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y - 0.05f)));
 
                     if (contadorMisseis > 3000)
                     {
-                        
-                        scene.AddSprite(new Missil(this.cManager, "missilPlayer", TipoMissil.EmFrente, 1, OrigemBala.player).Scl(0.15f).
+
+                        scene.AddSprite(WeaponsManager.addMissil("missilPlayer", TipoMissil.EmFrente, 1, OrigemBala.player).Scl(0.15f).
                         At(new Vector2(position.X + 0.4f, position.Y)));
                         contadorMisseis = 0;
 
@@ -145,16 +145,16 @@ namespace TDJ_ProjectoFinal.entidades
                     
                     break;
                 case TipoBala.Triplo:
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Cima).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.Cima).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y - 0.03f)));
 
                     //scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     //At(new Vector2(position.X + 0.4f, position.Y - 0.05f )));
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y )));
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Baixo).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.Baixo).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y + 0.03f)));
 
                     
@@ -165,7 +165,7 @@ namespace TDJ_ProjectoFinal.entidades
                         if (listaAlvos.Count > 0)
                         {
                             FlyingEntity alvo = (FlyingEntity)listaAlvos[Game1.random.Next(listaAlvos.Count)];
-                            scene.AddSprite(new Missil(this.cManager, "missilPlayer", TipoMissil.Teleguiado, 1, OrigemBala.player, alvo).Scl(0.15f).
+                            scene.AddSprite(WeaponsManager.addMissil("missilPlayer", TipoMissil.Teleguiado, 1, OrigemBala.player, alvo).Scl(0.15f).
                             At(new Vector2(position.X + 0.4f, position.Y)));
                             contadorMisseis = 0;
                         }
@@ -173,16 +173,16 @@ namespace TDJ_ProjectoFinal.entidades
                     }
                     break;
                 case TipoBala.Quadruplo:
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Cima).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.Cima).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y - 0.03f)));
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y - 0.03f )));
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y+0.03f)));
 
-                    scene.AddSprite(new Bala(this.cManager, "balaplayer", 1, OrigemBala.player, DireccaoBala.Baixo).Scl(0.09f).
+                    scene.AddSprite(WeaponsManager.addBala("balaplayer", 1, OrigemBala.player, DireccaoBala.Baixo).Scl(0.09f).
                     At(new Vector2(position.X + 0.4f, position.Y + 0.03f)));
 
 
@@ -193,7 +193,7 @@ namespace TDJ_ProjectoFinal.entidades
                         if (listaAlvos.Count > 0)
                         {
                             FlyingEntity alvo = (FlyingEntity)listaAlvos[Game1.random.Next(listaAlvos.Count)];
-                            scene.AddSprite(new Missil(this.cManager, "missilPlayer", TipoMissil.Teleguiado, 1, OrigemBala.player, alvo).Scl(0.15f).
+                            scene.AddSprite(WeaponsManager.addMissil("missilPlayer", TipoMissil.Teleguiado, 1, OrigemBala.player, alvo).Scl(0.15f).
                             At(new Vector2(position.X + 0.4f, position.Y)));
                             contadorMisseis = 0;
                         }

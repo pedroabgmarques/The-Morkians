@@ -13,10 +13,10 @@ namespace TDJ_ProjectoFinal.graficos
     {
         public bool HasCollisions { protected set; get; }
 
-        protected Texture2D image;
+        public Texture2D image;
         public Vector2 position;
         protected float radius; // raio da "bounding box"
-        protected Vector2 size;
+        public Vector2 size;
         protected float rotation;
         protected Scene scene;
         protected Vector2 pixelsize;
@@ -168,6 +168,8 @@ namespace TDJ_ProjectoFinal.graficos
 
         public void Destroy()
         {
+            if (this is Bala) WeaponsManager.removeBala((Bala)this);
+            if (this is Missil) WeaponsManager.removeMissil((Missil)this);
             this.scene.RemoveSprite(this);
         }
 

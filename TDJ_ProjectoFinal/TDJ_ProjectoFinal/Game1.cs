@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
@@ -56,7 +57,8 @@ namespace TDJ_ProjectoFinal
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
             Cenas.Add(scene);
-            
+
+            WeaponsManager.LoadContent(Content);
             
             //Fundo do universo (imóvel)
             Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
@@ -82,6 +84,7 @@ namespace TDJ_ProjectoFinal
             Song background_cena1 = Content.Load<Song>("som/musicacena1");
             som.PlaySong(background_cena1);
             
+            
          
         }
 
@@ -95,6 +98,11 @@ namespace TDJ_ProjectoFinal
        
         protected override void Update(GameTime gameTime)
         {
+
+            Debug.WriteLine("Balas: " + WeaponsManager.balasAtivas.Count + " / " + WeaponsManager.balasMortas.Count);
+            Debug.WriteLine("Misseis: " + WeaponsManager.misseisAtivos.Count + " / " + WeaponsManager.misseisMortos.Count);
+            Debug.WriteLine("");
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             foreach (var scene in Cenas)

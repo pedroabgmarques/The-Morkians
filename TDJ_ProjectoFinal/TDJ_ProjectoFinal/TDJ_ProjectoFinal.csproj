@@ -47,6 +47,7 @@
     <Compile Include="entidades\NPC.cs" />
     <Compile Include="entidades\Player.cs" />
     <Compile Include="entidades\PowerUp.cs" />
+    <Compile Include="entidades\WeaponsManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="graficos\AnimatedSprite.cs" />
     <Compile Include="graficos\Cenario.cs" />

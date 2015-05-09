@@ -22,8 +22,8 @@ namespace TDJ_ProjectoFinal.entidades
         public TipoMissil tipoMissil { get; set; }
         public AnimatedSprite thrust;
         private Vector2 thrustPosition;
-        private int direccao;
-        private FlyingEntity alvo;
+        public int direccao;
+        public FlyingEntity alvo;
         bool passouPeloAlvo;
         Vector2 direction = Vector2.UnitX;
         public OrigemBala origemBala;
@@ -93,7 +93,8 @@ namespace TDJ_ProjectoFinal.entidades
             MissilColision();
 
             //Destroi missil quando sai ddo limite da camara
-            if (this.position.X > (Camera.target.X + (Camera.worldWidth/2)) || this.position.X < 0)
+            if (this.position.X > (Camera.target.X + (Camera.worldWidth/2)) ||
+                this.position.X < (Camera.target.X - (Camera.worldWidth / 2)))
             {
                 this.thrust.Destroy();
                 this.Destroy();

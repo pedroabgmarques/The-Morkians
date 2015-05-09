@@ -48,8 +48,6 @@ namespace TDJ_ProjectoFinal
                         
                     }
 
-                    
-
                     sprite.Destroy();
 
                 }

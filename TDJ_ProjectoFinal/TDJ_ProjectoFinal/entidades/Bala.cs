@@ -24,15 +24,15 @@ namespace TDJ_ProjectoFinal
         boss,
         defesa
     }
-    class Bala : FlyingEntity
+    public class Bala : FlyingEntity
     {
        
-        private int direccao;
-        private DireccaoBala direccaobala;
-        private OrigemBala origemBala;
+        public int direccao;
+        public DireccaoBala direccaobala;
+        public OrigemBala origemBala;
         
 
-        public Bala(ContentManager contents, string assetName, int direccao,OrigemBala origemBala, DireccaoBala direccaobala)
+        public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala)
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -97,7 +97,8 @@ namespace TDJ_ProjectoFinal
             BulletColision();
 
             //Destroi bala quando sai ddo limite da camara
-            if(this.position.X > (Camera.target.X + (Camera.worldWidth/2)))
+            if(this.position.X > (Camera.target.X + (Camera.worldWidth/2))
+                || this.position.X < (Camera.target.X - (Camera.worldWidth / 2)))
             {
                 this.Destroy();
             }
