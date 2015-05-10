@@ -16,6 +16,18 @@ namespace TDJ_ProjectoFinal
     /// </summary>
     public class Game1 : Game
     {
+
+        enum GameState
+        {
+            Menu,
+            Nivel1,
+            Bridge1,
+            Nivel2,
+            Bridge2,
+            Nivel3,
+            End
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene,scene2,scene3;
@@ -60,33 +72,98 @@ namespace TDJ_ProjectoFinal
 
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
+
+            LoadLevel(GameState.Nivel1);
             
-            //Fundo do universo (imóvel)
-            Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
-                At(new Vector2(Camera.worldWidth, 0f)));
-            //lua
-            Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
-            //planeta
-            Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8,-2.7f)));
-            //estacao espacial
-            Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
-            //Nave do jogador
-            player=new Player(Content, "nave", TipoBala.Simples);
-            Cenas[0].AddSprite(player.Scl(0.62f));
-            Cenas[0].player = player;
+        }
 
-            newEnemyWave();
+        private void LoadLevel(GameState gameState)
+        {
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    //TODO
+                    break;
+                case GameState.Nivel1:
+                    //TODO: Limpar cenas do menu
 
-            //PowerUP
-            Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
-            //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+                    //Fundo do universo (imóvel)
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                        At(new Vector2(Camera.worldWidth, 0f)));
+                    //lua
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
+                    //planeta
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8, -2.7f)));
+                    //estacao espacial
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
+                    //Nave do jogador
+                    player = new Player(Content, "nave", TipoBala.Simples);
+                    Cenas[0].AddSprite(player.Scl(0.62f));
+                    Cenas[0].player = player;
+
+                    newEnemyWave();
+
+                    //PowerUP
+                    Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
+                    //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
 
 
-            Song background_cena1 = Content.Load<Song>("som/musicacena1");
-            som.PlaySong(background_cena1);
+                    Song background_cena1 = Content.Load<Song>("som/musicacena1");
+                    som.PlaySong(background_cena1);
+                    break;
+                case GameState.Bridge1:
+                    //TODO: Bridge 1
+                    break;
+                case GameState.Nivel2:
+                    Cenas[0].sprites.Clear();
+                    Cenas[0].inimigos.Clear();
+                    Cenas[0].powerUps.Clear();
+                    Cenas[0].explosoes.Clear();
+                    GC.Collect();
+
+                    scene2 = new Scene(spriteBatch);
+                    Cenas.Add(scene2);
+                    Camera.SetTarget(Vector2.Zero);
             
+                    Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
+                       At(new Vector2(Camera.worldWidth, 0f)));
+                    Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
+                    Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
+                    player = new Player(Content, "nave", TipoBala.Simples);
+                    Cenas[1].AddSprite(player.Scl(0.62f));
+                    Defesas();
             
-         
+                    Cenas[1].player = player;
+                    player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
+                    break;
+                case GameState.Bridge2:
+                    //TODO: bridge 2
+                    break;
+                case GameState.Nivel3:
+                    Cenas[1].sprites.Clear();
+                    Cenas[1].inimigos.Clear();
+                    Cenas[1].powerUps.Clear();
+                    Cenas[1].explosoes.Clear();
+                    GC.Collect();
+
+                    scene3 = new Scene(spriteBatch);
+                    Cenas.Add(scene3);
+                    Camera.SetTarget(Vector2.Zero);
+            
+                    Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
+                       At(new Vector2(Camera.worldWidth, 0f)));
+                    Cenas[2].AddInimigo(new NPC(Content, "boss", TipoNave.Mothership, 2f, random).At(new Vector2(3f, 0f)));
+                    player = new Player(Content, "nave", TipoBala.Simples);
+                    Cenas[2].AddSprite(player.Scl(0.62f));
+                    Cenas[2].player = player;
+                    player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
+                    break;
+                case GameState.End:
+                    //TODO: End
+                    break;
+                default:
+                    break;
+            }
         }
 
             
@@ -100,10 +177,16 @@ namespace TDJ_ProjectoFinal
         protected override void Update(GameTime gameTime)
         {
 
-            Debug.WriteLine("Bombers: " + EnemyManager.bombardeirosVivos.Count + " / " + EnemyManager.bombardeirosMortos.Count);
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            UpdateScenes(gameTime);
+
+            base.Update(gameTime);
+        }
+
+        private void UpdateScenes(GameTime gameTime)
+        {
             foreach (var scene in Cenas)
             {
 
@@ -116,6 +199,11 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
+            ChangeScenes();
+        }
+
+        private void ChangeScenes()
+        {
             if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f)
             {
                 //Matámos todos os inimigos, nova ronda
@@ -123,37 +211,37 @@ namespace TDJ_ProjectoFinal
                 novopowerup = false;
             }
 
-            if (!novopowerup && Cenas[0].active == true) 
+            if (!novopowerup && Cenas[0].active == true)
             {
                 // os inimigos estão a terminar...
                 // nova ronda surgitrá
                 // (apenas teste)
-                Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f,0f ));
-                  
+                Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 0f));
+
                 novopowerup = true;
 
             }
             //muda para cena2
-            if ( Camera.target.X >= 25f && Cenas[0].active == true)
+            if (Camera.target.X >= 25f && Cenas[0].active == true)
             {
                 player.position.X += 0.02f;
-                
-                if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth/2)-0.5f)
+
+                if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
                     Cenas[0].active = false;
-                    cena2();
-                    
+                    LoadLevel(GameState.Nivel2);
+
                 }
             }
 
-            if(Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active==true)
+            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;
 
-                if(player.position.X >= (Camera.GetTarget().X + Camera.worldWidth/2)-0.5f)
+                if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
-                    Cenas[1].active=false;
-                    cena3();
+                    Cenas[1].active = false;
+                    LoadLevel(GameState.Nivel3);
                 }
             }
 
@@ -165,8 +253,6 @@ namespace TDJ_ProjectoFinal
                     Camera.speed = 0f;
                 }
             }
-
-            base.Update(gameTime);
         }
 
       
@@ -218,54 +304,6 @@ namespace TDJ_ProjectoFinal
 
             
             
-        }
-
-        public void cena2()
-        {
-
-            Cenas[0].sprites.Clear();
-            Cenas[0].inimigos.Clear();
-            Cenas[0].powerUps.Clear();
-            Cenas[0].explosoes.Clear();
-            GC.Collect();
-
-            scene2 = new Scene(spriteBatch);
-            Cenas.Add(scene2);
-            Camera.SetTarget(Vector2.Zero);
-            
-            Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
-               At(new Vector2(Camera.worldWidth, 0f)));
-            Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
-            Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
-            player = new Player(Content, "nave", TipoBala.Simples);
-            Cenas[1].AddSprite(player.Scl(0.62f));
-            Defesas();
-            
-            Cenas[1].player = player;
-            player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
-            
-        }
-
-        public void cena3()
-        {
-
-            Cenas[1].sprites.Clear();
-            Cenas[1].inimigos.Clear();
-            Cenas[1].powerUps.Clear();
-            Cenas[1].explosoes.Clear();
-            GC.Collect();
-
-            scene3 = new Scene(spriteBatch);
-            Cenas.Add(scene3);
-            Camera.SetTarget(Vector2.Zero);
-            
-            Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
-               At(new Vector2(Camera.worldWidth, 0f)));
-            Cenas[2].AddInimigo(new NPC(Content, "boss", TipoNave.Mothership, 2f, random).At(new Vector2(3f, 0f)));
-            player = new Player(Content, "nave", TipoBala.Simples);
-            Cenas[2].AddSprite(player.Scl(0.62f));
-            Cenas[2].player = player;
-            player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
         }
 
         public void Defesas()
