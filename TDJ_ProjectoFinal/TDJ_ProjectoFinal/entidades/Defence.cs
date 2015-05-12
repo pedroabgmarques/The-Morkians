@@ -101,7 +101,7 @@ namespace TDJ_ProjectoFinal.entidades
                 //bala.Scale(0.03f);
                 //scene.AddSprite(bala);
 
-                //scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
+                scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
 
                 shootTimeM = 0f;
             }
@@ -109,7 +109,7 @@ namespace TDJ_ProjectoFinal.entidades
 
                 case TipoDefesa.Laser:
                     shootTimeL += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    contadordisparo = 0.04f / Camera.velocidadegeral;
+                    contadordisparo = 0.009f / Camera.velocidadegeral;
 
                     this.rotation = 3.15f;
                     if (shootTimeL >= contadordisparo)
