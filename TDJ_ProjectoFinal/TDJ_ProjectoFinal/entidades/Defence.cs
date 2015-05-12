@@ -59,6 +59,7 @@ namespace TDJ_ProjectoFinal.entidades
         {
             contadordisparo = 0.009f / Camera.velocidadegeral;
             posBala = this.position + direction;
+            
 
             Vector2 deltaP = this.scene.player.position - this.position;
             Vector2 deltaV = this.scene.player.getVectorVelocity();

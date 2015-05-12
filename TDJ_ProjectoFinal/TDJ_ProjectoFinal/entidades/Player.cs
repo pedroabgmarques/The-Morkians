@@ -43,6 +43,7 @@ namespace TDJ_ProjectoFinal.entidades
         
         public TipoBala tipobala;
         private int contadorMisseis;
+        private float maxSpeed = Camera.velocidadegeral*3;
 
 
         public TipoBala GetTipoBala() 
@@ -68,7 +69,8 @@ namespace TDJ_ProjectoFinal.entidades
 
         public override void Update(GameTime gameTime)
         {
-            lastposition = this.position;
+            
+            
 
             this.shootTime = 1.5f / Camera.velocidadegeral;
             this.speed = Camera.velocidadegeral * 3;
@@ -102,10 +104,12 @@ namespace TDJ_ProjectoFinal.entidades
             //Se pressioando direita
             if (currentKeyboardState.IsKeyDown(Keys.D))
             {
+                
 
-                this.position.X += Camera.speed;
+                this.position.X += speed;
 
             }
+            lastposition = this.position;
             if (currentKeyboardState.IsKeyDown(Keys.Up))
             {
 
@@ -300,6 +304,7 @@ namespace TDJ_ProjectoFinal.entidades
 
             contador += gameTime.ElapsedGameTime.Milliseconds;
             contadorMisseis += gameTime.ElapsedGameTime.Milliseconds;
+            
 
             base.Update(gameTime);
         }
