@@ -11,10 +11,10 @@ namespace TDJ_ProjectoFinal.graficos
     {
         private int ncols, nrows;
         private Point currentFrame;
-        private float animationInterval = 1f / 60f;
-        private float animationTimer = 0f;
+        public float animationInterval = 1f / 60f;
+        public float animationTimer = 0f;
         public bool Loop;
-
+        
 
         public AnimatedSprite(ContentManager content,
             string filename, int nrows, int ncols, bool loop, Vector2 position, float scale) :
@@ -30,10 +30,10 @@ namespace TDJ_ProjectoFinal.graficos
             this.Loop = loop;
             this.position = position;
             this.Scale(scale);
-
+            
 
         }
-        private void nextFrame()
+        public void nextFrame()
         {
             if (currentFrame.X < ncols - 1)
             {
@@ -60,6 +60,7 @@ namespace TDJ_ProjectoFinal.graficos
 
         public override void Update(GameTime gameTime)
         {
+      
             animationTimer +=
                 (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (animationTimer > animationInterval)

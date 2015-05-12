@@ -48,6 +48,21 @@ namespace TDJ_ProjectoFinal
                         
                     }
 
+                    if (collided is Boss)
+                    {
+                        Boss boss = (Boss)collided;
+                        if (sprite is Missil)
+                        {
+                            scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.9f));
+                            boss.Destroy();
+                        }
+                        else
+                        {
+                            boss.Vida--;
+                        }
+
+                    }
+
                     sprite.Destroy();
 
                 }

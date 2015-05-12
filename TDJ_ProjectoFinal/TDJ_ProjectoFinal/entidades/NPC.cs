@@ -53,10 +53,11 @@ namespace TDJ_ProjectoFinal.entidades
                     this.Vida = 5;
                     this.shootTime = random.Next(15, 30) / Camera.velocidadegeral;
                     break;
-                case TipoNave.Mothership:
-                    this.Vida = 50;
-                    this.shootTime = 15f / Camera.velocidadegeral;
-                    break;
+                //case TipoNave.Mothership:
+                //    this.Vida = 50;
+                //    this.shootTime = 15f / Camera.velocidadegeral;
+                    
+                //    break;
                 default:
                     this.Vida = 1;
                     break;
@@ -82,9 +83,9 @@ namespace TDJ_ProjectoFinal.entidades
                 case TipoNave.Bomber:
                     this.shootTime = random.Next(50, 100) / Camera.velocidadegeral;
                     break;
-                case TipoNave.Mothership:
-                    this.shootTime = 25f / Camera.velocidadegeral;
-                    break;
+                //case TipoNave.Mothership:
+                //    this.shootTime = 25f / Camera.velocidadegeral;
+                //    break;
                 default:
                     this.Vida = 1;
                     break;
@@ -110,10 +111,10 @@ namespace TDJ_ProjectoFinal.entidades
                     base.position.X -= Camera.velocidadegeral / 3;
                     
                     break;
-                case TipoNave.Mothership:
-                    base.position.Y = (float)Math.Cos(posY) + 0.1f;
-                    base.position.X = Camera.target.X + 1f;
-                    break;
+                //case TipoNave.Mothership:
+                //    base.position.Y = (float)Math.Cos(posY) + 0.1f;
+                //    base.position.X = Camera.target.X + 1f;
+                //    break;
                 default:
                     base.position.X -= Camera.velocidadegeral;
                     break;
@@ -134,25 +135,25 @@ namespace TDJ_ProjectoFinal.entidades
             if (contador >= shootTime)
             {
 
-                if (this.tipoNave == TipoNave.Hunter || this.tipoNave == TipoNave.Mothership || this.tipoNave == TipoNave.Interceptor)
+                if (this.tipoNave == TipoNave.Hunter /*|| this.tipoNave == TipoNave.Mothership*/ || this.tipoNave == TipoNave.Interceptor)
                 {
-                    if (this.tipoNave == TipoNave.Mothership)
-                    {
-                        //scene.AddSprite(new Bala(this.cManager, "balainimigo", 1, OrigemBala.boss, DireccaoBala.EmFrente).Scl(0.09f).
-                          //  At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
-                        scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
-                            At(new Vector2(this.position.X-1f,this.position.Y+0.5f)));
-                        scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
-                            At(new Vector2(this.position.X-1f, this.position.Y - 0.5f)));
-                        scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
-                            At(new Vector2(position.X - 0.4f, position.Y)));
-                    }
-                    else
-                    {
+                    //if (this.tipoNave == TipoNave.Mothership)
+                    //{
+                    //    //scene.AddSprite(new Bala(this.cManager, "balainimigo", 1, OrigemBala.boss, DireccaoBala.EmFrente).Scl(0.09f).
+                    //      //  At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
+                    //    scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                    //        At(new Vector2(this.position.X-1f,this.position.Y+0.5f)));
+                    //    scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                    //        At(new Vector2(this.position.X-1f, this.position.Y - 0.5f)));
+                    //    scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
+                    //        At(new Vector2(position.X - 0.4f, position.Y)));
+                    //}
+                    //else
+                    //{
                         //Caças e Nave Mãe disparam balas
                         scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
                             At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
-                    }
+                    //}
                 }
                 else
                 {
