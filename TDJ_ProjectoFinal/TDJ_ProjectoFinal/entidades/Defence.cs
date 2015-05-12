@@ -122,17 +122,9 @@ namespace TDJ_ProjectoFinal.entidades
                             shootTimeL = 0f;
                         }
                     }
-
-                    
-
-
                     break;
             }
-            
-            
-
-            
-
+    
             base.Update(gameTime);
         }
 
