@@ -30,9 +30,11 @@ namespace TDJ_ProjectoFinal
         public int direccao;
         public DireccaoBala direccaobala;
         public OrigemBala origemBala;
+        public Vector2 direction;
+        private Defence parent;
         
 
-        public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala)
+        public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala, Defence parent=null)
             : base(contents, assetName)
         {
             base.spriteEffects = direccao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -40,6 +42,9 @@ namespace TDJ_ProjectoFinal
             this.direccaobala = direccaobala;
             this.direccao = direccao;
             this.origemBala = origemBala;
+            this.parent = parent;
+            direction = Vector2.Zero;
+            
             this.EnableCollisions();
             //else
             //{
@@ -56,11 +61,26 @@ namespace TDJ_ProjectoFinal
         //    }
         //}
         public override void Update(GameTime gameTime)
+
         {
+          
+            
+           
 
             if (origemBala == OrigemBala.player)
             {
                 speed = Camera.velocidadegeral / 0.12f;
+            }
+            else  if (origemBala == OrigemBala.defesa) 
+            {
+                if (direction == Vector2.Zero)
+                {
+                    direction = new Vector2((float)Math.Sin(parent.rot),
+                        (float)Math.Cos(parent.rot));
+                }
+                
+                speed = Camera.velocidadegeral / 0.009f;
+
             }
             else
             {
@@ -71,10 +91,19 @@ namespace TDJ_ProjectoFinal
             switch ( direccaobala )
                 {
                 case DireccaoBala.EmFrente:
-                    if(origemBala==OrigemBala.player)
-                        this.position.X += speed * direccao;
-                    else
-                        this.position.X += speed * direccao;
+                        if (origemBala == OrigemBala.player)
+                        {
+                            this.position.X += speed * direccao;
+                        }
+                        else if (origemBala == OrigemBala.defesa)
+                        {
+                            this.position += direction * speed
+                                * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            
+                        }
+                        
+                        else
+                            this.position.X += speed * direccao;
                     break;
                 case DireccaoBala.Cima:
                     this.position.X += speed * direccao;
@@ -102,11 +131,7 @@ namespace TDJ_ProjectoFinal
             {
                 this.Destroy();
             }
-            if (origemBala == OrigemBala.defesa) 
-            {
-                this.position.X += (float)Math.PI / 2f;
-                this.position.Y -= (float)Math.PI / 2f;
-            }
+            
    
         }
 

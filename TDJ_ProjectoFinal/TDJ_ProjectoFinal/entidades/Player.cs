@@ -34,6 +34,7 @@ namespace TDJ_ProjectoFinal.entidades
         private float shootTime;
         public int Vida;
         public int pontuacao;
+        public Vector2 lastposition;
 
         public Rectangle boundingBox;
         
@@ -63,8 +64,12 @@ namespace TDJ_ProjectoFinal.entidades
                 this.pontuacao = 0;
         }
 
+        
+
         public override void Update(GameTime gameTime)
         {
+            lastposition = this.position;
+
             this.shootTime = 1.5f / Camera.velocidadegeral;
             this.speed = Camera.velocidadegeral * 3;
             
@@ -98,7 +103,7 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.D))
             {
 
-                this.position.X += speed;
+                this.position.X += Camera.speed;
 
             }
             if (currentKeyboardState.IsKeyDown(Keys.Up))
@@ -226,6 +231,7 @@ namespace TDJ_ProjectoFinal.entidades
                 }
                 this.collided.Destroy();
             }
+
             //colisao con cenario
             if(this.scene.Collides(this,out this.collided, out this.collisionPoint,this.scene.sprites))
             {
@@ -289,13 +295,18 @@ namespace TDJ_ProjectoFinal.entidades
                 this.Destroy();
             }
 
-            base.position.X += Camera.speed;
+            this.position.X += Camera.speed;
 
 
             contador += gameTime.ElapsedGameTime.Milliseconds;
             contadorMisseis += gameTime.ElapsedGameTime.Milliseconds;
 
             base.Update(gameTime);
+        }
+
+        public Vector2 getVectorVelocity() 
+        {
+            return Vector2.Subtract(position, lastposition);
         }
 
         
