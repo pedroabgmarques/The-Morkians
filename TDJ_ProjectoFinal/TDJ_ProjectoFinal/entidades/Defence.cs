@@ -16,13 +16,14 @@ namespace TDJ_ProjectoFinal.entidades
         Metrelhadora,
         Laser
     }
-    class Defence : Sprite
+    public class Defence : Sprite
     {
         public TipoDefesa tipodefesa { get; set; }
         private float shootTime ;
         private Vector2 direction = Vector2.Zero;
         private Vector2 posBala;
-        private int contadordisparo = 10;
+        private float contadordisparo ;
+        public float rot;
         
         
 
@@ -32,16 +33,19 @@ namespace TDJ_ProjectoFinal.entidades
             this.SetRotation((float)Math.PI / 4);
             
             this.EnableCollisions();
+            
 
         }
         public override void Update(GameTime gameTime)
         {
+            contadordisparo = 0.009f / Camera.velocidadegeral;
             posBala = this.position + direction;
-           
+            
             Vector2 tpos =this.position;
             float a = (float)this.scene.player.position.Y - tpos.Y;
             float l = (float)this.scene.player.position.X - tpos.X;
-            float rot = -(float)Math.Atan2(a, l);
+             rot = -(float)Math.Atan2(a, l);
+            
             rot += (float)Math.PI / 2f;
             SetRotation(rot);
 
@@ -51,7 +55,7 @@ namespace TDJ_ProjectoFinal.entidades
                 Vector2 pos = this.position
                          + new Vector2((float)Math.Sin(rot) * size.Y / 2,
                                        (float)Math.Cos(rot) * size.Y / 2);
-                Bala bala = new Bala(cManager, "baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente);
+                Bala bala = new Bala(cManager, "baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this);
                 bala.At(new Vector2(pos.X,pos.Y));
                 bala.Scale(0.03f);
                 scene.AddSprite(bala);
