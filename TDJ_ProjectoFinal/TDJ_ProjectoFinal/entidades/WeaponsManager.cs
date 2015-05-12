@@ -21,7 +21,7 @@ namespace TDJ_ProjectoFinal.entidades
         private static Missil missilTemp;
 
         private static ContentManager content;
-        private static Texture2D balaplayer, balainimigo, missilplayer, missilinimigo;
+        private static Texture2D balaplayer, balainimigo, missilplayer, missilinimigo, baladefesas;
 
         private static Vector2 vectorTemp;
 
@@ -40,6 +40,7 @@ namespace TDJ_ProjectoFinal.entidades
             balainimigo = contents.Load<Texture2D>("balainimigo");
             missilplayer = contents.Load<Texture2D>("missilPlayer");
             missilinimigo = contents.Load<Texture2D>("missil");
+            baladefesas = contents.Load<Texture2D>("baladefesas");
 
             vectorTemp = Vector2.Zero;
             
@@ -88,17 +89,24 @@ namespace TDJ_ProjectoFinal.entidades
             misseisMortos.Add(missil);
         }
 
-        public static Bala addBala(string assetname, int direcao, OrigemBala origemBala, DireccaoBala direcaoBala)
+        public static Bala addBala(string assetname, int direcao, OrigemBala origemBala, DireccaoBala direcaoBala, Defence parent = null)
         {
             balaTemp = balasMortas.First();
             if (assetname == "balaplayer")
             {
                 balaTemp.image = balaplayer;
             }
+            else if (assetname == "baladefesas")
+            {
+                balaTemp.image = baladefesas;
+            }
             else
             {
                 balaTemp.image = balainimigo;
             }
+
+            balaTemp.parent = parent;
+
             vectorTemp.X = 1f;
             vectorTemp.Y = (float)balaTemp.image.Height / (float)balaTemp.image.Width;
             balaTemp.size = vectorTemp;
@@ -106,6 +114,7 @@ namespace TDJ_ProjectoFinal.entidades
             balaTemp.direccao = direcao;
             balaTemp.origemBala = origemBala;
             balaTemp.direccaobala = direcaoBala;
+            balaTemp.direction = Vector2.Zero;
             balasAtivas.Add(balaTemp);
             balasMortas.Remove(balaTemp);
             return balaTemp;
@@ -113,8 +122,13 @@ namespace TDJ_ProjectoFinal.entidades
 
         public static void removeBala(Bala bala)
         {
-            balasAtivas.Remove(bala);
-            balasMortas.Add(bala);
+
+            if (balasAtivas.Contains(bala))
+            {
+                balasAtivas.Remove(bala);
+                balasMortas.Add(bala);
+            }
+            
         }
 
     }

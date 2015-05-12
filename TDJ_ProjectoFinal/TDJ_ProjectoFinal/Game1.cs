@@ -126,6 +126,7 @@ namespace TDJ_ProjectoFinal
 
                     scene2 = new Scene(spriteBatch);
                     Cenas.Add(scene2);
+                    Cenas[1].active = true;
                     Camera.SetTarget(Vector2.Zero);
             
                     Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal",3f).Scl(45f).
@@ -134,11 +135,13 @@ namespace TDJ_ProjectoFinal
                     Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
                     player = new Player(Content, "nave", TipoBala.Simples);
                     Cenas[1].AddSprite(player.Scl(0.62f));
+                    
                     Defesas();
             
                     Cenas[1].player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
-                    
+
+
                     break;
                 case GameState.Bridge2:
                     //TODO: bridge 2
@@ -246,7 +249,7 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
-            if (Camera.target.X >= 2f && Cenas.Count > 1 && Cenas[1].active == true)
+            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;
 
@@ -337,9 +340,14 @@ namespace TDJ_ProjectoFinal
             // superiores
 
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+0.7f,1.35f )));
+            //Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+0.7f,1.35f )));
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 3.5f, 0.2f)));
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 5.2f, 0.2f)));
+
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 12f, 0.6f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 18f, 0.98f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 21f, 0.30f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 24.8f, 0.5f)));
 
             
             
