@@ -141,7 +141,11 @@ namespace TDJ_ProjectoFinal.entidades
                         //scene.AddSprite(new Bala(this.cManager, "balainimigo", 1, OrigemBala.boss, DireccaoBala.EmFrente).Scl(0.09f).
                           //  At(new Vector2(position.X - 0.4f, position.Y - 0.05f)));
                         scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
-                            At(this.position));
+                            At(new Vector2(this.position.X-1f,this.position.Y+0.5f)));
+                        scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                            At(new Vector2(this.position.X-1f, this.position.Y - 0.5f)));
+                        scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
+                            At(new Vector2(position.X - 0.4f, position.Y)));
                     }
                     else
                     {

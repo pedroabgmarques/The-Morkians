@@ -146,6 +146,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[1].inimigos.Clear();
                     Cenas[1].powerUps.Clear();
                     Cenas[1].explosoes.Clear();
+                    Cenas[1].active = false;
                     GC.Collect();
 
                     scene3 = new Scene(spriteBatch);
