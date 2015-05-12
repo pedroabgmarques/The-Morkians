@@ -73,7 +73,7 @@ namespace TDJ_ProjectoFinal
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
 
-            LoadLevel(GameState.Nivel1);
+            LoadLevel(GameState.Nivel2);
             
         }
 
@@ -119,13 +119,14 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].inimigos.Clear();
                     Cenas[0].powerUps.Clear();
                     Cenas[0].explosoes.Clear();
+                    Cenas[0].active = false;
                     GC.Collect();
 
                     scene2 = new Scene(spriteBatch);
                     Cenas.Add(scene2);
                     Camera.SetTarget(Vector2.Zero);
             
-                    Cenas[1].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
+                    Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal",3f).Scl(45f).
                        At(new Vector2(Camera.worldWidth, 0f)));
                     Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
                     Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
@@ -135,6 +136,7 @@ namespace TDJ_ProjectoFinal
             
                     Cenas[1].player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
+                    
                     break;
                 case GameState.Bridge2:
                     //TODO: bridge 2
