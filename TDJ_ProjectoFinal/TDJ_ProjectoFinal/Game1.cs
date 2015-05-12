@@ -36,7 +36,7 @@ namespace TDJ_ProjectoFinal
         bool novopowerup = false;
         List<Scene> Cenas;
         Random randomShake;
-        
+        GameState gamestate;
         public Game1()
             : base()
         {
@@ -59,7 +59,7 @@ namespace TDJ_ProjectoFinal
             Camera.SetWorldWidth(5);
 
             som.Initialize(Content);
-
+            
             base.Initialize();
         }
 
@@ -69,11 +69,11 @@ namespace TDJ_ProjectoFinal
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
             Cenas.Add(scene);
-
+            
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
-
-            LoadLevel(GameState.Nivel2);
+            
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -83,6 +83,8 @@ namespace TDJ_ProjectoFinal
             {
                 case GameState.Menu:
                     //TODO
+                    Camera.velocidadegeral = 0;
+                    Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
                     break;
                 case GameState.Nivel1:
                     //TODO: Limpar cenas do menu
@@ -185,6 +187,11 @@ namespace TDJ_ProjectoFinal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                LoadLevel(GameState.Nivel1);
+                Camera.velocidadegeral = 0.007f;
+            }
             UpdateScenes(gameTime);
 
             base.Update(gameTime);
@@ -209,7 +216,7 @@ namespace TDJ_ProjectoFinal
 
         private void ChangeScenes()
         {
-            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f)
+            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f && gamestate!=GameState.Menu)
             {
                 //Matámos todos os inimigos, nova ronda
                 newEnemyWave();
@@ -265,7 +272,7 @@ namespace TDJ_ProjectoFinal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
+            
             foreach (var scene in Cenas)
             {
                 if(scene.active==true)

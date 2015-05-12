@@ -110,6 +110,9 @@
     <Content Include="Content\kamikaze.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\mainMenu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\mapaFinal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
