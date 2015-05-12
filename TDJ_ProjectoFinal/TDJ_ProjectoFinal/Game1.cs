@@ -37,6 +37,7 @@ namespace TDJ_ProjectoFinal
         List<Scene> Cenas;
         Random randomShake;
         GameState gamestate;
+        SpriteFont font;
         public Game1()
             : base()
         {
@@ -69,7 +70,7 @@ namespace TDJ_ProjectoFinal
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
             Cenas.Add(scene);
-            
+            font = Content.Load<SpriteFont>("MyFont");
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
             
@@ -85,6 +86,7 @@ namespace TDJ_ProjectoFinal
                     //TODO
                     Camera.velocidadegeral = 0;
                     Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
+                    
                     break;
                 case GameState.Nivel1:
                     //TODO: Limpar cenas do menu
@@ -194,6 +196,7 @@ namespace TDJ_ProjectoFinal
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
+                gamestate = GameState.Nivel1;
                 LoadLevel(GameState.Nivel1);
                 Camera.velocidadegeral = 0.007f;
             }
@@ -277,14 +280,19 @@ namespace TDJ_ProjectoFinal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+          
             
             foreach (var scene in Cenas)
             {
                 if(scene.active==true)
                 scene.Draw(gameTime);
             }
-               
-                
+            if (gamestate == GameState.Menu)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "Press ENTER to play.", new Vector2(300f, 300f), Color.White);
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
 
