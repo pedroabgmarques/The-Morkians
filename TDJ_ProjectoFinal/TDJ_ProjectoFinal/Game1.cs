@@ -328,6 +328,9 @@ namespace TDJ_ProjectoFinal
             // superiores
 
             Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+0.7f,1.35f )));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 3.5f, 0.2f)));
+            Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X + 5.2f, 0.2f)));
 
             
             
