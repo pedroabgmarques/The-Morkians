@@ -74,7 +74,7 @@ namespace TDJ_ProjectoFinal
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
             
-            LoadLevel(GameState.Nivel2);
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -87,12 +87,6 @@ namespace TDJ_ProjectoFinal
 
                     gamestate = GameState.Menu;
 
-                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                    {
-                        gamestate = GameState.Nivel1;
-                        LoadLevel(GameState.Nivel1);
-                        Camera.velocidadegeral = 0.007f;
-                    }
                     Camera.velocidadegeral = 0;
                     Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
                     
@@ -210,6 +204,12 @@ namespace TDJ_ProjectoFinal
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                LoadLevel(GameState.Nivel1);
+                Camera.velocidadegeral = 0.007f;
+            }
 
             
             UpdateScenes(gameTime);
