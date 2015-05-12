@@ -97,8 +97,17 @@ namespace TDJ_ProjectoFinal
                         }
                         else if (origemBala == OrigemBala.defesa)
                         {
-                            this.position += direction * speed
-                                * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            if (parent.tipodefesa == TipoDefesa.Metrelhadora)
+                            {
+                                this.position += direction * speed
+                                    * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            }
+                            else if (parent.tipodefesa == TipoDefesa.Laser) 
+                            {
+                                this.position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                            }
+                            
                             
                         }
                         
