@@ -24,21 +24,21 @@ namespace TDJ_ProjectoFinal.entidades
             base(content,filename,nrows,ncols,loop,position,scale)
         {
             this.animationTimer = 0f;
-            this.animationInterval = 10f / Camera.velocidadegeral;
+            this.animationInterval = 7f / Camera.velocidadegeral;
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
             this.contador = 0;
-            this.Vida = 50;
-            this.shootTime = 10f / Camera.velocidadegeral;
+            this.Vida = 500;
+            this.shootTime = 7f / Camera.velocidadegeral;
         }
 
         public override void Update(GameTime gameTime)
         {
-            posY += Camera.velocidadegeral * 5f;
+            posY += Camera.velocidadegeral * 2.5f;
             //this.shootTime = 25f / Camera.velocidadegeral;
 
             base.position.Y = ((float)Math.Cos(posY)*0.5f) + 0.1f;
-            base.position.X = Camera.target.X + 1f;
+            base.position.X = Camera.target.X + 1.7f;
 
             //Verificar vida
             if (this.Vida <= 0)
@@ -74,6 +74,9 @@ namespace TDJ_ProjectoFinal.entidades
                 scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
                     At(new Vector2(this.position.X - 1f, this.position.Y + 0.5f)));
                 missil1Lancado = false;
+
+                scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
+                    At(new Vector2(position.X - 0.4f, position.Y)));
                 contador = 0;
             }
             

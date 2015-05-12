@@ -110,13 +110,14 @@
     <Content Include="Content\kamikaze.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-<Content Include="Content\mainMenu.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>    
- <Content Include="Content\laserweapon.png">
+<<<<<<< HEAD
+    <Content Include="Content\laserweapon.png">
+=======
+    <Content Include="Content\mainMenu.png">
+>>>>>>> 20fa3cd58ed1219d8778179b0d7d820b22c3e69a
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-<Content Include="Content\mapaFinal.png">
+    <Content Include="Content\mapaFinal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\mapaFinalBaixo.png">
@@ -173,9 +174,6 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\MyFont.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Content\som\musicacena1.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

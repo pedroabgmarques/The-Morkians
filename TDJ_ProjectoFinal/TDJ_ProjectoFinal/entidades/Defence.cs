@@ -27,10 +27,11 @@ namespace TDJ_ProjectoFinal.entidades
         
         
 
-        public Defence(ContentManager contents, string assetName): base(contents, assetName) 
+        public Defence(ContentManager contents, string assetName,TipoDefesa tipodefesa): base(contents, assetName) 
         {
             
             this.SetRotation((float)Math.PI / 4);
+            this.tipodefesa = tipodefesa;
             
             this.EnableCollisions();
             
@@ -57,7 +58,10 @@ namespace TDJ_ProjectoFinal.entidades
         }
         public override void Update(GameTime gameTime)
         {
-            contadordisparo = 0.009f / Camera.velocidadegeral;
+            switch (this.tipodefesa) 
+            {
+                case TipoDefesa.Metrelhadora:
+                    contadordisparo = 0.009f / Camera.velocidadegeral;
             posBala = this.position + direction;
             
 
@@ -96,6 +100,16 @@ namespace TDJ_ProjectoFinal.entidades
 
                 shootTime = 0f;
             }
+                    break;
+
+                case TipoDefesa.Laser:
+
+                    this.rotation = 3.15f;
+
+
+                    break;
+            }
+            
             
 
             
