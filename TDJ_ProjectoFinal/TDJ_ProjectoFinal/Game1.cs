@@ -192,6 +192,7 @@ namespace TDJ_ProjectoFinal
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
+                gamestate = GameState.Nivel1;
                 LoadLevel(GameState.Nivel1);
                 Camera.velocidadegeral = 0.007f;
             }
