@@ -41,6 +41,7 @@
     <Compile Include="Colisoes.cs" />
     <Compile Include="entidades\Bala.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="entidades\Boss.cs" />
     <Compile Include="entidades\Defence.cs" />
     <Compile Include="entidades\EnemyManager.cs" />
     <Compile Include="entidades\FlyingEntity.cs" />
@@ -83,6 +84,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\boss.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bossSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bossSheet2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\caça.png">

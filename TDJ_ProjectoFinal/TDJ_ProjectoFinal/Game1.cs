@@ -155,7 +155,9 @@ namespace TDJ_ProjectoFinal
             
                     Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                        At(new Vector2(Camera.worldWidth, 0f)));
-                    Cenas[2].AddInimigo(new NPC(Content, "boss", TipoNave.Mothership, 2f, random).At(new Vector2(3f, 0f)));
+                    //Cenas[2].AddInimigo(new NPC(Content, "boss", TipoNave.Mothership, 2f, random).At(new Vector2(3f, 0f)));
+                    //Cenas[2].AddInimigo(new AnimatedSprite(Content,"bossSheet",1,3,true,new Vector2(1f,1f),2f));
+                    Cenas[2].AddInimigo(new Boss(Content, "bossSheet2", 1, 2, true, new Vector2(1f, 1f), 2f));
                     player = new Player(Content, "nave", TipoBala.Simples);
                     Cenas[2].AddSprite(player.Scl(0.62f));
                     Cenas[2].player = player;
@@ -237,7 +239,7 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
-            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
+            if (Camera.target.X >= 2f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;
 

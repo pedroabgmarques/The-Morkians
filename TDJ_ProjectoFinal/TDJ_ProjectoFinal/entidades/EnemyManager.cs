@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
@@ -12,7 +13,7 @@ namespace TDJ_ProjectoFinal.entidades
     {
 
         private static Texture2D kamikaze, bombardeiro, caça;
-
+        private static AnimatedSprite Boss;
         public static List<NPC> kamikazesVivos;
         public static List<NPC> kamikazesMortos;
 
@@ -42,7 +43,7 @@ namespace TDJ_ProjectoFinal.entidades
             kamikaze = contents.Load<Texture2D>("Kamikaze");
             bombardeiro = contents.Load<Texture2D>("bombardeiro");
             caça = contents.Load<Texture2D>("caça");
-
+            
             //gerar 50 naves de cada tipo
             for (int i = 0; i < 50; i++)
             {
@@ -61,6 +62,7 @@ namespace TDJ_ProjectoFinal.entidades
             }
         }
 
+        
         public static NPC addKamikaze()
         {
             npcTemp = kamikazesMortos.First();
