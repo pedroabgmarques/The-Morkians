@@ -78,6 +78,7 @@ namespace TDJ_ProjectoFinal.entidades
             missilTemp.direccao = direcao;
             missilTemp.alvo = alvo;
             missilTemp.origemBala = origemBala;
+            
             misseisAtivos.Add(missilTemp);
             misseisMortos.Remove(missilTemp);
             return missilTemp;
