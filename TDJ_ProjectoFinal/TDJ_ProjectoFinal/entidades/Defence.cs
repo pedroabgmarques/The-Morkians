@@ -19,19 +19,23 @@ namespace TDJ_ProjectoFinal.entidades
     public class Defence : Sprite
     {
         public TipoDefesa tipodefesa { get; set; }
-        private float shootTime ;
+        private float shootTimeM ;
+        private float shootTimeL;
         private Vector2 direction = Vector2.Zero;
         private Vector2 posBala;
         private float contadordisparo ;
         public float rot;
-        
-        
+        public float shootTimeLaser;
 
-        public Defence(ContentManager contents, string assetName,TipoDefesa tipodefesa): base(contents, assetName) 
+
+
+        public Defence(ContentManager contents, string assetName, TipoDefesa tipodefesa, float shootTimeLaser=0)
+            : base(contents, assetName) 
         {
             
             this.SetRotation((float)Math.PI / 4);
             this.tipodefesa = tipodefesa;
+            this.shootTimeLaser = shootTimeLaser;
             
             this.EnableCollisions();
             
@@ -83,8 +87,9 @@ namespace TDJ_ProjectoFinal.entidades
             rot += (float)Math.PI / 2f;
             SetRotation(rot);
 
-            shootTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (shootTime >= contadordisparo && futurepoint!=Vector2.Zero)
+            shootTimeM += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (shootTimeM >= contadordisparo && futurepoint != Vector2.Zero)
             {
                 Vector2 pos = this.position
                          + new Vector2((float)Math.Sin(rot) * size.Y / 2,
@@ -96,15 +101,29 @@ namespace TDJ_ProjectoFinal.entidades
                 //bala.Scale(0.03f);
                 //scene.AddSprite(bala);
 
-                scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
+                //scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
 
-                shootTime = 0f;
+                shootTimeM = 0f;
             }
                     break;
 
                 case TipoDefesa.Laser:
+                    shootTimeL += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    contadordisparo = 0.04f / Camera.velocidadegeral;
 
                     this.rotation = 3.15f;
+                    if (shootTimeL >= contadordisparo)
+                    {
+                        scene.AddSprite(WeaponsManager.addBala("baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente, this)
+                            .Scl(0.03f).At(new Vector2(this.position.X, this.position.Y - 0.2f)));
+
+                        if (shootTimeL >= contadordisparo +shootTimeLaser) 
+                        {
+                            shootTimeL = 0f;
+                        }
+                    }
+
+                    
 
 
                     break;

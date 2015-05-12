@@ -73,7 +73,7 @@ namespace TDJ_ProjectoFinal
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
             
-            LoadLevel(GameState.Menu);
+            LoadLevel(GameState.Nivel2);
             
         }
 
@@ -251,7 +251,7 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
-            if (Camera.target.X >= 2f && Cenas.Count > 1 && Cenas[1].active == true)
+            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;
 
@@ -353,7 +353,14 @@ namespace TDJ_ProjectoFinal
 
             // armas de laser
 
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser).Scl(0.15f).At(new Vector2(player.position.X+4.4f, 0f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.2f).Scl(0.15f).At(new Vector2(player.position.X+4.4f, 0f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.4f).Scl(0.15f).At(new Vector2(player.position.X + 8.4f, 0.85f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.3f).Scl(0.15f).At(new Vector2(player.position.X + 12.4f, 0.5f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.5f).Scl(0.15f).At(new Vector2(player.position.X + 15.4f, 0.6f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.6f).Scl(0.15f).At(new Vector2(player.position.X + 20.4f, 0.15f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.1f).Scl(0.15f).At(new Vector2(player.position.X + 24f, 0.48f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.15f).Scl(0.15f).At(new Vector2(player.position.X + 24.2f, 0.365f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.2f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
 
 
 

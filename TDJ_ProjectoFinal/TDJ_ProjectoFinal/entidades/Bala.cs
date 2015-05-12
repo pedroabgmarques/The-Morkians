@@ -102,7 +102,7 @@ namespace TDJ_ProjectoFinal
                             }
                             else if (parent.tipodefesa == TipoDefesa.Laser) 
                             {
-                                this.position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                                this.position.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds+0.09f;
 
                             }
                             
