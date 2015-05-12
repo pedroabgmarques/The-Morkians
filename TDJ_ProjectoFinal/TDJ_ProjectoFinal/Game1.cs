@@ -84,11 +84,22 @@ namespace TDJ_ProjectoFinal
             {
                 case GameState.Menu:
                     //TODO
+
+                    gamestate = GameState.Menu;
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        gamestate = GameState.Nivel1;
+                        LoadLevel(GameState.Nivel1);
+                        Camera.velocidadegeral = 0.007f;
+                    }
                     Camera.velocidadegeral = 0;
                     Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
                     
                     break;
                 case GameState.Nivel1:
+                    gamestate = GameState.Nivel1;
+
                     //TODO: Limpar cenas do menu
 
                     //Fundo do universo (imóvel)
@@ -119,6 +130,9 @@ namespace TDJ_ProjectoFinal
                     //TODO: Bridge 1
                     break;
                 case GameState.Nivel2:
+
+                    gamestate = GameState.Nivel2;
+
                     Cenas[0].sprites.Clear();
                     Cenas[0].inimigos.Clear();
                     Cenas[0].powerUps.Clear();
@@ -149,6 +163,9 @@ namespace TDJ_ProjectoFinal
                     //TODO: bridge 2
                     break;
                 case GameState.Nivel3:
+
+                    gamestate = GameState.Nivel3;
+
                     Cenas[1].sprites.Clear();
                     Cenas[1].inimigos.Clear();
                     Cenas[1].powerUps.Clear();
@@ -194,12 +211,7 @@ namespace TDJ_ProjectoFinal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                gamestate = GameState.Nivel1;
-                LoadLevel(GameState.Nivel1);
-                Camera.velocidadegeral = 0.007f;
-            }
+            
             UpdateScenes(gameTime);
 
             base.Update(gameTime);
@@ -287,12 +299,30 @@ namespace TDJ_ProjectoFinal
                 if(scene.active==true)
                 scene.Draw(gameTime);
             }
-            if (gamestate == GameState.Menu)
+
+            switch (gamestate)
             {
-                spriteBatch.Begin();
-                spriteBatch.DrawString(font, "Press ENTER to play.", new Vector2(300f, 300f), Color.White);
-                spriteBatch.End();
+                case GameState.Menu:
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, "Press ENTER to play.", new Vector2(300f, 300f), Color.White);
+                     spriteBatch.End();
+                    break;
+                case GameState.Nivel1:
+                    break;
+                case GameState.Bridge1:
+                    break;
+                case GameState.Nivel2:
+                    break;
+                case GameState.Bridge2:
+                    break;
+                case GameState.Nivel3:
+                    break;
+                case GameState.End:
+                    break;
+                default:
+                    break;
             }
+
             base.Draw(gameTime);
         }
 
@@ -361,14 +391,14 @@ namespace TDJ_ProjectoFinal
 
             // armas de laser
 
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.2f).Scl(0.15f).At(new Vector2(player.position.X+4.4f, 0f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.4f).Scl(0.15f).At(new Vector2(player.position.X + 8.4f, 0.85f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.3f).Scl(0.15f).At(new Vector2(player.position.X + 12.4f, 0.5f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.5f).Scl(0.15f).At(new Vector2(player.position.X + 15.4f, 0.6f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.6f).Scl(0.15f).At(new Vector2(player.position.X + 20.4f, 0.15f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.1f).Scl(0.15f).At(new Vector2(player.position.X + 24f, 0.48f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.15f).Scl(0.15f).At(new Vector2(player.position.X + 24.2f, 0.365f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.2f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.20f).Scl(0.15f).At(new Vector2(player.position.X+4.4f, 0f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.18f).Scl(0.15f).At(new Vector2(player.position.X + 8.4f, 0.85f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.17f).Scl(0.15f).At(new Vector2(player.position.X + 12.4f, 0.5f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.19f).Scl(0.15f).At(new Vector2(player.position.X + 15.4f, 0.6f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.20f).Scl(0.15f).At(new Vector2(player.position.X + 20.4f, 0.15f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.15f).Scl(0.15f).At(new Vector2(player.position.X + 24f, 0.48f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.20f).Scl(0.15f).At(new Vector2(player.position.X + 24.2f, 0.365f)));
+            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.25f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
 
 
 

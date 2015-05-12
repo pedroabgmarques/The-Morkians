@@ -112,12 +112,12 @@ namespace TDJ_ProjectoFinal.entidades
                     contadordisparo = 0.009f / Camera.velocidadegeral;
 
                     this.rotation = 3.15f;
-                    if (shootTimeL >= contadordisparo)
+                    if (shootTimeL >= contadordisparo && scene.player.position.X <= this.position.X + 1.5f)
                     {
                         scene.AddSprite(WeaponsManager.addBala("baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente, this)
                             .Scl(0.03f).At(new Vector2(this.position.X, this.position.Y - 0.2f)));
 
-                        if (shootTimeL >= contadordisparo +shootTimeLaser) 
+                        if (shootTimeL >= contadordisparo + shootTimeLaser) 
                         {
                             shootTimeL = 0f;
                         }
