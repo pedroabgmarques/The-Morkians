@@ -89,10 +89,15 @@ namespace TDJ_ProjectoFinal.entidades
                 Vector2 pos = this.position
                          + new Vector2((float)Math.Sin(rot) * size.Y / 2,
                                        (float)Math.Cos(rot) * size.Y / 2);
-                Bala bala = new Bala(cManager, "baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this);
-                bala.At(new Vector2(pos.X,pos.Y));
-                bala.Scale(0.03f);
-                scene.AddSprite(bala);
+
+                
+                //Bala bala = new Bala(cManager, "baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this);
+                //bala.At(new Vector2(pos.X,pos.Y));
+                //bala.Scale(0.03f);
+                //scene.AddSprite(bala);
+
+                scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
+
                 shootTime = 0f;
             }
                     break;

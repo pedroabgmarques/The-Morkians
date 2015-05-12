@@ -36,7 +36,7 @@ namespace TDJ_ProjectoFinal
         bool novopowerup = false;
         List<Scene> Cenas;
         Random randomShake;
-        
+        GameState gamestate;
         public Game1()
             : base()
         {
@@ -59,7 +59,7 @@ namespace TDJ_ProjectoFinal
             Camera.SetWorldWidth(5);
 
             som.Initialize(Content);
-
+            
             base.Initialize();
         }
 
@@ -69,11 +69,11 @@ namespace TDJ_ProjectoFinal
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
             Cenas.Add(scene);
-
+            
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
-
-            LoadLevel(GameState.Nivel2);
+            
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -83,6 +83,8 @@ namespace TDJ_ProjectoFinal
             {
                 case GameState.Menu:
                     //TODO
+                    Camera.velocidadegeral = 0;
+                    Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
                     break;
                 case GameState.Nivel1:
                     //TODO: Limpar cenas do menu
@@ -101,7 +103,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddSprite(player.Scl(0.62f));
                     Cenas[0].player = player;
 
-                    newEnemyWave();
+                    newEnemyWave(0);
 
                     //PowerUP
                     Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
@@ -124,6 +126,7 @@ namespace TDJ_ProjectoFinal
 
                     scene2 = new Scene(spriteBatch);
                     Cenas.Add(scene2);
+                    Cenas[1].active = true;
                     Camera.SetTarget(Vector2.Zero);
             
                     Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal",3f).Scl(45f).
@@ -132,11 +135,13 @@ namespace TDJ_ProjectoFinal
                     Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
                     player = new Player(Content, "nave", TipoBala.Simples);
                     Cenas[1].AddSprite(player.Scl(0.62f));
+                    
                     Defesas();
             
                     Cenas[1].player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
-                    
+
+
                     break;
                 case GameState.Bridge2:
                     //TODO: bridge 2
@@ -162,6 +167,8 @@ namespace TDJ_ProjectoFinal
                     Cenas[2].AddSprite(player.Scl(0.62f));
                     Cenas[2].player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
+                    player.tipobala = TipoBala.Quadruplo;
+
                     break;
                 case GameState.End:
                     //TODO: End
@@ -185,6 +192,11 @@ namespace TDJ_ProjectoFinal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                LoadLevel(GameState.Nivel1);
+                Camera.velocidadegeral = 0.007f;
+            }
             UpdateScenes(gameTime);
 
             base.Update(gameTime);
@@ -209,10 +221,10 @@ namespace TDJ_ProjectoFinal
 
         private void ChangeScenes()
         {
-            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f)
+            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f && gamestate!=GameState.Menu)
             {
                 //Matámos todos os inimigos, nova ronda
-                newEnemyWave();
+                newEnemyWave(0);
                 novopowerup = false;
             }
 
@@ -239,7 +251,7 @@ namespace TDJ_ProjectoFinal
                 }
             }
 
-            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
+            if (Camera.target.X >= 2f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;
 
@@ -265,7 +277,7 @@ namespace TDJ_ProjectoFinal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
+            
             foreach (var scene in Cenas)
             {
                 if(scene.active==true)
@@ -277,31 +289,31 @@ namespace TDJ_ProjectoFinal
         }
 
     
-        public void newEnemyWave()
+        public void newEnemyWave(int cena)
         {
 
             //Alguns inimigos
-            Cenas[0].AddInimigo(EnemyManager.addKamikaze()
+            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
-            Cenas[0].AddInimigo(EnemyManager.addKamikaze()
+            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X+1f, 0f)));
-            Cenas[0].AddInimigo(EnemyManager.addKamikaze()
+            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X+2f, 1f)));
 
 
-            Cenas[0].AddInimigo(EnemyManager.addBombardeiro()
+            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            Cenas[0].AddInimigo(EnemyManager.addBombardeiro()
+            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 6, -1f)));
 
-            Cenas[0].AddInimigo(EnemyManager.addBombardeiro()
+            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
-            Cenas[0].AddInimigo(EnemyManager.addBombardeiro()
+            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
-            Cenas[0].AddInimigo(EnemyManager.addBombardeiro()
+            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
-            Cenas[0].AddInimigo(EnemyManager.addCaça()
+            Cenas[cena].AddInimigo(EnemyManager.addCaça()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 10, 1f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).

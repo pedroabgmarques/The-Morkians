@@ -31,7 +31,7 @@ namespace TDJ_ProjectoFinal
         public DireccaoBala direccaobala;
         public OrigemBala origemBala;
         public Vector2 direction;
-        private Defence parent;
+        public Defence parent;
         
 
         public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala, Defence parent=null)
@@ -64,9 +64,7 @@ namespace TDJ_ProjectoFinal
 
         {
           
-            
            
-
             if (origemBala == OrigemBala.player)
             {
                 speed = Camera.velocidadegeral / 0.12f;

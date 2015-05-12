@@ -54,7 +54,7 @@ namespace TDJ_ProjectoFinal
                         if (sprite is Missil)
                         {
                             scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.9f));
-                            boss.Destroy();
+                            boss.Vida -= 10;
                         }
                         else
                         {
@@ -71,7 +71,9 @@ namespace TDJ_ProjectoFinal
                 {
                     Missil missil = (Missil)collided;
                     scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, sprite.position, 0.2f));
-                    missil.thrust.Destroy();
+                    
+                    if(missil.thrust != null)
+                        missil.thrust.Destroy();
                     missil.Destroy();
                 }
 
