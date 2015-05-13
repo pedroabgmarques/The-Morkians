@@ -86,7 +86,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             
 
-            LoadLevel(GameState.Nivel2);
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -171,6 +171,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
                     //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
 
+                    som.playMusicaNivel1();
                     
                     break;
                 case GameState.Bridge1:
@@ -204,6 +205,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[1].player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
 
+                    som.playMusicaNivel2();
 
                     break;
                 case GameState.Bridge2:
@@ -521,9 +523,10 @@ namespace TDJ_ProjectoFinal
             {
 
                 Cenas.Clear();
+                GC.Collect();
                 scene = new Scene(spriteBatch);
                 Cenas.Add(scene);
-                LoadLevel(GameState.Nivel1);
+                LoadLevel(gamestate);
                 timeToRestart = 0;
             }
         }

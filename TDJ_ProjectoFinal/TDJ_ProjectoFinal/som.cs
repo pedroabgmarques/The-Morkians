@@ -19,6 +19,10 @@ namespace TDJ_ProjectoFinal
         private static SoundEffectInstance musicaMenuInstance;
         private static SoundEffect musicaBridge0;
         private static SoundEffectInstance musicaBridge0Instance;
+        private static SoundEffect musicaNivel1;
+        private static SoundEffectInstance musicaNivel1Instance;
+        private static SoundEffect musicaNivel2;
+        private static SoundEffectInstance musicaNivel2Instance;
 
         public static void Initialize(ContentManager contentManager)
         {
@@ -91,6 +95,42 @@ namespace TDJ_ProjectoFinal
                 musicaBridge0Instance = musicaBridge0.CreateInstance();
             }
             musicaBridge0Instance.Play();
+        }
+
+        public static void playMusicaNivel1()
+        {
+            if (musicaBridge0Instance != null) musicaBridge0Instance.Stop();
+            if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
+            if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
+
+            if (musicaNivel1 == null)
+            {
+                musicaNivel1 = content.Load<SoundEffect>("som\\nivel1");
+
+            }
+            if (musicaNivel1Instance == null)
+            {
+                musicaNivel1Instance = musicaNivel1.CreateInstance();
+            }
+            musicaNivel1Instance.Volume = 0.5f;
+            musicaNivel1Instance.Play();
+        }
+
+        public static void playMusicaNivel2()
+        {
+            if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
+            if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
+
+            if (musicaNivel2 == null)
+            {
+                musicaNivel2 = content.Load<SoundEffect>("som\\nivel2");
+
+            }
+            
+            musicaNivel2Instance = musicaNivel2.CreateInstance();
+            
+            musicaNivel2Instance.Volume = 0.5f;
+            musicaNivel2Instance.Play();
         }
 
     }
