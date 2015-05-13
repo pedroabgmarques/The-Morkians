@@ -34,6 +34,16 @@ namespace TDJ_ProjectoFinal
             this.enemiesKilled = 0;
         }
 
+        public void Clear()
+        {
+            this.sprites.Clear();
+            this.powerUps.Clear();
+            this.inimigos.Clear();
+            this.explosoes.Clear();
+            this.textos.Clear();
+            GC.Collect();
+        }
+
         public void AddTexto(string texto, Vector2 posicao)
         {
             textos.Enqueue(new KeyValuePair<string, Vector2>(texto, posicao));

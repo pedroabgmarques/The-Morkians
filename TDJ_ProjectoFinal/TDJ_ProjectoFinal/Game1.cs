@@ -36,7 +36,7 @@ namespace TDJ_ProjectoFinal
         Player player;
         public static Random random;
         bool novopowerup = false;
-        List<Scene> Cenas;
+        Scene Cena;
         Random randomShake;
         GameState gamestate;
         SpriteFont font;
@@ -60,7 +60,6 @@ namespace TDJ_ProjectoFinal
 
             random = new Random();
             randomShake = new Random();
-            Cenas = new List<Scene>();
             
             Camera.SetGraphicsDeviceManager(graphics);
             Camera.SetTarget(Vector2.Zero);
@@ -76,7 +75,7 @@ namespace TDJ_ProjectoFinal
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
-            Cenas.Add(scene);
+            Cena = scene;
             font = Content.Load<SpriteFont>("MyFont");
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
@@ -95,11 +94,12 @@ namespace TDJ_ProjectoFinal
             switch (gameState)
             {
                 case GameState.Menu:
+
                     gamestate = GameState.Menu;
 
                     Camera.velocidadegeral = 0;
-                    Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
-                    Cenas[0].AddSprite(new Sprite(Content, "backgroundTextoMenu").At(new Vector2(0, -0.12f)).Scl(5f));
+                    Cena.AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
+                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenu").At(new Vector2(0, -0.12f)).Scl(5f));
 
                     som.playMusicaMenu();
                     
@@ -107,43 +107,48 @@ namespace TDJ_ProjectoFinal
                     break;
                 case GameState.Bridge0:
 
+                    Cena.Clear();
+
                     gamestate = GameState.Bridge0;
 
                     Camera.SetTarget(new Vector2(24, 0));
                     Camera.velocidadegeral = -0.002f;
 
                     //Fundo do universo (imóvel)
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                    Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                         At(new Vector2(Camera.worldWidth, 0f)));
                     //lua
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(17, 0f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(17, 0f)));
                     //planeta
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(14, -2.7f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(14, -2.7f)));
                     //estacao espacial
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(19f, 0f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(19f, 0f)));
 
-                    Cenas[0].AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
 
-                    Cenas[0].AddTexto("First contact wasn't how we expected.", new Vector2(110, 400));
-                    Cenas[0].AddTexto("From outer space, a single message:", new Vector2(135, 400));
-                    Cenas[0].AddTexto("\"WE ARE COMING.\"", new Vector2(320, 400));
-                    Cenas[0].AddTexto("In two months they arrived at Jupiter,", new Vector2(108, 400));
-                    Cenas[0].AddTexto("with a four mile wide mothership", new Vector2(150, 400));
-                    Cenas[0].AddTexto("carrying hundreds of fighters and bombers.", new Vector2(90, 400));
-                    Cenas[0].AddTexto("In the time it took them to get here", new Vector2(120, 400));
-                    Cenas[0].AddTexto("and decelerate into low earth orbit, ", new Vector2(125, 400));
-                    Cenas[0].AddTexto("a brave team of engineers from IPCA", new Vector2(125, 400));
-                    Cenas[0].AddTexto("infiltrated the Morkian mainframes", new Vector2(160, 400));
-                    Cenas[0].AddTexto("and reverse-engineered their technology.", new Vector2(105, 400));
-                    Cenas[0].AddTexto("First they will have to defeat ", new Vector2(170, 400));
-                    Cenas[0].AddTexto("All the spaceships defending the mothership. ", new Vector2(95, 400));
-                    Cenas[0].AddTexto("They are Earth's only hope! ", new Vector2(280, 400));
-                    Cenas[0].AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
+                    Cena.AddTexto("First contact wasn't how we expected.", new Vector2(110, 400));
+                    Cena.AddTexto("From outer space, a single message:", new Vector2(135, 400));
+                    Cena.AddTexto("\"WE ARE COMING.\"", new Vector2(320, 400));
+                    Cena.AddTexto("In two months they arrived at Jupiter,", new Vector2(108, 400));
+                    Cena.AddTexto("with a four mile wide mothership", new Vector2(150, 400));
+                    Cena.AddTexto("carrying hundreds of fighters and bombers.", new Vector2(90, 400));
+                    Cena.AddTexto("In the time it took them to get here", new Vector2(120, 400));
+                    Cena.AddTexto("and decelerate into low earth orbit, ", new Vector2(125, 400));
+                    Cena.AddTexto("a brave team of engineers from IPCA", new Vector2(125, 400));
+                    Cena.AddTexto("infiltrated the Morkian mainframes", new Vector2(160, 400));
+                    Cena.AddTexto("and reverse-engineered their technology.", new Vector2(105, 400));
+                    Cena.AddTexto("First they will have to defeat ", new Vector2(170, 400));
+                    Cena.AddTexto("All the spaceships defending the mothership. ", new Vector2(95, 400));
+                    Cena.AddTexto("They are Earth's only hope! ", new Vector2(280, 400));
+                    Cena.AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
 
                     som.playMusicaBridge0();
                     
                     break;
                 case GameState.Nivel1:
+
+                    Cena.Clear();
+
                     gamestate = GameState.Nivel1;
 
                     Camera.SetTarget(new Vector2(0, 0));
@@ -152,23 +157,23 @@ namespace TDJ_ProjectoFinal
                     //TODO: Limpar cenas do menu
 
                     //Fundo do universo (imóvel)
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                    Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                         At(new Vector2(Camera.worldWidth, 0f)));
                     //lua
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(10, 0f)));
                     //planeta
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8, -2.7f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(8, -2.7f)));
                     //estacao espacial
-                    Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
                     //Nave do jogador
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cenas[0].AddSprite(player.Scl(0.62f));
-                    Cenas[0].player = player;
+                    Cena.AddSprite(player.Scl(0.62f));
+                    Cena.player = player;
 
-                    newEnemyWave(0);
+                    newEnemyWave(Cena);
 
                     //PowerUP
-                    Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
+                    Cena.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
                     //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
 
                     som.playMusicaNivel1();
@@ -176,82 +181,81 @@ namespace TDJ_ProjectoFinal
                     break;
                 case GameState.Bridge1:
                     //TODO: Bridge 1
+
+                    Cena.Clear();
+
                     gamestate = GameState.Bridge1;
 
-                     Cenas[0].sprites.Clear();
-                    Cenas[0].inimigos.Clear();
-                    Cenas[0].powerUps.Clear();
-                    Cenas[0].explosoes.Clear();
-                    Cenas[0].active = false;
-                    GC.Collect();
                     scene2 = new Scene(spriteBatch);
-                    Cenas.Add(scene2);
-                    Cenas[1].active = true;
+                    Cena = scene2;
+                    Cena.active = true;
                     Camera.SetTarget(new Vector2(0, 0));
                     Camera.velocidadegeral = 0.002f;
 
-                    Cenas[1].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                    Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                        At(new Vector2(Camera.worldWidth, 0f)));
                     break;
                 case GameState.Nivel2:
 
+                    Cena.Clear();
+
                     gamestate = GameState.Nivel2;
 
-                    Cenas[0].sprites.Clear();
-                    Cenas[0].inimigos.Clear();
-                    Cenas[0].powerUps.Clear();
-                    Cenas[0].explosoes.Clear();
-                    Cenas[0].active = false;
+                    Cena.sprites.Clear();
+                    Cena.inimigos.Clear();
+                    Cena.powerUps.Clear();
+                    Cena.explosoes.Clear();
+                    Cena.active = false;
                     GC.Collect();
 
                     //scene2 = new Scene(spriteBatch);
                     //Cenas.Add(scene2);
                     //Cenas[1].active = true;
                     Camera.SetTarget(Vector2.Zero);
-            
-                    Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal",3f).Scl(45f).
+
+                    Cena.AddSprite(new SlidingBackground(Content, "fundoFinal", 3f).Scl(45f).
                        At(new Vector2(Camera.worldWidth, 0f)));
-                    Cenas[1].AddSprite(new Cenario(Content, "mapaFinalCima",40f).At(new Vector2(5,0.1f)));
-                    Cenas[1].AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5,-0.1f)));
+                    Cena.AddSprite(new Cenario(Content, "mapaFinalCima", 40f).At(new Vector2(5, 0.1f)));
+                    Cena.AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5, -0.1f)));
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cenas[1].AddSprite(player.Scl(0.62f));
+                    Cena.AddSprite(player.Scl(0.62f));
                     
                     Defesas();
-            
-                    Cenas[1].player = player;
+
+                    Cena.player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
 
                     som.playMusicaNivel2();
 
                     break;
                 case GameState.Bridge2:
+
+                    Cena.Clear();
+
                     //TODO: bridge 2
                     break;
                 case GameState.Nivel3:
 
+                    Cena.Clear();
+
                     gamestate = GameState.Nivel3;
 
-                    Cenas[1].sprites.Clear();
-                    Cenas[1].inimigos.Clear();
-                    Cenas[1].powerUps.Clear();
-                    Cenas[1].explosoes.Clear();
-                    Cenas[1].active = false;
-                    GC.Collect();
-
                     scene3 = new Scene(spriteBatch);
-                    Cenas.Add(scene3);
+                    Cena = scene3;
                     Camera.SetTarget(Vector2.Zero);
-            
-                    Cenas[2].AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
+
+                    Cena.AddSprite(new Sprite(Content, "fundoFinal").Scl(45f).
                        At(new Vector2(Camera.worldWidth, 0f)));
                     //Cenas[2].AddInimigo(new NPC(Content, "boss", TipoNave.Mothership, 2f, random).At(new Vector2(3f, 0f)));
                     //Cenas[2].AddInimigo(new AnimatedSprite(Content,"bossSheet",1,3,true,new Vector2(1f,1f),2f));
-                    Cenas[2].AddInimigo(new Boss(Content, "bossSheet2", 1, 2, true, new Vector2(1f, 1f), 2f));
+                    Cena.AddInimigo(new Boss(Content, "bossSheet2", 1, 2, true, new Vector2(1f, 1f), 2f));
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cenas[2].AddSprite(player.Scl(0.62f));
-                    Cenas[2].player = player;
+                    Cena.AddSprite(player.Scl(0.62f));
+                    Cena.player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
                     player.tipobala = TipoBala.Quadruplo;
+
+                    som.playMusicaNivel3();
 
                     break;
                 case GameState.End:
@@ -318,78 +322,72 @@ namespace TDJ_ProjectoFinal
 
         private void UpdateScenes(GameTime gameTime)
         {
-            List<Scene> copia = new List<Scene>(Cenas);
-            foreach (var scene in copia)
+           
+            
+            if (Cena.playerKilled)
             {
-
-                if (scene.active == true)
-                {
-                    if (scene.playerKilled)
-                    {
-                        RestartReady = true;
-                        reStart();
-                    }
-                    Camera.Update(randomShake);
-
-                    scene.Update(gameTime);
-                }
+                RestartReady = true;
+                reStart();
             }
+            Camera.Update(randomShake);
+
+            Cena.Update(gameTime);
+                
           
             ChangeScenes();
         }
 
         private void ChangeScenes()
         {
-            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f && gamestate == GameState.Nivel1)
+            if (Cena.inimigos.Count <= 5 && Cena.active == true && Camera.target.X < 18f && gamestate == GameState.Nivel1)
             {
                 //Matámos todos os inimigos, nova ronda
-                newEnemyWave(0);
+                newEnemyWave(Cena);
                 novopowerup = false;
             }
 
-            if (!novopowerup && Cenas[0].active == true)
+            if (!novopowerup && Cena.active == true && gamestate == GameState.Nivel1)
             {
                 // os inimigos estão a terminar...
                 // nova ronda surgitrá
                 // (apenas teste)
-                Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 0f));
+                Cena.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 0f));
 
                 novopowerup = true;
 
             }
             //muda para cena2
-            if (Camera.target.X >= 25f && Cenas[0].active == true)
+            if (Camera.target.X >= 25f && gamestate == GameState.Nivel1)
             {
                 player.position.X += 0.02f;
 
                 if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
-                    Cenas[0].active = false;
+                    Cena.active = false;
                    
                     LoadLevel(GameState.Bridge1);
 
                 }
             }
             //muda para cena 3
-            if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
+            if (Camera.target.X >= 25f && gamestate == GameState.Nivel2)
             {
                 player.position.X += 0.02f;
 
                 if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
-                    Cenas[1].active = false;
+                    Cena.active = false;
                     LoadLevel(GameState.Nivel3);
                 }
             }
 
 
-            if (Cenas.Count == 3)
+            
+            if (gamestate == GameState.Nivel3 && Camera.target.X >= 2f)
             {
-                if (Cenas[2].active == true && Camera.target.X >= 2f)
-                {
-                    Camera.speed = 0f;
-                }
+                Camera.speed = 0f;
             }
+            
         }
 
       
@@ -399,11 +397,9 @@ namespace TDJ_ProjectoFinal
 
           
             
-            foreach (var scene in Cenas)
-            {
-                if(scene.active==true)
-                scene.Draw(gameTime);
-            }
+            
+            Cena.Draw(gameTime);
+            
 
             switch (gamestate)
             {
@@ -417,21 +413,21 @@ namespace TDJ_ProjectoFinal
 
                     if (timerTextos == 0)
                     {
-                        texto = Cenas[0].GetTexto();
+                        texto = Cena.GetTexto();
                     }
 
                     spriteBatch.Begin();
                     spriteBatch.DrawString(font, texto.Key, texto.Value, Color.White);
                     spriteBatch.End();
 
-                    if (timerTextos >= 5000 && Cenas[0].textos.Count > 0)
+                    if (timerTextos >= 5000 && Cena.textos.Count > 0)
                     {
-                        texto = Cenas[0].GetTexto();
+                        texto = Cena.GetTexto();
                     }
                     if (timerTextos > 5000)
                     {
                         timerTextos = 0;
-                        if (Cenas[0].textos.Count == 0)
+                        if (Cena.textos.Count == 0)
                         {
                             //Acabaram os textos, seguir
                             LoadLevel(GameState.Nivel1);
@@ -460,31 +456,31 @@ namespace TDJ_ProjectoFinal
         }
 
     
-        public void newEnemyWave(int cena)
+        public void newEnemyWave(Scene cena)
         {
 
             //Alguns inimigos
-            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
+            cena.AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X, -1f)));
-            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
+            cena.AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X+1f, 0f)));
-            Cenas[cena].AddInimigo(EnemyManager.addKamikaze()
+            cena.AddInimigo(EnemyManager.addKamikaze()
                 .At(new Vector2(Camera.worldWidth + player.position.X+2f, 1f)));
 
 
-            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
+            cena.AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 5, 1f)));
-            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
+            cena.AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 6, -1f)));
 
-            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
+            cena.AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 2, 0f)));
-            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
+            cena.AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 3, 0.5f)));
-            Cenas[cena].AddInimigo(EnemyManager.addBombardeiro()
+            cena.AddInimigo(EnemyManager.addBombardeiro()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 4, -0.8f)));
 
-            Cenas[cena].AddInimigo(EnemyManager.addCaça()
+            cena.AddInimigo(EnemyManager.addCaça()
                 .At(new Vector2(Camera.worldWidth + player.position.X + 10, 1f)));
 
             //scene.AddInimigo(new NPC(Content, "nave", TipoNave.Mothership).Scl(0.5f).
@@ -499,39 +495,39 @@ namespace TDJ_ProjectoFinal
             // conjunto de ddefesas do nivel 2
             // metrelhadoras
             //inferiores
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.00f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.00f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.19f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.19f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 15.5f, -1.10f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 15.5f, -1.10f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 18.6f, -1.35f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 23f, -1.30f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 18.6f, -1.35f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 23f, -1.30f)));
 
             // superiores
 
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, 1.2f)));
             //Cenas[1].AddSprite(new Defence(Content, "turret").Scl(0.6f).At(new Vector2(player.position.X+0.7f,1.35f )));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 3.5f, 0.2f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 5.2f, 0.2f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 3.5f, 0.2f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 5.2f, 0.2f)));
 
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 12f, 0.6f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 18f, 0.98f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 21f, 0.30f)));
-            Cenas[1].AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 24.8f, 0.5f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 12f, 0.6f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 18f, 0.98f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 21f, 0.30f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 24.8f, 0.5f)));
 
             // armas de laser
 
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.20f).Scl(0.15f).At(new Vector2(player.position.X+4.4f, 0f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.18f).Scl(0.15f).At(new Vector2(player.position.X + 8.4f, 0.85f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.17f).Scl(0.15f).At(new Vector2(player.position.X + 12.4f, 0.5f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.19f).Scl(0.15f).At(new Vector2(player.position.X + 15.4f, 0.6f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.20f).Scl(0.15f).At(new Vector2(player.position.X + 20.4f, 0.15f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.15f).Scl(0.15f).At(new Vector2(player.position.X + 24f, 0.48f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.20f).Scl(0.15f).At(new Vector2(player.position.X + 24.2f, 0.365f)));
-            Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.25f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.20f).Scl(0.15f).At(new Vector2(player.position.X + 4.4f, 0f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.18f).Scl(0.15f).At(new Vector2(player.position.X + 8.4f, 0.85f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.17f).Scl(0.15f).At(new Vector2(player.position.X + 12.4f, 0.5f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.19f).Scl(0.15f).At(new Vector2(player.position.X + 15.4f, 0.6f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.20f).Scl(0.15f).At(new Vector2(player.position.X + 20.4f, 0.15f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.15f).Scl(0.15f).At(new Vector2(player.position.X + 24f, 0.48f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.20f).Scl(0.15f).At(new Vector2(player.position.X + 24.2f, 0.365f)));
+            Cena.AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser, 0.25f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
 
 
         }
@@ -541,10 +537,9 @@ namespace TDJ_ProjectoFinal
             if (timeToRestart >= 2000)
             {
 
-                Cenas.Clear();
                 GC.Collect();
                 scene = new Scene(spriteBatch);
-                Cenas.Add(scene);
+                Cena = scene;
                 LoadLevel(gamestate);
                 timeToRestart = 0;
             }
