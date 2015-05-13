@@ -296,6 +296,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, this.position, 1.5f));
                 som.playExplosao();
                 Camera.addShake(500);
+                this.scene.playerKilled = true;
                 this.Destroy();
             }
 
