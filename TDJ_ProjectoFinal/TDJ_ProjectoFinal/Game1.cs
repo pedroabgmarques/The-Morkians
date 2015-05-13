@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Diagnostics;
 using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
@@ -42,7 +43,8 @@ namespace TDJ_ProjectoFinal
         int kbLimit;
         int timerTextos;
         KeyValuePair<string, Vector2> texto;
-
+        int timeToRestart;
+        bool RestartReady = false;
         public Game1()
             : base()
         {
@@ -79,11 +81,12 @@ namespace TDJ_ProjectoFinal
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
             kbLimit = 0;
+            timeToRestart = 0;
             timerTextos = 0;
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
-
             
-            LoadLevel(GameState.Menu);
+
+            LoadLevel(GameState.Nivel2);
             
         }
 
@@ -290,7 +293,8 @@ namespace TDJ_ProjectoFinal
                 kbLimit = 0;
             }
             kbLimit += gameTime.ElapsedGameTime.Milliseconds;
-
+            if(RestartReady)
+                timeToRestart += gameTime.ElapsedGameTime.Milliseconds;
             
             UpdateScenes(gameTime);
 
@@ -299,18 +303,23 @@ namespace TDJ_ProjectoFinal
 
         private void UpdateScenes(GameTime gameTime)
         {
-            foreach (var scene in Cenas)
+            List<Scene> copia = new List<Scene>(Cenas);
+            foreach (var scene in copia)
             {
 
                 if (scene.active == true)
                 {
-
+                    if (scene.playerKilled)
+                    {
+                        RestartReady = true;
+                        reStart();
+                    }
                     Camera.Update(randomShake);
 
                     scene.Update(gameTime);
                 }
             }
-
+          
             ChangeScenes();
         }
 
@@ -509,12 +518,21 @@ namespace TDJ_ProjectoFinal
             Cenas[1].AddSprite(new Defence(Content, "laserweapon", TipoDefesa.Laser,0.25f).Scl(0.15f).At(new Vector2(player.position.X + 24.4f, 0.4f)));
 
 
-
-            
-            
-
-
         }
 
+        void reStart()
+        {
+            if (timeToRestart >= 2000)
+            {
+
+                Cenas.Clear();
+                scene = new Scene(spriteBatch);
+                Cenas.Add(scene);
+                LoadLevel(GameState.Nivel1);
+                timeToRestart = 0;
+            }
+        }
+
+ 
     }
 }

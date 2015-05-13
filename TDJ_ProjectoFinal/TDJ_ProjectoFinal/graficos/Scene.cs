@@ -18,6 +18,7 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> inimigos;
         public List<Sprite> explosoes;
         public Player player;
+        public bool playerKilled=false;
         public bool active = true;
         public int enemiesKilled;
         public GraphicsDevice gDevice;
