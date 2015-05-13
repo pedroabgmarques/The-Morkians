@@ -24,6 +24,7 @@ namespace TDJ_ProjectoFinal
             soundEffects = new Dictionary<string, SoundEffect>();
             loopedSounds = new Dictionary<string, SoundEffectInstance>();
             songs = new Dictionary<string, Song>();
+            MediaPlayer.Volume = 1f;
         }
 
         public static void playTiro()
@@ -81,8 +82,6 @@ namespace TDJ_ProjectoFinal
         public static void PlaySong(Song song)
         {
             MediaPlayer.Play(song);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.4f;
         }
 
         public static void AddSoundEffect(string effectName, SoundEffect soundEffect)

@@ -21,6 +21,7 @@ namespace TDJ_ProjectoFinal
         public bool active = true;
         public int enemiesKilled;
         public GraphicsDevice gDevice;
+        public Queue<KeyValuePair<string, Vector2>> textos;
         public Scene(SpriteBatch sb)
         {
             this.SpriteBatch = sb;
@@ -28,7 +29,18 @@ namespace TDJ_ProjectoFinal
             this.powerUps = new List<Sprite>();
             this.inimigos = new List<Sprite>();
             this.explosoes = new List<Sprite>();
+            this.textos = new Queue<KeyValuePair<string, Vector2>>();
             this.enemiesKilled = 0;
+        }
+
+        public void AddTexto(string texto, Vector2 posicao)
+        {
+            textos.Enqueue(new KeyValuePair<string, Vector2>(texto, posicao));
+        }
+
+        public KeyValuePair<string, Vector2> GetTexto()
+        {
+            return textos.Dequeue();
         }
 
         public void AddSprite(Sprite s)

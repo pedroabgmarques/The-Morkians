@@ -20,6 +20,7 @@ namespace TDJ_ProjectoFinal
         enum GameState
         {
             Menu,
+            Bridge0,
             Nivel1,
             Bridge1,
             Nivel2,
@@ -38,6 +39,10 @@ namespace TDJ_ProjectoFinal
         Random randomShake;
         GameState gamestate;
         SpriteFont font;
+        int kbLimit;
+        int timerTextos;
+        KeyValuePair<string, Vector2> texto;
+
         public Game1()
             : base()
         {
@@ -73,6 +78,10 @@ namespace TDJ_ProjectoFinal
             font = Content.Load<SpriteFont>("MyFont");
             WeaponsManager.LoadContent(Content);
             EnemyManager.LoadContent(Content, random);
+            kbLimit = 0;
+            timerTextos = 0;
+            texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
+
             
             LoadLevel(GameState.Menu);
             
@@ -83,16 +92,62 @@ namespace TDJ_ProjectoFinal
             switch (gameState)
             {
                 case GameState.Menu:
-                    //TODO
-
                     gamestate = GameState.Menu;
 
                     Camera.velocidadegeral = 0;
                     Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
+                    Cenas[0].AddSprite(new Sprite(Content, "backgroundTextoMenu").At(new Vector2(0, -0.12f)).Scl(5f));
+
+                    Song bridge0 = Content.Load<Song>("som/bridge0");
+                    som.PlaySong(bridge0);
                     
+                    
+                    break;
+                case GameState.Bridge0:
+
+                    gamestate = GameState.Bridge0;
+
+                    Camera.SetTarget(new Vector2(24, 0));
+                    Camera.velocidadegeral = -0.002f;
+
+                    //Fundo do universo (imóvel)
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                        At(new Vector2(Camera.worldWidth, 0f)));
+                    //lua
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "fullMoon", 6f).Scl(1f).At(new Vector2(17, 0f)));
+                    //planeta
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "planeta", 9f).Scl(8f).At(new Vector2(14, -2.7f)));
+                    //estacao espacial
+                    Cenas[0].AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(19f, 0f)));
+
+                    Cenas[0].AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+
+                    Cenas[0].AddTexto("First contact wasn't how we expected.", new Vector2(110, 400));
+                    Cenas[0].AddTexto("From outer space, a single message:", new Vector2(135, 400));
+                    Cenas[0].AddTexto("\"WE ARE COMING.\"", new Vector2(320, 400));
+                    Cenas[0].AddTexto("In two months they arrived at Jupiter,", new Vector2(108, 400));
+                    Cenas[0].AddTexto("with a four mile wide mothership", new Vector2(150, 400));
+                    Cenas[0].AddTexto("carrying hundreds of fighters and bombers.", new Vector2(90, 400));
+                    Cenas[0].AddTexto("In the time it took them to get here", new Vector2(120, 400));
+                    Cenas[0].AddTexto("and decelerate into low earth orbit, ", new Vector2(125, 400));
+                    Cenas[0].AddTexto("a brave team of engineers from IPCA", new Vector2(125, 400));
+                    Cenas[0].AddTexto("infiltrated the Morkian mainframes", new Vector2(160, 400));
+                    Cenas[0].AddTexto("and reverse-engineered their technology.", new Vector2(105, 400));
+                    Cenas[0].AddTexto("First they will have to defeat ", new Vector2(170, 400));
+                    Cenas[0].AddTexto("All the spaceships defending the mothership. ", new Vector2(120, 400));
+                    Cenas[0].AddTexto("They are Earth's only hope! ", new Vector2(160, 400));
+                    Cenas[0].AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
+                    
+
+                    Song menu = Content.Load<Song>("som/menu");
+                    som.PlaySong(menu);
+
                     break;
                 case GameState.Nivel1:
                     gamestate = GameState.Nivel1;
+
+                    Camera.SetTarget(new Vector2(0, 0));
+                    Camera.velocidadegeral = 0.007f;
 
                     //TODO: Limpar cenas do menu
 
@@ -205,11 +260,36 @@ namespace TDJ_ProjectoFinal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && kbLimit > 1000)
             {
-                LoadLevel(GameState.Nivel1);
-                Camera.velocidadegeral = 0.007f;
+
+                switch (gamestate)
+                {
+                    case GameState.Menu:
+                        LoadLevel(GameState.Bridge0);
+                        break;
+                    case GameState.Bridge0:
+                        LoadLevel(GameState.Nivel1);
+                        Camera.velocidadegeral = 0.007f;
+                        break;
+                    case GameState.Nivel1:
+                        break;
+                    case GameState.Bridge1:
+                        break;
+                    case GameState.Nivel2:
+                        break;
+                    case GameState.Bridge2:
+                        break;
+                    case GameState.Nivel3:
+                        break;
+                    case GameState.End:
+                        break;
+                    default:
+                        break;
+                }
+                kbLimit = 0;
             }
+            kbLimit += gameTime.ElapsedGameTime.Milliseconds;
 
             
             UpdateScenes(gameTime);
@@ -236,7 +316,7 @@ namespace TDJ_ProjectoFinal
 
         private void ChangeScenes()
         {
-            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f && gamestate!=GameState.Menu)
+            if (Cenas[0].inimigos.Count <= 5 && Cenas[0].active == true && Camera.target.X < 18f && gamestate == GameState.Nivel1)
             {
                 //Matámos todos os inimigos, nova ronda
                 newEnemyWave(0);
@@ -305,7 +385,35 @@ namespace TDJ_ProjectoFinal
                 case GameState.Menu:
                     spriteBatch.Begin();
                     spriteBatch.DrawString(font, "Press ENTER to play.", new Vector2(300f, 300f), Color.White);
-                     spriteBatch.End();
+                    spriteBatch.End();
+                    break;
+                case GameState.Bridge0:
+                    
+
+                    if (timerTextos == 0)
+                    {
+                        texto = Cenas[0].GetTexto();
+                    }
+
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, texto.Key, texto.Value, Color.White);
+                    spriteBatch.End();
+
+                    if (timerTextos >= 5000 && Cenas[0].textos.Count > 0)
+                    {
+                        texto = Cenas[0].GetTexto();
+                    }
+                    if (timerTextos > 5000)
+                    {
+                        timerTextos = 0;
+                        if (Cenas[0].textos.Count == 0)
+                        {
+                            //Acabaram os textos, seguir
+                            LoadLevel(GameState.Nivel1);
+                        }
+                    }
+                    timerTextos += gameTime.ElapsedGameTime.Milliseconds;
+                    
                     break;
                 case GameState.Nivel1:
                     break;

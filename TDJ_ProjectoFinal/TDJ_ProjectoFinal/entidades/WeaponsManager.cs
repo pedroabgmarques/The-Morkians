@@ -33,8 +33,8 @@ namespace TDJ_ProjectoFinal.entidades
             balasAtivas = new List<Bala>(500);
             balasMortas = new List<Bala>(500);
 
-            misseisAtivos = new List<Missil>(50);
-            misseisMortos = new List<Missil>(50);
+            misseisAtivos = new List<Missil>(500);
+            misseisMortos = new List<Missil>(500);
 
             balaplayer = contents.Load<Texture2D>("balaplayer");
             balainimigo = contents.Load<Texture2D>("balainimigo");
