@@ -14,17 +14,15 @@ namespace TDJ_ProjectoFinal
         private static SoundEffect explosao;
         private static SoundEffect rocket;
         private static ContentManager content;
-        private static Dictionary<string, SoundEffect> soundEffects;
-        private static Dictionary<string, SoundEffectInstance> loopedSounds;
-        private static Dictionary<string, Song> songs;
+
+        private static SoundEffect musicaMenu;
+        private static SoundEffectInstance musicaMenuInstance;
+        private static SoundEffect musicaBridge0;
+        private static SoundEffectInstance musicaBridge0Instance;
 
         public static void Initialize(ContentManager contentManager)
         {
             content = contentManager;
-            soundEffects = new Dictionary<string, SoundEffect>();
-            loopedSounds = new Dictionary<string, SoundEffectInstance>();
-            songs = new Dictionary<string, Song>();
-            MediaPlayer.Volume = 1f;
         }
 
         public static void playTiro()
@@ -66,60 +64,34 @@ namespace TDJ_ProjectoFinal
             rocket.Play(0.1f, 1, 0f);
         }
 
-        public static void AddSongs(string songName, Song song)
+        public static void playMusicaMenu()
         {
-            if (songs.ContainsKey(songName))
+            if (musicaMenu == null)
             {
-                songs[songName].Dispose();
-                songs[songName] = song;
+                musicaMenu = content.Load<SoundEffect>("som\\bridge0");
+
             }
-            else
+            if (musicaMenuInstance == null)
             {
-                songs.Add(songName, song);
+                musicaMenuInstance = musicaMenu.CreateInstance();
             }
+            musicaMenuInstance.Play();
         }
 
-        public static void PlaySong(Song song)
+        public static void playMusicaBridge0()
         {
-            MediaPlayer.Play(song);
+            if (musicaMenuInstance != null) musicaMenuInstance.Stop();
+            if (musicaBridge0 == null)
+            {
+                musicaBridge0 = content.Load<SoundEffect>("som\\menu");
+
+            }
+            if (musicaBridge0Instance == null)
+            {
+                musicaBridge0Instance = musicaBridge0.CreateInstance();
+            }
+            musicaBridge0Instance.Play();
         }
 
-        public static void AddSoundEffect(string effectName, SoundEffect soundEffect)
-        {
-            if (soundEffects.ContainsKey(effectName))
-            {
-                soundEffects[effectName].Dispose();
-                soundEffects[effectName] = soundEffect;
-            }
-            else
-            {
-                soundEffects.Add(effectName, soundEffect);
-            }
-        }
-
-        public static void PlayLoopedSoundEffect(string effectName, string instanceName)
-        {
-            if (soundEffects.ContainsKey(effectName) && !loopedSounds.ContainsKey(instanceName))
-            {
-                SoundEffectInstance instance = soundEffects[effectName].CreateInstance();
-
-                instance.IsLooped = true;
-                loopedSounds.Add(instanceName, instance);
-                instance.Play();
-            }
-            else if (soundEffects.ContainsKey(effectName) && loopedSounds.ContainsKey(instanceName))
-            {
-                if (loopedSounds[instanceName].State == SoundState.Playing)
-                {
-                    loopedSounds[instanceName].Stop();
-                }
-
-                loopedSounds[instanceName].Dispose();
-
-                loopedSounds[instanceName] = soundEffects[effectName].CreateInstance();
-                loopedSounds[instanceName].IsLooped = true;
-                loopedSounds[instanceName].Play();
-            }
-        }
     }
 }
