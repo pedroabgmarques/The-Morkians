@@ -176,6 +176,22 @@ namespace TDJ_ProjectoFinal
                     break;
                 case GameState.Bridge1:
                     //TODO: Bridge 1
+                    gamestate = GameState.Bridge1;
+
+                     Cenas[0].sprites.Clear();
+                    Cenas[0].inimigos.Clear();
+                    Cenas[0].powerUps.Clear();
+                    Cenas[0].explosoes.Clear();
+                    Cenas[0].active = false;
+                    GC.Collect();
+                    scene2 = new Scene(spriteBatch);
+                    Cenas.Add(scene2);
+                    Cenas[1].active = true;
+                    Camera.SetTarget(new Vector2(0, 0));
+                    Camera.velocidadegeral = 0.002f;
+
+                    Cenas[1].AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                       At(new Vector2(Camera.worldWidth, 0f)));
                     break;
                 case GameState.Nivel2:
 
@@ -188,9 +204,9 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].active = false;
                     GC.Collect();
 
-                    scene2 = new Scene(spriteBatch);
-                    Cenas.Add(scene2);
-                    Cenas[1].active = true;
+                    //scene2 = new Scene(spriteBatch);
+                    //Cenas.Add(scene2);
+                    //Cenas[1].active = true;
                     Camera.SetTarget(Vector2.Zero);
             
                     Cenas[1].AddSprite(new SlidingBackground(Content, "fundoFinal",3f).Scl(45f).
@@ -275,6 +291,8 @@ namespace TDJ_ProjectoFinal
                     case GameState.Nivel1:
                         break;
                     case GameState.Bridge1:
+                        LoadLevel(GameState.Nivel2);
+                        Camera.velocidadegeral = 0.007f;
                         break;
                     case GameState.Nivel2:
                         break;
@@ -347,11 +365,12 @@ namespace TDJ_ProjectoFinal
                 if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
                     Cenas[0].active = false;
-                    LoadLevel(GameState.Nivel2);
+                   
+                    LoadLevel(GameState.Bridge1);
 
                 }
             }
-
+            //muda para cena 3
             if (Camera.target.X >= 25f && Cenas.Count > 1 && Cenas[1].active == true)
             {
                 player.position.X += 0.02f;

@@ -146,6 +146,7 @@
     <Content Include="Content\navemae.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\naveMaeCenario.png" />
     <Content Include="Content\planeta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
