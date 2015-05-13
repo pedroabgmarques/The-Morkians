@@ -45,14 +45,14 @@ namespace TDJ_ProjectoFinal.entidades
             vectorTemp = Vector2.Zero;
             
             //gerar 100 balas vazias
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 500; i++)
             {
                 balaTemp = new Bala(content, "balaplayer", 0, OrigemBala.player, DireccaoBala.EmFrente);
                 balasMortas.Add(balaTemp);
             }
 
             //gerar 50 misseis vazios
-            for (int i = 0; i < 50; i++) 
+            for (int i = 0; i < 500; i++) 
             {
                 missilTemp = new Missil(content, "missilPlayer", TipoMissil.EmFrente, 0, OrigemBala.player);
                 misseisMortos.Add(missilTemp);

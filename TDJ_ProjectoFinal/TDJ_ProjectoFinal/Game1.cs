@@ -134,8 +134,8 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddTexto("infiltrated the Morkian mainframes", new Vector2(160, 400));
                     Cenas[0].AddTexto("and reverse-engineered their technology.", new Vector2(105, 400));
                     Cenas[0].AddTexto("First they will have to defeat ", new Vector2(170, 400));
-                    Cenas[0].AddTexto("All the spaceships defending the mothership. ", new Vector2(120, 400));
-                    Cenas[0].AddTexto("They are Earth's only hope! ", new Vector2(160, 400));
+                    Cenas[0].AddTexto("All the spaceships defending the mothership. ", new Vector2(95, 400));
+                    Cenas[0].AddTexto("They are Earth's only hope! ", new Vector2(280, 400));
                     Cenas[0].AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
                     
 
