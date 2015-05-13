@@ -98,8 +98,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
                     Cenas[0].AddSprite(new Sprite(Content, "backgroundTextoMenu").At(new Vector2(0, -0.12f)).Scl(5f));
 
-                    Song bridge0 = Content.Load<Song>("som/bridge0");
-                    som.PlaySong(bridge0);
+                    som.playMusicaMenu();
                     
                     
                     break;
@@ -137,11 +136,9 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddTexto("All the spaceships defending the mothership. ", new Vector2(95, 400));
                     Cenas[0].AddTexto("They are Earth's only hope! ", new Vector2(280, 400));
                     Cenas[0].AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
+
+                    som.playMusicaBridge0();
                     
-
-                    Song menu = Content.Load<Song>("som/menu");
-                    som.PlaySong(menu);
-
                     break;
                 case GameState.Nivel1:
                     gamestate = GameState.Nivel1;
@@ -171,9 +168,7 @@ namespace TDJ_ProjectoFinal
                     Cenas[0].AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
                     //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
 
-
-                    Song background_cena1 = Content.Load<Song>("som/musicacena1");
-                    som.PlaySong(background_cena1);
+                    
                     break;
                 case GameState.Bridge1:
                     //TODO: Bridge 1
