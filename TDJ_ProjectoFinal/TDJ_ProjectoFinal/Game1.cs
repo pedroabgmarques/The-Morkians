@@ -278,6 +278,7 @@ namespace TDJ_ProjectoFinal
                 case GameState.End:
                     Cena.Clear();
                     Camera.velocidadegeral = 0.007f;
+                    gamestate = GameState.End;
                     Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                        At(new Vector2(Camera.worldWidth, 0f)));
                     break;
@@ -325,6 +326,7 @@ namespace TDJ_ProjectoFinal
                     case GameState.Nivel3:
                         break;
                     case GameState.End:
+                        
                         break;
                     default:
                         break;
