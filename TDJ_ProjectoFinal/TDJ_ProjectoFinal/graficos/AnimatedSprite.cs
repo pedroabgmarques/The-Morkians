@@ -14,10 +14,12 @@ namespace TDJ_ProjectoFinal.graficos
         public float animationInterval = 1f / 60f;
         public float animationTimer = 0f;
         public bool Loop;
+        public float delay;
+        public float timeToExplode;
         
 
         public AnimatedSprite(ContentManager content,
-            string filename, int nrows, int ncols, bool loop, Vector2 position, float scale) :
+            string filename, int nrows, int ncols, bool loop, Vector2 position, float scale,float delay=0) :
             base(content, filename)
         {
             this.ncols = ncols;
@@ -29,6 +31,7 @@ namespace TDJ_ProjectoFinal.graficos
             this.currentFrame = Point.Zero;
             this.Loop = loop;
             this.position = position;
+            this.delay = delay;
             this.Scale(scale);
             
 
@@ -60,26 +63,39 @@ namespace TDJ_ProjectoFinal.graficos
 
         public override void Update(GameTime gameTime)
         {
-      
+            timeToExplode += 
+                (float)gameTime.ElapsedGameTime.Milliseconds;
             animationTimer +=
                 (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (animationTimer > animationInterval)
+
+            if (timeToExplode >= delay) 
             {
-                animationTimer = 0f;
-                nextFrame();
+                if (animationTimer > animationInterval)
+                {
+                    
+                    animationTimer = 0f;
+                    nextFrame();
 
-            }
+                }
+                
 
+            } 
+            
+            
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
         {
+            if (timeToExplode >= delay)
+            {
 
-            source = new Rectangle((int)(currentFrame.X * pixelsize.X),
-                (int)(currentFrame.Y * pixelsize.Y), (int)pixelsize.X,
-                (int)pixelsize.Y);
+                source = new Rectangle((int)(currentFrame.X * pixelsize.X),
+                    (int)(currentFrame.Y * pixelsize.Y), (int)pixelsize.X,
+                    (int)pixelsize.Y);
+                base.Draw(gameTime);
+            }
 
-            base.Draw(gameTime);
+            
         }
 
         public override void EnableCollisions()

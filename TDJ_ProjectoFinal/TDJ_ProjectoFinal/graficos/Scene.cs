@@ -53,6 +53,7 @@ namespace TDJ_ProjectoFinal
         public KeyValuePair<string, Vector2> GetTexto()
         {
             return textos.Dequeue();
+            
         }
 
         public void AddSprite(Sprite s)
