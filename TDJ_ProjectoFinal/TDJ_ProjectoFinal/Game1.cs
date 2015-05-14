@@ -43,6 +43,7 @@ namespace TDJ_ProjectoFinal
         int kbLimit;
         int timerTextos;
         KeyValuePair<string, Vector2> texto;
+        KeyValuePair<string, Vector2> textoBridge1;
         int timeToRestart;
         bool RestartReady = false;
         public Game1()
@@ -83,7 +84,7 @@ namespace TDJ_ProjectoFinal
             timeToRestart = 0;
             timerTextos = 0;
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
-            
+            textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
             LoadLevel(GameState.Menu);
             
@@ -181,7 +182,7 @@ namespace TDJ_ProjectoFinal
                     break;
                 case GameState.Bridge1:
                     //TODO: Bridge 1
-
+                    timerTextos = 0;
                     Cena.Clear();
                     
                     gamestate = GameState.Bridge1;
@@ -197,7 +198,7 @@ namespace TDJ_ProjectoFinal
                     Cena.AddSprite(new SlidingBackground(Content, "nave", 0.7f).Scl(0.4f).At(new Vector2(-1.5f, 0.3f)));
                     Cena.AddSprite(new Sprite(Content, "naveMaeCenario").Scl(10f).At(new Vector2(6.5f, 0)));
 
-                    Cena.textos.Clear();
+                    //Cena.textos.Dequeue();
                     Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
                     Cena.AddTexto("The defence ships have been destroyed. Good job!", new Vector2(50, 400));
                     Cena.AddTexto("Now we must get into the mother ship and destroy it,", new Vector2(10, 400));
@@ -374,7 +375,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if (Camera.target.X >= 1f && gamestate == GameState.Nivel1)
+            if (Camera.target.X >= 25f && gamestate == GameState.Nivel1)
             {
                 player.position.X += 0.02f;
 
@@ -456,18 +457,19 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel1:
                     break;
                 case GameState.Bridge1:
+                    
                     if (timerTextos == 0)
                     {
-                        texto = Cena.GetTexto();
+                        textoBridge1 = Cena.GetTexto();
                     }
 
                     spriteBatch.Begin();
-                    spriteBatch.DrawString(font, texto.Key, texto.Value, Color.White);
+                    spriteBatch.DrawString(font, textoBridge1.Key, textoBridge1.Value, Color.White);
                     spriteBatch.End();
 
                     if (timerTextos >= 5000 && Cena.textos.Count > 0)
                     {
-                        texto = Cena.GetTexto();
+                        textoBridge1 = Cena.GetTexto();
                     }
                     if (timerTextos > 5000)
                     {
