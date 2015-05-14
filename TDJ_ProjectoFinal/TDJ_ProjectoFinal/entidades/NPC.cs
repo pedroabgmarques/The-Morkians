@@ -157,7 +157,7 @@ namespace TDJ_ProjectoFinal.entidades
                 }
                 else
                 {
-                    if (this.scene.player.position.X < this.position.X)
+                    if (this.scene.player != null && this.scene.player.position.X < this.position.X)
                     {
                         //Bombardeiros disparam misseis teleguidados
                         scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).

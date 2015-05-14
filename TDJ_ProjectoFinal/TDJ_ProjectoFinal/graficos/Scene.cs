@@ -92,6 +92,12 @@ namespace TDJ_ProjectoFinal
             this.inimigos.Remove(s);
         
             this.explosoes.Remove(s);
+
+            if (s is Player)
+            {
+                this.player = null;
+                this.playerKilled = true;
+            }
             
         }
 

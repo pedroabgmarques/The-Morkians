@@ -199,6 +199,8 @@ namespace TDJ_ProjectoFinal
 
                     Cena.Clear();
 
+                    Camera.velocidadegeral = 0.007f;
+
                     gamestate = GameState.Nivel2;
 
                     Cena.sprites.Clear();
@@ -237,6 +239,8 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel3:
 
                     Cena.Clear();
+
+                    Camera.velocidadegeral = 0.007f;
 
                     gamestate = GameState.Nivel3;
 
@@ -322,11 +326,11 @@ namespace TDJ_ProjectoFinal
 
         private void UpdateScenes(GameTime gameTime)
         {
-           
-            
-            if (Cena.playerKilled)
+
+
+            if ((gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3) && Cena.player == null)
             {
-                RestartReady = true;
+                if (!RestartReady) RestartReady = true;
                 reStart();
             }
             Camera.Update(randomShake);
@@ -537,12 +541,15 @@ namespace TDJ_ProjectoFinal
             if (timeToRestart >= 2000)
             {
 
-                GC.Collect();
+                Cena.Clear();
                 scene = new Scene(spriteBatch);
                 Cena = scene;
-                LoadLevel(gamestate);
                 timeToRestart = 0;
+                RestartReady = false;
+                LoadLevel(gamestate);
+                
             }
+            Camera.velocidadegeral -= Camera.velocidadegeral / 30f;
         }
 
  

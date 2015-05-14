@@ -61,8 +61,12 @@ namespace TDJ_ProjectoFinal.entidades
 
             if (contador >= shootTime && missil1Lancado==false)
             {
-                scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                if (this.scene.player != null)
+                {
+                    scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
                             At(new Vector2(this.position.X - 1f, this.position.Y - 0.5f)));
+                }
+                
                 
                 scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X - 0.4f, position.Y)));
@@ -71,9 +75,12 @@ namespace TDJ_ProjectoFinal.entidades
             }
             else if (contador>=shootTime*2)
             {
-                scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
-                    At(new Vector2(this.position.X - 1f, this.position.Y + 0.5f)));
-                missil1Lancado = false;
+                if (this.scene.player != null)
+                {
+                    scene.AddInimigo(WeaponsManager.addMissil("missil", TipoMissil.Teleguiado, -1, OrigemBala.inimigo, this.scene.player).Scl(0.15f).
+                        At(new Vector2(this.position.X - 1f, this.position.Y + 0.5f)));
+                    missil1Lancado = false;
+                }
 
                 scene.AddSprite(WeaponsManager.addBala("balainimigo", -1, OrigemBala.inimigo, DireccaoBala.EmFrente).Scl(0.09f).
                     At(new Vector2(position.X - 0.4f, position.Y)));

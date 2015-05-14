@@ -67,17 +67,23 @@ namespace TDJ_ProjectoFinal.entidades
                 case TipoDefesa.Metrelhadora:
                     contadordisparo = 0.009f / Camera.velocidadegeral;
             posBala = this.position + direction;
-            
 
-            Vector2 deltaP = this.scene.player.position - this.position;
-            Vector2 deltaV = this.scene.player.getVectorVelocity();
-            float t = AimAhead(deltaP, deltaV, Camera.velocidadegeral / 0.5f);
-            Vector2 futurepoint = Vector2.Zero; 
-            if (t > 0) 
+
+            Vector2 futurepoint = Vector2.Zero;
+            if (this.scene.player != null)
             {
-                futurepoint = this.scene.player.position + t * (deltaV);
-
+                Vector2 deltaP = this.scene.player.position - this.position;
+                Vector2 deltaV = this.scene.player.getVectorVelocity();
+                float t = AimAhead(deltaP, deltaV, Camera.velocidadegeral / 0.5f);
+                
+                if (t > 0)
+                {
+                    futurepoint = this.scene.player.position + t * (deltaV);
+                }
             }
+            
+            
+            
 
             Vector2 tpos =this.position;
             float a = (float)futurepoint.Y - tpos.Y;
@@ -112,7 +118,7 @@ namespace TDJ_ProjectoFinal.entidades
                     contadordisparo = 0.009f / Camera.velocidadegeral;
 
                     this.rotation = 3.15f;
-                    if (shootTimeL >= contadordisparo && scene.player.position.X <= this.position.X + 1.5f)
+                    if (scene.player != null && shootTimeL >= contadordisparo && scene.player.position.X <= this.position.X + 1.5f)
                     {
                         scene.AddSprite(WeaponsManager.addBala("baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente, this)
                             .Scl(0.03f).At(new Vector2(this.position.X, this.position.Y - 0.2f)));
