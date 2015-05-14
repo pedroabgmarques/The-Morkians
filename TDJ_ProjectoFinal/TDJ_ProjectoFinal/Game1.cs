@@ -85,7 +85,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             
 
-            LoadLevel(GameState.Nivel3);
+            LoadLevel(GameState.Nivel1);
             
         }
 
@@ -154,8 +154,6 @@ namespace TDJ_ProjectoFinal
                     Camera.SetTarget(new Vector2(0, 0));
                     Camera.velocidadegeral = 0.007f;
 
-                    //TODO: Limpar cenas do menu
-
                     //Fundo do universo (imóvel)
                     Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                         At(new Vector2(Camera.worldWidth, 0f)));
@@ -175,6 +173,10 @@ namespace TDJ_ProjectoFinal
                     //PowerUP
                     Cena.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
                     //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
+
+                    //UI
+                    Cena.AddSprite(new Sprite(Content, "UI\\energy").Scl(1f).
+                        At(new Vector2(Camera.GetTarget().X, Camera.GetTarget().Y)));
 
                     som.playMusicaNivel1();
                     
