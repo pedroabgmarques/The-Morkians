@@ -85,7 +85,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             
 
-            LoadLevel(GameState.Menu);
+            LoadLevel(GameState.Nivel3);
             
         }
 
@@ -276,7 +276,10 @@ namespace TDJ_ProjectoFinal
 
                     break;
                 case GameState.End:
-                    //TODO: End
+                    Cena.Clear();
+                    Camera.velocidadegeral = 0.007f;
+                    Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                       At(new Vector2(Camera.worldWidth, 0f)));
                     break;
                 default:
                     break;
@@ -374,7 +377,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if (Camera.target.X >= 1f && gamestate == GameState.Nivel1)
+            if (Camera.target.X >= 25f && gamestate == GameState.Nivel1)
             {
                 player.position.X += 0.02f;
 
@@ -403,6 +406,17 @@ namespace TDJ_ProjectoFinal
             if (gamestate == GameState.Nivel3 && Camera.target.X >= 2f)
             {
                 Camera.speed = 0f;
+
+                if (scene.bossKilled == true) 
+                {
+                    scene.player.position.X += 0.02f;
+
+                    if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
+                    {
+                        Cena.active = false;
+                        LoadLevel(GameState.End);
+                    }
+                }
             }
             
         }

@@ -21,6 +21,7 @@ namespace TDJ_ProjectoFinal
         public bool playerKilled=false;
         public bool active = true;
         public int enemiesKilled;
+        public bool bossKilled = false;
         public GraphicsDevice gDevice;
         public Queue<KeyValuePair<string, Vector2>> textos;
         public Scene(SpriteBatch sb)

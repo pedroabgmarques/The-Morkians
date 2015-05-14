@@ -31,6 +31,10 @@ namespace TDJ_ProjectoFinal.entidades
             this.Vida = 500;
             this.shootTime = 7f / Camera.velocidadegeral;
         }
+        public float GetLifeBoss() 
+        {
+            return Vida;
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -46,6 +50,7 @@ namespace TDJ_ProjectoFinal.entidades
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
                 som.playExplosao();
                 Camera.addShake(100);
+                this.scene.bossKilled = true;
                 this.Destroy();
 
             }
