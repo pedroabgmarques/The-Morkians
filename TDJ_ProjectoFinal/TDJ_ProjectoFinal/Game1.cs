@@ -183,7 +183,7 @@ namespace TDJ_ProjectoFinal
                     //TODO: Bridge 1
 
                     Cena.Clear();
-
+                    
                     gamestate = GameState.Bridge1;
 
                     scene2 = new Scene(spriteBatch);
@@ -194,6 +194,19 @@ namespace TDJ_ProjectoFinal
 
                     Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                        At(new Vector2(Camera.worldWidth, 0f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "nave", 0.7f).Scl(0.4f).At(new Vector2(-1.5f, 0.3f)));
+                    Cena.AddSprite(new Sprite(Content, "naveMaeCenario").Scl(10f).At(new Vector2(6.5f, 0)));
+
+                    Cena.textos.Clear();
+                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                    Cena.AddTexto("The defence ships have been destroyed. Good job!", new Vector2(50, 400));
+                    Cena.AddTexto("Now we must get into the mother ship and destroy it,", new Vector2(10, 400));
+                    Cena.AddTexto("Tech team is detecting several traps.", new Vector2(160, 400));
+                    Cena.AddTexto("Get inside and stay sharp. Good luck.", new Vector2(120, 400));
+                    Cena.AddTexto("fim, nao aparece", new Vector2(60, 400));
+
+                    som.playMusicaBridge0();
+
                     break;
                 case GameState.Nivel2:
 
@@ -361,7 +374,7 @@ namespace TDJ_ProjectoFinal
 
             }
             //muda para cena2
-            if (Camera.target.X >= 25f && gamestate == GameState.Nivel1)
+            if (Camera.target.X >= 1f && gamestate == GameState.Nivel1)
             {
                 player.position.X += 0.02f;
 
@@ -443,6 +456,29 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel1:
                     break;
                 case GameState.Bridge1:
+                    if (timerTextos == 0)
+                    {
+                        texto = Cena.GetTexto();
+                    }
+
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, texto.Key, texto.Value, Color.White);
+                    spriteBatch.End();
+
+                    if (timerTextos >= 5000 && Cena.textos.Count > 0)
+                    {
+                        texto = Cena.GetTexto();
+                    }
+                    if (timerTextos > 5000)
+                    {
+                        timerTextos = 0;
+                        if (Cena.textos.Count == 0)
+                        {
+                            //Acabaram os textos, seguir
+                            LoadLevel(GameState.Nivel2);
+                        }
+                    }
+                    timerTextos += gameTime.ElapsedGameTime.Milliseconds;
                     break;
                 case GameState.Nivel2:
                     break;
