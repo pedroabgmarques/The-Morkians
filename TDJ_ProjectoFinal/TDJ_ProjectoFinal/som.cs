@@ -87,6 +87,8 @@ namespace TDJ_ProjectoFinal
         public static void playMusicaBridge0()
         {
             if (musicaMenuInstance != null) musicaMenuInstance.Stop();
+            if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
+            if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
             if (musicaBridge0 == null)
             {
                 musicaBridge0 = content.Load<SoundEffect>("som\\menu");
