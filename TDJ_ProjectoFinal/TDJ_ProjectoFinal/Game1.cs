@@ -86,7 +86,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Nivel1);
+            LoadLevel(GameState.Nivel2);
             
         }
 
