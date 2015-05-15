@@ -86,7 +86,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Nivel2);
+            LoadLevel(GameState.Nivel1);
             
         }
 
@@ -515,10 +515,11 @@ namespace TDJ_ProjectoFinal
                 if (gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3)
                 {
                     //UI
-                    Cena.AddUI(new UI(Content, "UI\\energy", Vector2.Zero).Scl(0.3f));
+                    Cena.AddUI(new UI(Content, "UI\\UIcima", new Vector2(0.85f, -0.1f)).Scl(2f));
+                    Cena.AddUI(new UI(Content, "UI\\energy", new Vector2(0.15f, -0.1f)).Scl(0.3f));
                     for (int i = 0; i < Cena.player.Vida; i++)
                     {
-                        Cena.AddUI(new UI(Content, "UI\\vida" + (i + 1), new Vector2(i * 0.06f + 0.2f, 0)).Scl(0.05f));
+                        Cena.AddUI(new UI(Content, "UI\\vida" + (i + 1), new Vector2(0.32f + i * 0.065f, -0.1f)).Scl(0.05f));
                     }
                 }
             }
