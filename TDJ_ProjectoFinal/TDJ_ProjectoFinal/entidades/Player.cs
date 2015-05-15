@@ -224,7 +224,7 @@ namespace TDJ_ProjectoFinal.entidades
                     PowerUp powerUp = (PowerUp)collided;
                     if (powerUp.tipoPowerUp == TipoPowerUp.Vida)
                     {
-                        this.Vida++;
+                        if(this.Vida < 5) this.Vida++;
                     }
                     else
                         if (this.tipobala != TipoBala.Quadruplo)

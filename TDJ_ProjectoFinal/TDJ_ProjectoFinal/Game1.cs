@@ -175,10 +175,6 @@ namespace TDJ_ProjectoFinal
                     Cena.AddPowerUp(new PowerUp(Content, "PowerUp-Vida", TipoPowerUp.Vida, -1, 0.3f, 1f));
                     //scene.AddPowerUp(new PowerUp(Content, "PowerUp-Bala", TipoPowerUp.Armas, -1, 0.3f, 1.5f));
 
-                    //UI
-                    Cena.AddSprite(new Sprite(Content, "UI\\energy").Scl(1f).
-                        At(new Vector2(Camera.GetTarget().X, Camera.GetTarget().Y)));
-
                     som.playMusicaNivel1();
                     
                     break;
@@ -511,6 +507,22 @@ namespace TDJ_ProjectoFinal
                 default:
                     break;
             }
+
+            //Desenhar a UI
+            Cena.UIs.Clear();
+            if (Cena.player != null && Cena.player.Vida > 0)
+            {
+                if (gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3)
+                {
+                    //UI
+                    Cena.AddUI(new UI(Content, "UI\\energy", Vector2.Zero).Scl(0.3f));
+                    for (int i = 0; i < Cena.player.Vida; i++)
+                    {
+                        Cena.AddUI(new UI(Content, "UI\\vida" + (i + 1), new Vector2(i * 0.06f + 0.2f, 0)).Scl(0.05f));
+                    }
+                }
+            }
+            
 
             base.Draw(gameTime);
         }

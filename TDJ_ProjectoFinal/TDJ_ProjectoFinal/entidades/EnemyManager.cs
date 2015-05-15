@@ -13,7 +13,6 @@ namespace TDJ_ProjectoFinal.entidades
     {
 
         private static Texture2D kamikaze, bombardeiro, caça;
-        private static AnimatedSprite Boss;
         public static List<NPC> kamikazesVivos;
         public static List<NPC> kamikazesMortos;
 

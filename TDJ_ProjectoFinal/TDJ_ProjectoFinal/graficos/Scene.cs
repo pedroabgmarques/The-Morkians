@@ -17,6 +17,7 @@ namespace TDJ_ProjectoFinal
         public List<Sprite> powerUps;
         public List<Sprite> inimigos;
         public List<Sprite> explosoes;
+        public List<Sprite> UIs;
         public Player player;
         public bool playerKilled=false;
         public bool active = true;
@@ -31,6 +32,7 @@ namespace TDJ_ProjectoFinal
             this.powerUps = new List<Sprite>();
             this.inimigos = new List<Sprite>();
             this.explosoes = new List<Sprite>();
+            this.UIs = new List<Sprite>();
             this.textos = new Queue<KeyValuePair<string, Vector2>>();
             this.enemiesKilled = 0;
         }
@@ -42,6 +44,7 @@ namespace TDJ_ProjectoFinal
             this.inimigos.Clear();
             this.explosoes.Clear();
             this.textos.Clear();
+            this.UIs.Clear();
             GC.Collect();
         }
 
@@ -80,6 +83,12 @@ namespace TDJ_ProjectoFinal
             s.SetScene(this);
         }
 
+        public void AddUI(Sprite s)
+        {
+            this.UIs.Add(s);
+            s.SetScene(this);
+        }
+
         
 
         public void RemoveSprite(Sprite s)
@@ -94,6 +103,7 @@ namespace TDJ_ProjectoFinal
             this.inimigos.Remove(s);
         
             this.explosoes.Remove(s);
+            this.UIs.Remove(s);
 
             if (s is Player)
             {
@@ -121,6 +131,10 @@ namespace TDJ_ProjectoFinal
             {
                 explosao.Update(gameTime);
             }
+            foreach (var UI in UIs)
+            {
+                UI.Update(gameTime);
+            }
         
         }
 
@@ -135,18 +149,22 @@ namespace TDJ_ProjectoFinal
                     sprite.Draw(gameTime);
                 }
                 
-                foreach (var powerUp in powerUps.ToList())
+                foreach (PowerUp powerUp in powerUps)
                 {
                     powerUp.Draw(gameTime);
                 }
                 
-                foreach (var inimigo in inimigos.ToList())
+                foreach (Sprite inimigo in inimigos)
                 {
                     inimigo.Draw(gameTime);
                 }
-                foreach (var explosao in explosoes.ToList())
+                foreach (Sprite explosao in explosoes)
                 {
                     explosao.Draw(gameTime);
+                }
+                foreach (UI UI in UIs)
+                {
+                    UI.Draw(gameTime);
                 }
          
                 this.SpriteBatch.End();
