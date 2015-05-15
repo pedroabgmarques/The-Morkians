@@ -101,13 +101,9 @@ namespace TDJ_ProjectoFinal.entidades
                          + new Vector2((float)Math.Sin(rot) * size.Y / 2,
                                        (float)Math.Cos(rot) * size.Y / 2);
 
-                
-                //Bala bala = new Bala(cManager, "baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this);
-                //bala.At(new Vector2(pos.X,pos.Y));
-                //bala.Scale(0.03f);
-                //scene.AddSprite(bala);
 
-                //scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
+              
+                scene.AddSprite(WeaponsManager.addBala("baladefesas", 2, OrigemBala.defesa, DireccaoBala.EmFrente, this).Scl(0.03f).At(new Vector2(pos.X, pos.Y)));
 
                 shootTimeM = 0f;
             }
@@ -120,8 +116,8 @@ namespace TDJ_ProjectoFinal.entidades
                     this.rotation = 3.15f;
                     if (scene.player != null && shootTimeL >= contadordisparo && scene.player.position.X <= this.position.X + 1.5f)
                     {
-                        //scene.AddSprite(WeaponsManager.addBala("baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente, this)
-                        //    .Scl(0.03f).At(new Vector2(this.position.X, this.position.Y - 0.2f)));
+                        scene.AddSprite(WeaponsManager.addBala("baladefesas", 1, OrigemBala.defesa, DireccaoBala.EmFrente, this)
+                            .Scl(0.03f).At(new Vector2(this.position.X, this.position.Y - 0.2f)));
 
                         if (shootTimeL >= contadordisparo + shootTimeLaser) 
                         {
