@@ -555,11 +555,16 @@ namespace TDJ_ProjectoFinal
 
             //Desenhar a UI
             Cena.UIs.Clear();
+            
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, "" + Cena.enemiesKilled*100, new Vector2(800f, 19f), Color.Green);
+            spriteBatch.End();
             if (Cena.player != null && Cena.player.Vida > 0)
             {
                 if (gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3)
                 {
                     //UI
+                    
                     Cena.AddUI(new UI(Content, "UI\\UIbasic", new Vector2(2.3f, -0.1f)).Scl(4.5f));//-0.2f
                     //Cena.AddUI(new UI(Content, "UI\\UIpower", new Vector2(2.21f, -0.1f)).Scl(0.6f));
                     for (int i = 0; i < Cena.player.Vida; i++)
