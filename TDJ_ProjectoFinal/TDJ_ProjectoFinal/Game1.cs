@@ -560,12 +560,12 @@ namespace TDJ_ProjectoFinal
                 if (gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3)
                 {
                     //UI
-                    Cena.AddUI(new UI(Content, "UI\\GreenUIv2", new Vector2(2.15f, -0.2f)).Scl(4.5f));//-0.2f
+                    Cena.AddUI(new UI(Content, "UI\\UIbasic", new Vector2(2.3f, -0.1f)).Scl(4.5f));//-0.2f
                     //Cena.AddUI(new UI(Content, "UI\\UIpower", new Vector2(2.21f, -0.1f)).Scl(0.6f));
                     for (int i = 0; i < Cena.player.Vida; i++)
                     {
-                        Cena.AddSprite(new UI(Content, "UI\\vida4" /*+ (i + 1)*/, new Vector2(1.94f + i * 0.04f, -0.153f)).Scl(0.02f));//y=-0.153
-                        Cena.AddUI(new UI(Content, "UI\\vida5versao2" /*+ (i + 1)*/, new Vector2(1.94f + i * 0.04f, -0.153f)).Scl(0.03f));
+                        Cena.AddSprite(new UI(Content, "UI\\vida4" /*+ (i + 1)*/, new Vector2(0.5f + i * 0.04f, -0.115f)).Scl(0.02f));//y=-0.153
+                        Cena.AddUI(new UI(Content, "UI\\vida5versao2" /*+ (i + 1)*/, new Vector2(0.5f + i * 0.04f, -0.115f)).Scl(0.03f));
                     }
                 }
             }
