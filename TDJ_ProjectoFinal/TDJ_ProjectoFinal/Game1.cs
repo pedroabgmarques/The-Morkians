@@ -43,7 +43,7 @@ namespace TDJ_ProjectoFinal
         int kbLimit;
         int timerTextos;
         KeyValuePair<string, Vector2> texto;
-        KeyValuePair<string, Vector2> textoBridge1;
+        KeyValuePair<string, Vector2> textoBridge1,textoBridge2;
         int timeToRestart;
         bool RestartReady = false;
         public Game1()
@@ -86,7 +86,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Nivel2);
+            LoadLevel(GameState.Bridge2);
             
         }
 
@@ -179,7 +179,7 @@ namespace TDJ_ProjectoFinal
                     
                     break;
                 case GameState.Bridge1:
-                    //TODO: Bridge 1
+                    
                     timerTextos = 0;
                     Cena.Clear();
                     
@@ -244,9 +244,31 @@ namespace TDJ_ProjectoFinal
                     break;
                 case GameState.Bridge2:
 
+                    
+                    timerTextos = 0;
                     Cena.Clear();
+                    
+                    gamestate = GameState.Bridge2;
 
-                    //TODO: bridge 2
+                    scene3 = new Scene(spriteBatch);
+                    Cena = scene3;
+                    Cena.active = true;
+                    Camera.SetTarget(new Vector2(0, 0));
+                    Camera.velocidadegeral = 0.002f;
+
+                    Cena.AddSprite(new SlidingBackground(Content, "fundoFinal", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
+                       At(new Vector2(Camera.worldWidth, 0f)));
+                    Cena.AddSprite(new SlidingBackground(Content, "nave", 0.4f).Scl(0.65f).At(new Vector2(-1.5f, 0.3f)));
+                    
+                    
+                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                    Cena.AddTexto("That was close. Great job avoiding the defences!", new Vector2(50, 400));
+                    Cena.AddTexto("Tech team found the Morkians leader chamber,", new Vector2(60, 400));
+                    Cena.AddTexto("This is our change to end this!", new Vector2(180, 400));
+                    Cena.AddTexto("Destroy him and save mankind.", new Vector2(200, 400));
+                    Cena.AddTexto("fim, nao aparece", new Vector2(60, 400));
+
+                    som.playMusicaBridge0();
                     break;
                 case GameState.Nivel3:
 
@@ -499,6 +521,29 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel2:
                     break;
                 case GameState.Bridge2:
+                     if (timerTextos == 0)
+                    {
+                        textoBridge2 = Cena.GetTexto();
+                    }
+
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, textoBridge2.Key, textoBridge2.Value, Color.White);
+                    spriteBatch.End();
+
+                    if (timerTextos >= 5000 && Cena.textos.Count > 0)
+                    {
+                        textoBridge2 = Cena.GetTexto();
+                    }
+                    if (timerTextos > 5000)
+                    {
+                        timerTextos = 0;
+                        if (Cena.textos.Count == 0)
+                        {
+                            //Acabaram os textos, seguir
+                            LoadLevel(GameState.Nivel3);
+                        }
+                    }
+                    timerTextos += gameTime.ElapsedGameTime.Milliseconds;
                     break;
                 case GameState.Nivel3:
                     break;
