@@ -86,7 +86,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Bridge2);
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -420,7 +420,7 @@ namespace TDJ_ProjectoFinal
                 if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
                 {
                     Cena.active = false;
-                    LoadLevel(GameState.Nivel3);
+                    LoadLevel(GameState.Bridge2);
                 }
             }
 
