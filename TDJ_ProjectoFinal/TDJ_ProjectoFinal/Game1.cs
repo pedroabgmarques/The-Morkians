@@ -44,7 +44,7 @@ namespace TDJ_ProjectoFinal
         int kbLimit;
         int timerTextos;
         KeyValuePair<string, Vector2> texto;
-        KeyValuePair<string, Vector2> textoBridge1,textoBridge2;
+        KeyValuePair<string, Vector2> textoBridge1,textoBridge2,textoEnd;
         int timeToRestart;
         bool RestartReady = false;
         public Game1()
@@ -346,9 +346,17 @@ namespace TDJ_ProjectoFinal
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X - 0.1f, 0.1f), 2.6f, 4500f));
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X - 0.1f, 0.1f), 2.6f, 4700f));
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X - 0.1f, 0.1f), 2.6f, 5200f));
-                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X , 0.1f), 2.6f, 5500f));
-                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X + 0.9f, 0.1f), 2.6f, 6100f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X , 0.1f), 2.6f, 5700f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X + 0.8f, 0.1f), 2.6f, 6500f));
 
+                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                    Cena.AddTexto("", new Vector2(160, 400));
+                    Cena.AddTexto("Congratulations!!!", new Vector2(200,400));
+                    Cena.AddTexto("...You save the Humanity...", new Vector2(200, 400));
+                    Cena.AddTexto("wow, we never tought you could do it... ", new Vector2(200, 400));
+                    Cena.AddTexto("Well Done", new Vector2(200, 400));
+                    Cena.AddTexto("MISSION ACCOMPLISHED", new Vector2(200, 400));
+                    Cena.AddTexto("fim, nao aparece", new Vector2(200, 400));
 
                     gamestate=GameState.End;
 
@@ -614,6 +622,29 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel3:
                     break;
                 case GameState.End:
+                      if (timerTextos == 0)
+                    {
+                        textoEnd = Cena.GetTexto();
+                    }
+
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, textoEnd.Key, textoEnd.Value, Color.White);
+                    spriteBatch.End();
+
+                    if (timerTextos >= 5000 && Cena.textos.Count > 0)
+                    {
+                        textoEnd = Cena.GetTexto();
+                    }
+                    if (timerTextos > 5000)
+                    {
+                        timerTextos = 0;
+                        if (Cena.textos.Count == 0)
+                        {
+                            //Acabaram os textos, seguir
+                            LoadLevel(GameState.Menu);
+                        }
+                    }
+                    timerTextos += gameTime.ElapsedGameTime.Milliseconds;
                     break;
                 default:
                     break;

@@ -29,7 +29,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
             this.contador = 0;
-            this.Vida = 50;
+            this.Vida = 10;
             this.shootTime = 7f / Camera.velocidadegeral;
         }
         public float GetLifeBoss() 
