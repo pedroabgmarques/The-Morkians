@@ -73,9 +73,11 @@ namespace TDJ_ProjectoFinal.entidades
             if (this.scene.bossKilled == true) 
             {
                 timeAfterKilled +=  (float)gameTime.ElapsedGameTime.Milliseconds;
+                this.scene.player.speed = 0.9f;
             }
-            if (timeAfterKilled >= 1800f)
+            if (timeAfterKilled >= 1400f)
             {
+                
                
                 this.Destroy();
                 this.scene.bossLevelClear = true;
