@@ -29,7 +29,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
             this.contador = 0;
-            this.Vida = 500;
+            this.Vida = 50;
             this.shootTime = 7f / Camera.velocidadegeral;
         }
         public float GetLifeBoss() 
@@ -49,7 +49,7 @@ namespace TDJ_ProjectoFinal.entidades
             if (this.Vida <= 0&& this.scene.bossKilled==false)
             {
 
-                this.scene.bossKilled = true;
+               this.scene.bossKilled = true;
                 
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, position, 0.9f));
                 
@@ -74,9 +74,11 @@ namespace TDJ_ProjectoFinal.entidades
             {
                 timeAfterKilled +=  (float)gameTime.ElapsedGameTime.Milliseconds;
             }
-            if (timeAfterKilled >= 700f)
+            if (timeAfterKilled >= 1800f)
             {
+               
                 this.Destroy();
+                this.scene.bossLevelClear = true;
             }
            
 

@@ -36,6 +36,7 @@ namespace TDJ_ProjectoFinal
         Player player;
         public static Random random;
         bool novopowerup = false;
+        float timer;
         Scene Cena;
         Random randomShake;
         GameState gamestate;
@@ -86,7 +87,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Menu);
+            LoadLevel(GameState.Nivel3);
             
         }
 
@@ -299,50 +300,46 @@ namespace TDJ_ProjectoFinal
                 case GameState.End:
                     Cena.Clear();
                     Camera.velocidadegeral = 0.007f;
-                    gamestate = GameState.End;
-                    
+                    //gamestate = GameState.End;
+                    scene3 = new Scene(spriteBatch);
+                    Cena = scene3;
                     Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
                        At(new Vector2(Camera.worldWidth, 0f)));
 
                     Cena.AddSprite(new SlidingBackground(Content, "nave", 0.7f).Scl(0.4f).At(new Vector2(-1.5f, 0.3f)));
                     
 
-                    Cena.AddSprite(new Sprite(Content, "naveMaeCenario").Scl(10f).At(new Vector2(-3.7f, 0f)));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(  0.6f, 0.8f), 0.5f, 50f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 0.5f, 1000f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.6f, -0.8f), 1.1f, 800f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.6f, -0.8f), 0.5f, 50f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.6f, 0.8f), 0.9f, 500f));
+                    Cena.AddSprite(new Sprite(Content, "naveMaeCenario").Scl(10f).At(new Vector2(-2.7f, 0f)));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(  0.6f, 0.8f), 0.5f, 50f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 0.5f, 1000f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.6f, -0.8f), 1.1f, 800f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.6f, -0.8f), 0.5f, 50f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.6f, 0.8f), 0.9f, 500f));
 
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(  0.6f, 0.8f), 0.5f, 500f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 0.5f, 1200f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.9f, -0.3f), 1.1f, 1800f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.3f, -0.4f), 0.5f, 150f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.6f, 0.5f), 0.9f, 1500f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.6f, 0.8f), 0.5f, 500f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 0.5f, 1200f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.9f, -0.3f), 1.1f, 1800f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.3f, -0.4f), 0.5f, 150f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.6f, 0.5f), 0.9f, 1500f));
 
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(  0.9f, 0.9f), 0.5f, 1900f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 1.5f, 2500f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.1f, 0f), 1.1f, 2100f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.5f, -0.4f), 1.5f, 2500f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.9f, 0.5f), 2.5f, 2800f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.9f, 0.9f), 0.5f, 1900f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.0f, 0f), 1.5f, 2500f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.1f, 0f), 1.1f, 2100f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.5f, -0.4f), 1.5f, 2500f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-1.9f, 0.5f), 2.5f, 2800f));
 
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0f), 2.6f, 2800f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.91f, -0.9f), 2.6f, 2900f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0.1f), 2.6f, 3000f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.1f, -0.1f), 2.6f, 3200f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0f), 2.6f, 2800f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.91f, -0.9f), 2.6f, 2900f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0.1f), 2.6f, 3000f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.1f, -0.1f), 2.6f, 3200f));
 
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0f), 2.6f, 3100f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.91f, -0.9f), 2.6f, 3500f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0.1f), 2.6f, 3700f));
-                    this.scene.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.1f, 0.1f), 2.6f, 4000f));
-
-                    
-
-
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0f), 2.6f, 3100f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(-0.91f, -0.9f), 2.6f, 3500f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(1.2f, 0.1f), 2.6f, 3700f));
+                    Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(0.1f, 0.1f), 2.6f, 4000f));
 
                     
 
-                    
                     break;
                 default:
                     break;
@@ -359,9 +356,13 @@ namespace TDJ_ProjectoFinal
        
         protected override void Update(GameTime gameTime)
         {
-
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (Cena.bossLevelClear) 
+            {
+                timer += gameTime.ElapsedGameTime.Milliseconds;
+            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter) && kbLimit > 1000)
             {
@@ -378,14 +379,16 @@ namespace TDJ_ProjectoFinal
                     case GameState.Nivel1:
                         break;
                     case GameState.Bridge1:
-                        //LoadLevel(GameState.Nivel2);
-                        //Camera.velocidadegeral = 0.007f;
+                        LoadLevel(GameState.Nivel2);
+                        Camera.velocidadegeral = 0.007f;
                         break;
                     case GameState.Nivel2:
                         break;
                     case GameState.Bridge2:
                         break;
                     case GameState.Nivel3:
+                        LoadLevel(GameState.Nivel3);
+                        Camera.velocidadegeral = 0.007f;
                         break;
                     case GameState.End:
                         
@@ -467,19 +470,21 @@ namespace TDJ_ProjectoFinal
 
 
             
-            if (gamestate == GameState.Nivel3 && Camera.target.X >= 2f)
+            if (gamestate == GameState.Nivel3)
             {
-                Camera.speed = 0f;
+                
 
-                if (scene.bossKilled == true) 
+                if (timer>=1900f) 
                 {
-                    scene.player.position.X += 0.02f;
+                    Camera.speed = 0f;
+                    
 
-                    if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
-                    {
-                        Cena.active = false;
-                        LoadLevel(GameState.End);
-                    }
+                    //if (player.position.X >= (Camera.GetTarget().X + Camera.worldWidth / 2) - 0.5f)
+                    //{
+                    LoadLevel(GameState.End);
+                    //Cena.active = false;
+                       
+                    //}
                 }
             }
             
