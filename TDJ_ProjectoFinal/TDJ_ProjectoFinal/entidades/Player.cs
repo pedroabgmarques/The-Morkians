@@ -82,16 +82,16 @@ namespace TDJ_ProjectoFinal.entidades
             //Se pressionado esquerda
             if (currentKeyboardState.IsKeyDown(Keys.A)) 
             {
-
-                this.position.X -= speed;
+                if(this.position.X - this.size.X / 2 > Camera.GetTarget().X - Camera.worldWidth / 2)
+                    this.position.X -= speed;
 
             }
             //Se pressionado cima
             if (currentKeyboardState.IsKeyDown(Keys.W)) 
 
             {
-
-                this.position.Y += speed;
+                
+                    this.position.Y += speed;
 
             }
             //Se pressionado baixo
@@ -104,10 +104,8 @@ namespace TDJ_ProjectoFinal.entidades
             //Se pressioando direita
             if (currentKeyboardState.IsKeyDown(Keys.D))
             {
-                
-
-                this.position.X += speed;
-
+                if (this.position.X + this.size.X / 2 < Camera.GetTarget().X + Camera.worldWidth / 2)
+                    this.position.X += speed;
             }
             lastposition = this.position;
             if (currentKeyboardState.IsKeyDown(Keys.Up))
@@ -265,38 +263,13 @@ namespace TDJ_ProjectoFinal.entidades
                 
             }
 
-            //Para a nave quando chega ao limite esquerdo da camara.
-            if (this.position.X - 0.1f /*- (this.position.X - (this.image.Width/2))*/ <= Camera.target.X - (Camera.worldWidth / 2))
-            {
-                this.position.X += 0.01f;
-                
-            }
-            //para a nave quando chega ao limite direito da camara
-            if (this.position.X + 0.2f >= Camera.target.X + (Camera.worldWidth / 2))
-            {
-                this.position.X -= 0.01f;
-
-            }
-            //para a nave quando chega ao limite superior da camara
-            
-            if (this.position.Y >= Camera.target.Y + 1.4f )//1.4f -> valor martelado.
-            {
-                this.position.Y -= 0.01f;
-
-            }
-            ////para a nave quando chega ao limite inferior da camara
-            if (this.position.Y <= Camera.target.Y - 1.4f)//1.4f -> valor martelado.
-            {
-                this.position.Y += 0.01f;
-
-            }
-
             if(this.Vida<=0)
             {
                 this.scene.AddExplosao(new AnimatedSprite(cManager, "explosao", 9, 9, false, this.position, 1.5f));
                 som.playExplosao();
                 Camera.addShake(500);
                 this.scene.playerKilled = true;
+                this.scene.ClearUI();
                 this.Destroy();
             }
 

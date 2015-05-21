@@ -26,6 +26,7 @@ namespace TDJ_ProjectoFinal
         public bool bossLevelClear = false;
         public GraphicsDevice gDevice;
         public Queue<KeyValuePair<string, Vector2>> textos;
+        public bool fundoTexto;
         public Scene(SpriteBatch sb)
         {
             this.SpriteBatch = sb;
@@ -36,6 +37,7 @@ namespace TDJ_ProjectoFinal
             this.UIs = new List<Sprite>();
             this.textos = new Queue<KeyValuePair<string, Vector2>>();
             this.enemiesKilled = 0;
+            this.fundoTexto = false;
             
         }
 
@@ -48,6 +50,11 @@ namespace TDJ_ProjectoFinal
             this.textos.Clear();
             this.UIs.Clear();
             GC.Collect();
+        }
+
+        public void ClearUI()
+        {
+            this.UIs.Clear();
         }
 
         public void AddTexto(string texto, Vector2 posicao)

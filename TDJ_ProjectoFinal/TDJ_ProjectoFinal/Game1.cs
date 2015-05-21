@@ -47,6 +47,8 @@ namespace TDJ_ProjectoFinal
         KeyValuePair<string, Vector2> textoBridge1,textoBridge2,textoEnd;
         int timeToRestart;
         bool RestartReady = false;
+        int endTimer = 0;
+        bool endTimerBool = false;
         public Game1()
             : base()
         {
@@ -87,7 +89,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Nivel3);
+            LoadLevel(GameState.Nivel1);
             
         }
 
@@ -97,7 +99,11 @@ namespace TDJ_ProjectoFinal
             {
                 case GameState.Menu:
 
+                    Cena.Clear();
+
                     gamestate = GameState.Menu;
+
+                    Camera.SetTarget(Vector2.Zero);
 
                     Camera.velocidadegeral = 0;
                     Cena.AddSprite(new Sprite(Content, "mainMenu").At(Vector2.Zero).Scl(5f));
@@ -167,7 +173,7 @@ namespace TDJ_ProjectoFinal
                     Cena.AddSprite(new SlidingBackground(Content, "spaceStaion", 500f).Scl(4f).At(new Vector2(14f, 0.8f)));
                     //Nave do jogador
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cena.AddSprite(player.Scl(0.62f));
+                    Cena.AddSprite(player.Scl(0.50f));
                     Cena.player = player;
 
                     newEnemyWave(Cena);
@@ -233,7 +239,7 @@ namespace TDJ_ProjectoFinal
                     Cena.AddSprite(new Cenario(Content, "mapaFinalCima", 40f).At(new Vector2(5, 0.1f)));
                     Cena.AddSprite(new Cenario(Content, "mapaFinalBaixo", 40f).At(new Vector2(5, -0.1f)));
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cena.AddSprite(player.Scl(0.62f));
+                    Cena.AddSprite(player.Scl(0.50f));
                     
                     Defesas();
 
@@ -265,7 +271,7 @@ namespace TDJ_ProjectoFinal
                     Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
                     Cena.AddTexto("That was close. Great job avoiding the defences!", new Vector2(50, 400));
                     Cena.AddTexto("Tech team found the Morkians leader chamber,", new Vector2(60, 400));
-                    Cena.AddTexto("This is our change to end this!", new Vector2(180, 400));
+                    Cena.AddTexto("This is our chance to end this!", new Vector2(180, 400));
                     Cena.AddTexto("Destroy him and save mankind.", new Vector2(200, 400));
                     Cena.AddTexto("fim, nao aparece", new Vector2(60, 400));
 
@@ -289,15 +295,11 @@ namespace TDJ_ProjectoFinal
                     //Cenas[2].AddInimigo(new AnimatedSprite(Content,"bossSheet",1,3,true,new Vector2(1f,1f),2f));
                     Cena.AddInimigo(new Boss(Content, "bossSheet2", 1, 2, true, new Vector2(1f, 1f), 2f));
                     player = new Player(Content, "nave", TipoBala.Simples);
-                    Cena.AddSprite(player.Scl(0.62f));
+                    Cena.AddSprite(player.Scl(0.50f));
                     Cena.player = player;
                     player.position.X = Camera.target.X - (Camera.worldWidth / 2) + 0.1f;
                     player.tipobala = TipoBala.Quadruplo;
                     
-                     
-                    
-                    
-
                     som.playMusicaNivel3();
 
                     break;
@@ -306,7 +308,9 @@ namespace TDJ_ProjectoFinal
                    
                     Cena.Clear();
                     Camera.velocidadegeral = 0.007f;
-                    //gamestate = GameState.End;
+
+                    gamestate = GameState.End;
+
                     scene3 = new Scene(spriteBatch);
                     Cena = scene3;
                     Cena.AddSprite(new SlidingBackground(Content, "universe", 4f).Scl(6000 * Camera.worldWidth / graphics.PreferredBackBufferHeight).
@@ -348,21 +352,15 @@ namespace TDJ_ProjectoFinal
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X - 0.1f, 0.1f), 2.6f, 5200f));
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X , 0.1f), 2.6f, 5700f));
                     Cena.AddExplosao(new AnimatedSprite(Content, "explosao", 9, 9, false, new Vector2(Camera.target.X + 0.8f, 0.1f), 2.6f, 6500f));
-
-                    Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                    
                     Cena.AddTexto("", new Vector2(160, 400));
-                    Cena.AddTexto("Congratulations!!!", new Vector2(200,400));
-                    Cena.AddTexto("...You save the Humanity...", new Vector2(200, 400));
-                    Cena.AddTexto("wow, we never tought you could do it... ", new Vector2(200, 400));
-                    Cena.AddTexto("Well Done", new Vector2(200, 400));
-                    Cena.AddTexto("MISSION ACCOMPLISHED", new Vector2(200, 400));
+                    Cena.AddTexto("Congratulations!!!", new Vector2(310,400));
+                    Cena.AddTexto("You saved humanity", new Vector2(300, 400));
+                    Cena.AddTexto("Wow, we never tought you could do it... ", new Vector2(145, 400));
+                    Cena.AddTexto("Well Done.", new Vector2(370, 400));
+                    Cena.AddTexto("MISSION ACCOMPLISHED!", new Vector2(310, 400));
                     Cena.AddTexto("fim, nao aparece", new Vector2(200, 400));
 
-                    gamestate=GameState.End;
-
-                    
-                 
-                    
 
                     break;
                 default:
@@ -411,7 +409,6 @@ namespace TDJ_ProjectoFinal
                     case GameState.Bridge2:
                         break;
                     case GameState.Nivel3:
-                        LoadLevel(GameState.Nivel3);
                         Camera.velocidadegeral = 0.007f;
                         break;
                     case GameState.End:
@@ -425,8 +422,16 @@ namespace TDJ_ProjectoFinal
             kbLimit += gameTime.ElapsedGameTime.Milliseconds;
             if(RestartReady)
                 timeToRestart += gameTime.ElapsedGameTime.Milliseconds;
+            if(gamestate == GameState.End)
+                endTimer += gameTime.ElapsedGameTime.Milliseconds;
             
             UpdateScenes(gameTime);
+
+            if (gamestate == GameState.End && endTimer > 5000 && !endTimerBool)
+            {
+                Cena.AddSprite(new Sprite(Content, "backgroundTextoMenuGigante").At(new Vector2(7, -0.62f)).Scl(40f));
+                endTimerBool = true;
+            }
 
             base.Update(gameTime);
         }
@@ -523,12 +528,8 @@ namespace TDJ_ProjectoFinal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-          
-            
-            
             Cena.Draw(gameTime);
             
-
             switch (gamestate)
             {
                 case GameState.Menu:
@@ -622,7 +623,7 @@ namespace TDJ_ProjectoFinal
                 case GameState.Nivel3:
                     break;
                 case GameState.End:
-                      if (timerTextos == 0)
+                    if (timerTextos == 0)
                     {
                         textoEnd = Cena.GetTexto();
                     }
@@ -633,6 +634,7 @@ namespace TDJ_ProjectoFinal
 
                     if (timerTextos >= 5000 && Cena.textos.Count > 0)
                     {
+                       
                         textoEnd = Cena.GetTexto();
                     }
                     if (timerTextos > 5000)
@@ -652,10 +654,16 @@ namespace TDJ_ProjectoFinal
 
             //Desenhar a UI
             Cena.UIs.Clear();
+
+            if ((gamestate == GameState.Nivel1)
+                && Cena.player != null && Cena.player.Vida > 0)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "" + Cena.enemiesKilled * 100, new Vector2(800f, 25f), Color.Green);
+                spriteBatch.End();
+            }
             
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, "" + Cena.enemiesKilled*100, new Vector2(800f, 19f), Color.Green);
-            spriteBatch.End();
+            
             if (Cena.player != null && Cena.player.Vida > 0)
             {
                 if (gamestate == GameState.Nivel1 || gamestate == GameState.Nivel2 || gamestate == GameState.Nivel3)
@@ -663,12 +671,15 @@ namespace TDJ_ProjectoFinal
                     //UI
                     
                     Cena.AddUI(new UI(Content, "UI\\GreenUIv2", new Vector2(2.3f, -0.2f)).Scl(4.5f));//-0.2f
-                    //Cena.AddUI(new UI(Content, "UI\\UIpower", new Vector2(2.21f, -0.1f)).Scl(0.6f));
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Cena.AddUI(new UI(Content, "UI\\vida4" /*+ (i + 1)*/, new Vector2(2.1f + i * 0.04f, -0.153f)).Scl(0.02f));//y=-0.153
+                    }
                     for (int i = 0; i < Cena.player.Vida; i++)
                     {
-                        Cena.AddSprite(new UI(Content, "UI\\vida4" /*+ (i + 1)*/, new Vector2(2.1f + i * 0.04f, -0.153f)).Scl(0.02f));//y=-0.153
                         Cena.AddUI(new UI(Content, "UI\\vida5versao2" /*+ (i + 1)*/, new Vector2(2.1f + i * 0.04f, -0.153f)).Scl(0.03f));
                     }
+                    
                 }
             }
             
