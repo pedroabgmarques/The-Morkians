@@ -90,15 +90,15 @@ namespace TDJ_ProjectoFinal.entidades
             if (currentKeyboardState.IsKeyDown(Keys.W)) 
 
             {
-                
+                if (this.position.Y + this.size.Y / 2 < Camera.GetTarget().Y + Camera.GetWorldHeight() / 2)
                     this.position.Y += speed;
 
             }
             //Se pressionado baixo
             if (currentKeyboardState.IsKeyDown(Keys.S)) 
             {
-
-                this.position.Y -= speed;
+                if (-this.position.Y + this.size.Y / 2 < Camera.GetTarget().Y + Camera.GetWorldHeight() / 2)
+                    this.position.Y -= speed;
 
             }
             //Se pressioando direita
@@ -270,6 +270,7 @@ namespace TDJ_ProjectoFinal.entidades
                 Camera.addShake(500);
                 this.scene.playerKilled = true;
                 this.scene.ClearUI();
+               
                 this.Destroy();
             }
 

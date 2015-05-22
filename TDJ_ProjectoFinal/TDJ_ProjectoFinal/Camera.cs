@@ -17,6 +17,8 @@ namespace TDJ_ProjectoFinal
         static private Vector2 shake;
         static private int shakeAmount;
         public static float velocidadegeral;
+        public static float worldHeight;
+
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
             Camera.gDevManager = gdm;
@@ -31,6 +33,11 @@ namespace TDJ_ProjectoFinal
         public static Vector2 GetTarget()
         {
             return Camera.target;
+        }
+
+        public static float GetWorldHeight()
+        {
+            return Camera.gDevManager.PreferredBackBufferHeight * worldWidth / Camera.gDevManager.PreferredBackBufferWidth;
         }
 
         static public void addShake(int valor)

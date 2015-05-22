@@ -28,6 +28,7 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
+
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

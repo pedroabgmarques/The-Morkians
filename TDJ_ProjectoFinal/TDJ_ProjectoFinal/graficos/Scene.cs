@@ -118,6 +118,9 @@ namespace TDJ_ProjectoFinal
             {
                 this.player = null;
                 this.playerKilled = true;
+                som.fade(GameState.Nivel1);
+                som.fade(GameState.Nivel2);
+                som.fade(GameState.Nivel3);
             }
             
         }

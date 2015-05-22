@@ -12,23 +12,25 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
+
+    public enum GameState
+    {
+        Menu,
+        Bridge0,
+        Nivel1,
+        Bridge1,
+        Nivel2,
+        Bridge2,
+        Nivel3,
+        End
+    }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Game
     {
 
-        enum GameState
-        {
-            Menu,
-            Bridge0,
-            Nivel1,
-            Bridge1,
-            Nivel2,
-            Bridge2,
-            Nivel3,
-            End
-        }
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -89,7 +91,7 @@ namespace TDJ_ProjectoFinal
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
-            LoadLevel(GameState.Nivel1);
+            LoadLevel(GameState.Menu);
             
         }
 
@@ -727,11 +729,11 @@ namespace TDJ_ProjectoFinal
             // conjunto de ddefesas do nivel 2
             // metrelhadoras
             //inferiores
-            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, -1.35f)));
-            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.35f)));
-            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 10f, -1.00f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X, -1.20f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 0.6f, -1.20f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 10f, -0.90f)));
 
-            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.19f)));
+            Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 14f, -1.09f)));
 
             Cena.AddSprite(new Defence(Content, "turret", TipoDefesa.Metrelhadora).Scl(0.6f).At(new Vector2(player.position.X + 15.5f, -1.10f)));
 

@@ -89,6 +89,7 @@ namespace TDJ_ProjectoFinal
             if (musicaMenuInstance != null) musicaMenuInstance.Stop();
             if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
             if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
+            if (musicaNivel3Instance != null) musicaNivel3Instance.Stop();
             if (musicaBridge0 == null)
             {
                 musicaBridge0 = content.Load<SoundEffect>("som\\menu");
@@ -115,14 +116,66 @@ namespace TDJ_ProjectoFinal
             
             musicaNivel1Instance = musicaNivel1.CreateInstance();
 
+            musicaNivel1Instance.Pitch = 0;
             musicaNivel1Instance.Volume = 0.5f;
             musicaNivel1Instance.Play();
+        }
+
+        public static void fade(GameState gameState)
+        {
+            float amount = 0.00005f;
+            for (int i = 0; i < 3000; i++)
+            {
+                switch (gameState)
+                {
+                    
+                    case GameState.Nivel1:
+                        if (musicaNivel1Instance != null)
+                        {
+                            if (musicaNivel1Instance.Pitch - amount > -1)
+                            {
+                                musicaNivel1Instance.Pitch -= amount;
+                               
+                            }
+                        }
+                        
+                        break;
+                    
+                    case GameState.Nivel2:
+                        if (musicaNivel2Instance != null)
+                        {
+                            if (musicaNivel2Instance.Pitch - amount > -1)
+                            {
+                                musicaNivel2Instance.Pitch -= amount;
+                                
+                            }
+                        }
+                        break;
+                    
+                    case GameState.Nivel3:
+                        if (musicaNivel3Instance != null)
+                        {
+                            if (musicaNivel3Instance.Pitch - amount > -1)
+                            {
+                                musicaNivel3Instance.Pitch -= amount;
+                               
+                            }
+                        }
+                        break;
+                    
+                    default:
+                        break;
+                }
+                
+                
+            }
         }
 
         public static void playMusicaNivel2()
         {
             if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
             if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
+            if (musicaBridge0Instance != null) musicaBridge0Instance.Stop();
 
             if (musicaNivel2 == null)
             {
@@ -131,7 +184,8 @@ namespace TDJ_ProjectoFinal
             }
             
             musicaNivel2Instance = musicaNivel2.CreateInstance();
-            
+
+            musicaNivel2Instance.Pitch = 0;
             musicaNivel2Instance.Volume = 0.5f;
             musicaNivel2Instance.Play();
         }
@@ -140,6 +194,7 @@ namespace TDJ_ProjectoFinal
         {
             if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
             if (musicaNivel3Instance != null) musicaNivel3Instance.Stop();
+            if (musicaBridge0Instance != null) musicaBridge0Instance.Stop();
 
             if (musicaNivel3 == null)
             {
@@ -149,6 +204,7 @@ namespace TDJ_ProjectoFinal
 
             musicaNivel3Instance = musicaNivel3.CreateInstance();
 
+            musicaNivel3Instance.Pitch = 0;
             musicaNivel3Instance.Volume = 0.5f;
             musicaNivel3Instance.Play();
         }
