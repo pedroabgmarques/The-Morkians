@@ -90,6 +90,8 @@ namespace TDJ_ProjectoFinal
             timerTextos = 0;
             texto = new KeyValuePair<string, Vector2>("", Vector2.Zero);
             textoBridge1 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
+            textoBridge2 = new KeyValuePair<string, Vector2>("", Vector2.Zero);
+            textoEnd = new KeyValuePair<string, Vector2>("", Vector2.Zero);
 
             LoadLevel(GameState.Menu);
             
@@ -409,6 +411,8 @@ namespace TDJ_ProjectoFinal
                     case GameState.Nivel2:
                         break;
                     case GameState.Bridge2:
+                        LoadLevel(GameState.Nivel3);
+                        Camera.velocidadegeral = 0.007f;
                         break;
                     case GameState.Nivel3:
                         Camera.velocidadegeral = 0.007f;
