@@ -17,7 +17,6 @@ namespace TDJ_ProjectoFinal
         static private Vector2 shake;
         static private int shakeAmount;
         public static float velocidadegeral;
-        public static float worldHeight;
 
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
