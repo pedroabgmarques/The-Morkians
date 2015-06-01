@@ -11,21 +11,48 @@ namespace TDJ_ProjectoFinal.graficos
 {
     public class Sprite
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasCollisions { protected set; get; }
-
+        /// <summary>
+        /// Textura da imagem
+        /// </summary>
         public Texture2D image;
+        /// <summary>
+        /// Posicao da imagem
+        /// </summary>
         public Vector2 position;
+        /// <summary>
+        /// Raio da bounding box
+        /// </summary>
         protected float radius; // raio da "bounding box"
+        /// <summary>
+        /// Tamanho da sprite
+        /// </summary>
         public Vector2 size;
+        /// <summary>
+        /// rotação da sprite
+        /// </summary>
         protected float rotation;
+        /// <summary>
+        /// Cena da sprite
+        /// </summary>
         protected Scene scene;
+        /// <summary>
+        /// 
+        /// </summary>
         public Vector2 pixelsize;
         protected Rectangle? source = null;
         protected Color[] pixels;
         protected ContentManager cManager;
 
         public SpriteEffects spriteEffects;
-
+        /// <summary>
+        /// Construtor da classe Sprite
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
         public Sprite(ContentManager contents, String assetName)
         {
             this.cManager = contents;
@@ -53,7 +80,9 @@ namespace TDJ_ProjectoFinal.graficos
 
             return this.PixelTouches(other, out collisionPoint);
         }
-
+        /// <summary>
+        /// Activa colisoes num objecto
+        /// </summary>
         public virtual void EnableCollisions()
         {
             this.HasCollisions = true;
@@ -128,12 +157,18 @@ namespace TDJ_ProjectoFinal.graficos
             }
             return touches;
         }
-
+        /// <summary>
+        /// Faz o scale da sprite
+        /// </summary>
+        /// <param name="scale">Valor para scale</param>
         public virtual void Scale(float scale)
         {
             this.size *= scale;
         }
-
+        /// <summary>
+        /// Atribui a sprite á cena
+        /// </summary>
+        /// <param name="s">Cena a ser atibuida</param>
         public virtual void SetScene(Scene s)
         {
             this.scene = s;
