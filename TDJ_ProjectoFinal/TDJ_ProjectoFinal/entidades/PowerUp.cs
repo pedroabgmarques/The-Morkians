@@ -47,7 +47,7 @@ namespace TDJ_ProjectoFinal.entidades
         /// <summary>
         /// Update dos power ups
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Instancia do gametime</param>
         public override void Update(GameTime gameTime)
         {
 

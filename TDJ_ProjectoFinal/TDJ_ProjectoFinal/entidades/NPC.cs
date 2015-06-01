@@ -188,7 +188,7 @@ namespace TDJ_ProjectoFinal.entidades
         /// <summary>
         /// Define a posiçao do NPC.
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="p">Posicao do NPC</param>
         /// <returns></returns>
         new public NPC At(Vector2 p)
         {

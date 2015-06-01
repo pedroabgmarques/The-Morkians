@@ -50,7 +50,7 @@ namespace TDJ_ProjectoFinal.entidades
         /// <summary>
         /// Retorna o tipo de bala em uso pelo Player.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Tipo de bala</returns>
         public TipoBala GetTipoBala() 
         {
             return tipobala;
