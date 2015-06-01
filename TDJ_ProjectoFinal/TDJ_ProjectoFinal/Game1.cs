@@ -12,7 +12,9 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
-
+    /// <summary>
+    /// Nivel em que o jogo se encontra.
+    /// </summary>
     public enum GameState
     {
         Menu,
@@ -76,7 +78,7 @@ namespace TDJ_ProjectoFinal
             base.Initialize();
         }
 
-
+       
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -379,7 +381,10 @@ namespace TDJ_ProjectoFinal
             
         }
 
-       
+       /// <summary>
+       /// faz o update ao jogo em cada frame.
+       /// </summary>
+       /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
             
@@ -529,7 +534,10 @@ namespace TDJ_ProjectoFinal
             
         }
 
-      
+        /// <summary>
+        /// Desenha os elementos do Jogo.
+        /// </summary>
+        /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -693,7 +701,10 @@ namespace TDJ_ProjectoFinal
             base.Draw(gameTime);
         }
 
-    
+        /// <summary>
+        /// Recebe por parametro a cena e adiciona novos enimigos ao enemyManager
+        /// </summary>
+        /// <param name="cena"></param>
         public void newEnemyWave(Scene cena)
         {
 
@@ -727,7 +738,9 @@ namespace TDJ_ProjectoFinal
             
             
         }
-
+        /// <summary>
+        /// Adiciona á lista de sprites da cena elementos do tipo Defense - turrets do segundo nivel.
+        /// </summary>
         public void Defesas()
         {
             // conjunto de ddefesas do nivel 2

@@ -10,6 +10,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TDJ_ProjectoFinal
 {
+    /// <summary>
+    /// A classe Scene cria uma nova cena, cria listas para armezenar sprites genericas,powerups,enimigos,explosoes,elementos de UI e
+    /// uma queue de textos.
+    /// playerKilled - player morre fica true, else fica false.enemiesKilled - conta os enimigos abatidos;active - diz nos se a cena está activa ou nao;
+    /// bossKilled - diz nos se boss já foi eliminado;bossLevelClear - diz nos se o nivel do boss ja foi completado.
+    /// </summary>
     public class Scene
     {
         public SpriteBatch SpriteBatch { get; private set; }
@@ -40,7 +46,9 @@ namespace TDJ_ProjectoFinal
             this.fundoTexto = false;
             
         }
-
+        /// <summary>
+        /// Limpa as lista de sprites,powerups,enimigos,explosoes, textos e UI. Usa o garbage collector para libertar memoria.
+        /// </summary>
         public void Clear()
         {
             this.sprites.Clear();
@@ -51,47 +59,71 @@ namespace TDJ_ProjectoFinal
             this.UIs.Clear();
             GC.Collect();
         }
-
+        /// <summary>
+        /// Limpa a lista de UI.
+        /// </summary>
         public void ClearUI()
         {
             this.UIs.Clear();
         }
-
+        /// <summary>
+        /// Recebe por parametro uma string e um posicao e adiciona-o á queue.
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <param name="posicao"></param>
         public void AddTexto(string texto, Vector2 posicao)
         {
             textos.Enqueue(new KeyValuePair<string, Vector2>(texto, posicao));
         }
-
+        /// <summary>
+        /// Este metodo devolve os textos que estão na Queue
+        /// </summary>
+        /// <returns></returns>
         public KeyValuePair<string, Vector2> GetTexto()
         {
             return textos.Dequeue();
             
         }
-
+        /// <summary>
+        /// recebe por parametro uma sprite, adiciona-a á lista de sprites e atribui a sprite á cena
+        /// </summary>
+        /// <param name="s"></param>
         public void AddSprite(Sprite s)
         {
             this.sprites.Add(s);
             s.SetScene(this);
         }
-
+        /// <summary>
+        /// Recebe por parametro um powerUp, adiciona-o á lista de power ups e atribui a sprite á cena.
+        /// </summary>
+        /// <param name="s"></param>
         public void AddPowerUp(PowerUp s)
         {
             this.powerUps.Add(s);
             s.SetScene(this);
         }
-
+        /// <summary>
+        /// Recebe uma sprite por parametrom adiciona-a á lista de enimigos e atribui a sprite á cena.
+        /// </summary>
+        /// <param name="s"></param>
         public void AddInimigo(Sprite s)
         {
             this.inimigos.Add(s);
             s.SetScene(this);
         }
-
+        /// <summary>
+        /// Recebe uma animated sprite por parametro, adiciona-a á lista de explosões e atrbui a sprite ´cena.
+        /// </summary>
+        /// <param name="s"></param>
         public void AddExplosao(AnimatedSprite s)
         {
             this.explosoes.Add(s);
             s.SetScene(this);
         }
-
+        /// <summary>
+        /// Recebe uma sprite por parametro, adiciona-a á lista de UI's e atribui a sprite á cena.
+        /// </summary>
+        /// <param name="s"></param>
         public void AddUI(Sprite s)
         {
             this.UIs.Add(s);
@@ -99,7 +131,11 @@ namespace TDJ_ProjectoFinal
         }
 
         
-
+        /// <summary>
+        /// Recebe uma sprite por parametro e dependendo do tipo, remove-a da respetiva lista.
+        /// No caso de o jogador morrer faz também o fade out da musica.
+        /// </summary>
+        /// <param name="s"></param>
         public void RemoveSprite(Sprite s)
         {
             this.sprites.Remove(s);
@@ -124,7 +160,10 @@ namespace TDJ_ProjectoFinal
             }
             
         }
-
+        /// <summary>
+        /// O metodo update percorre todas as listas e faz o update aos objectos.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             foreach (var sprite in sprites.ToList())
@@ -149,7 +188,10 @@ namespace TDJ_ProjectoFinal
             }
         
         }
-
+        /// <summary>
+        /// O metodo Draw percorre todas as listas e desenha-as
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
         {
             if (sprites.Count > 0)
@@ -202,7 +244,9 @@ namespace TDJ_ProjectoFinal
             }
             return collisionExists;
         }
-
+        /// <summary>
+        /// Este metodo faz o dispose de todas as sprites presentes na lista.
+        /// </summary>
         public void Dispose()
         {
             foreach (var sprite in sprites)

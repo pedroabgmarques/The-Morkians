@@ -8,6 +8,9 @@ using System.Text;
 
 namespace TDJ_ProjectoFinal.entidades
 {
+    /// <summary>
+    /// Define o tipo de PowerUp.Mais vida ou melhoramento das armas
+    /// </summary>
        public enum TipoPowerUp
         {
             Vida,
@@ -19,7 +22,15 @@ namespace TDJ_ProjectoFinal.entidades
         public Rectangle boundingBox;
         Vector2 worldPixels;
         public TipoPowerUp tipoPowerUp {get; set;}
-
+        /// <summary>
+        /// Construtor da classe PowerUp, herda de Flying Entity.
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
+        /// <param name="tipoPowerUp"></param>
+        /// <param name="direcao"></param>
+        /// <param name="Scl"></param>
+        /// <param name="posY"></param>
         public PowerUp(ContentManager contents, string assetName,TipoPowerUp tipoPowerUp, int direcao, float Scl, float posY) : base(contents, assetName)
         {
             base.spriteEffects = direcao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;

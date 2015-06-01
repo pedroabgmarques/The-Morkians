@@ -12,7 +12,9 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
-
+    /// <summary>
+    /// Tipo de bala do Player
+    /// </summary>
     public enum TipoBala
     {
         Simples,
@@ -45,12 +47,20 @@ namespace TDJ_ProjectoFinal.entidades
         private int contadorMisseis;
         private float maxSpeed = Camera.velocidadegeral*3;
 
-
+        /// <summary>
+        /// Retorna o tipo de bala em uso pelo Player.
+        /// </summary>
+        /// <returns></returns>
         public TipoBala GetTipoBala() 
         {
             return tipobala;
         }
-
+        /// <summary>
+        /// Construtor da classe Player.
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
+        /// <param name="tipobala"></param>
         public Player(ContentManager contents, string assetName,TipoBala tipobala) 
             : base(contents, assetName){
                 contador = 0;

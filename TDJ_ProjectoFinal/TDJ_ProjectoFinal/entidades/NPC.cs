@@ -27,6 +27,14 @@ namespace TDJ_ProjectoFinal.entidades
         private float shootTime;
         private float posY;
         Random random;
+        /// <summary>
+        /// Construtor da classe NPC.Recebe por parametro o tipo de enimigo(tipoNave)
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
+        /// <param name="tipoNave"></param>
+        /// <param name="Scl"></param>
+        /// <param name="random"></param>
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, float Scl, Random random) 
             : base(contents, assetName)
         {
@@ -177,7 +185,11 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
-
+        /// <summary>
+        /// Define a posiçao do NPC.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         new public NPC At(Vector2 p)
         {
             this.SetPosition(p);
