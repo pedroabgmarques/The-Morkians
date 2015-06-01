@@ -9,23 +9,50 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal.entidades
 {
+    /// <summary>
+    /// Faz a gestão dos NPC's - cria instâncias aquando do load e reciclas durante o gameplay, para evitar criar
+    /// instâncias em runtime
+    /// </summary>
     public static class EnemyManager
     {
 
         private static Texture2D kamikaze, bombardeiro, caça;
+        /// <summary>
+        /// Lista de kamikazes ativos no jogo
+        /// </summary>
         public static List<NPC> kamikazesVivos;
+        /// <summary>
+        /// Lista de kamikazes que não estão a ser usados pelo jogo
+        /// </summary>
         public static List<NPC> kamikazesMortos;
 
+        /// <summary>
+        /// Lista de bombardeiros ativos no jogo
+        /// </summary>
         public static List<NPC> bombardeirosVivos;
+        /// <summary>
+        /// Lista de bombardeiros que não estão a ser usados pelo jogo
+        /// </summary>
         public static List<NPC> bombardeirosMortos;
 
+        /// <summary>
+        /// Lista de caças ativos no jogo
+        /// </summary>
         public static List<NPC> caçasVivos;
+        /// <summary>
+        /// Lista de caças que não estão a ser usados pelo jogo
+        /// </summary>
         public static List<NPC> caçasMortos;
 
         private static NPC npcTemp;
 
         private static ContentManager content;
 
+        /// <summary>
+        /// Carrega os assets necessários e cria instâncias de NPC's que posteriormente são recicladas
+        /// </summary>
+        /// <param name="contents">Instância de ContentManager</param>
+        /// <param name="random">Instâcia de random</param>
         public static void LoadContent(ContentManager contents, Random random)
         {
             content = contents;
@@ -62,6 +89,10 @@ namespace TDJ_ProjectoFinal.entidades
         }
 
         
+        /// <summary>
+        /// Recila um kamikaze que é necessário para o jogo
+        /// </summary>
+        /// <returns>Instância de NPC do tipo kamikaze</returns>
         public static NPC addKamikaze()
         {
             npcTemp = kamikazesMortos.First();
@@ -70,6 +101,10 @@ namespace TDJ_ProjectoFinal.entidades
             return npcTemp;
         }
 
+        /// <summary>
+        /// Recila um bombardeiro que é necessário para o jogo
+        /// </summary>
+        /// <returns>Instância de NPC do tipo bombardeiro</returns>
         public static NPC addBombardeiro()
         {
             npcTemp = bombardeirosMortos.First();
@@ -78,6 +113,10 @@ namespace TDJ_ProjectoFinal.entidades
             return npcTemp;
         }
 
+        /// <summary>
+        /// Recila um caça que é necessário para o jogo
+        /// </summary>
+        /// <returns>Instância de NPC do tipo caça</returns>
         public static NPC addCaça()
         {
             npcTemp = caçasMortos.First();
@@ -86,6 +125,10 @@ namespace TDJ_ProjectoFinal.entidades
             return npcTemp;
         }
 
+        /// <summary>
+        /// Recicla um NPC que já não é necessário para o jogo
+        /// </summary>
+        /// <param name="enemy"></param>
         public static void removeEnemy(NPC enemy)
         {
 
