@@ -10,28 +10,64 @@ using TDJ_ProjectoFinal.graficos;
 namespace TDJ_ProjectoFinal.entidades
 {
 
+    /// <summary>
+    /// Tipo de missil - em frente ou teleguiado
+    /// </summary>
     public enum TipoMissil
     {
+        /// <summary>
+        /// Apenas se desloca em frente
+        /// </summary>
         EmFrente,
+        /// <summary>
+        /// Desloca-se em direção a um alvo
+        /// </summary>
         Teleguiado
     }
 
+    /// <summary>
+    /// Descreve um missil - simples ou teleguiado
+    /// </summary>
     public class Missil : FlyingEntity
     {
 
+        /// <summary>
+        /// Tipo de missil - simples ou teleguiado
+        /// </summary>
         public TipoMissil tipoMissil { get; set; }
+        /// <summary>
+        /// Animação de jato do missil
+        /// </summary>
         public AnimatedSprite thrust;
         private Vector2 thrustPosition;
+        /// <summary>
+        /// Direção no ecrã em que o missil se move
+        /// </summary>
         public int direccao;
+        /// <summary>
+        /// Alvo a atingir
+        /// </summary>
         public FlyingEntity alvo;
         bool passouPeloAlvo;
         Vector2 direction = Vector2.UnitX;
+        /// <summary>
+        /// Entidade que deu origem ao missil
+        /// </summary>
         public OrigemBala origemBala;
         private float aceleracao;
         private float speedInicial;
 
 
 
+        /// <summary>
+        /// Construtor do Missil
+        /// </summary>
+        /// <param name="contents">Instância de ContenteManager</param>
+        /// <param name="assetName">Nome da textura a utilizar</param>
+        /// <param name="tipoMissil">Tipo de missil - simples ou teleguiado</param>
+        /// <param name="direccao">Direção do ecrã em que o missil se desloca</param>
+        /// <param name="origemBala">Entidade que originou o missil</param>
+        /// <param name="alvo">Alvo a atingir</param>
         public Missil(ContentManager contents, string assetName, TipoMissil tipoMissil, int direccao, OrigemBala origemBala, FlyingEntity alvo = null) 
             : base(contents, assetName)
         {
@@ -47,6 +83,10 @@ namespace TDJ_ProjectoFinal.entidades
             this.EnableCollisions();
         }
 
+        /// <summary>
+        /// Atualiza o estado do missil
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Update(GameTime gameTime)
         {
             this.speed = Camera.velocidadegeral * 5;
@@ -100,6 +140,9 @@ namespace TDJ_ProjectoFinal.entidades
             }
         }
 
+        /// <summary>
+        /// Atualiza a animação de jato do missil
+        /// </summary>
         public void UpdateThrust()
         {
             if (thrust == null)
