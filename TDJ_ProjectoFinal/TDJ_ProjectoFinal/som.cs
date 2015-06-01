@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TDJ_ProjectoFinal
 {
+    /// <summary>
+    /// Classe responsável por todos os efeitos sonóros do jogo
+    /// </summary>
     static class som
     {
         private static SoundEffect tiro;
@@ -25,12 +28,17 @@ namespace TDJ_ProjectoFinal
         private static SoundEffectInstance musicaNivel2Instance;
         private static SoundEffect musicaNivel3;
         private static SoundEffectInstance musicaNivel3Instance;
-
+        /// <summary>
+        /// Método que inicializa um efeito sonóro
+        /// </summary>
+        /// <param name="contentManager"></param>
         public static void Initialize(ContentManager contentManager)
         {
             content = contentManager;
         }
-
+        /// <summary>
+        /// Método responsável pela reprodução sonóra do tiro
+        /// </summary>
         public static void playTiro()
         {
             if (tiro == null)
@@ -40,7 +48,9 @@ namespace TDJ_ProjectoFinal
                 tiro.Play(0.1f, 1, 0f);
             
         }
-
+        /// <summary>
+        /// Método responsável pela reprodução sonóra do tiro dos inimigos
+        /// </summary>
         public static void playTiroEnimigo()
         {
             if (tiro == null)
@@ -49,6 +59,9 @@ namespace TDJ_ProjectoFinal
             }
             tiro.Play(0.1f, 1, 0f);
         }
+        /// <summary>
+        /// Método responsável pela reprodução sonóra das explosões
+        /// </summary>
 
         public static void playExplosao()
         {
@@ -60,6 +73,10 @@ namespace TDJ_ProjectoFinal
             explosao.Play(0.1f, 1, 0f);
         }
 
+        /// <summary>
+        /// Método responsável pela reprodução sonóra dos misseis
+        /// </summary>
+
         public static void playRocket()
         {
             if (rocket == null)
@@ -69,6 +86,9 @@ namespace TDJ_ProjectoFinal
             }
             rocket.Play(0.1f, 1, 0f);
         }
+        /// <summary>
+        /// Método responsável pela reprodução da musica do menu
+        /// </summary>
 
         public static void playMusicaMenu()
         {
@@ -83,7 +103,9 @@ namespace TDJ_ProjectoFinal
             }
             musicaMenuInstance.Play();
         }
-
+        /// <summary>
+        /// Método responsável pela reprodução da musica do filme 1
+        /// </summary>
         public static void playMusicaBridge0()
         {
             if (musicaMenuInstance != null) musicaMenuInstance.Stop();
@@ -101,6 +123,9 @@ namespace TDJ_ProjectoFinal
             }
             musicaBridge0Instance.Play();
         }
+        /// <summary>
+        /// Método responsável pela reprodução da musica do nivel 1
+        /// </summary>
 
         public static void playMusicaNivel1()
         {
@@ -170,7 +195,9 @@ namespace TDJ_ProjectoFinal
                 
             }
         }
-
+        /// <summary>
+        /// Método responsável pela reprodução da musica do nivel 2
+        /// </summary>
         public static void playMusicaNivel2()
         {
             if (musicaNivel1Instance != null) musicaNivel1Instance.Stop();
@@ -189,7 +216,9 @@ namespace TDJ_ProjectoFinal
             musicaNivel2Instance.Volume = 0.5f;
             musicaNivel2Instance.Play();
         }
-
+        /// <summary>
+        /// Método responsável pela reprodução da musica do nivel 3
+        /// </summary>
         public static void playMusicaNivel3()
         {
             if (musicaNivel2Instance != null) musicaNivel2Instance.Stop();
