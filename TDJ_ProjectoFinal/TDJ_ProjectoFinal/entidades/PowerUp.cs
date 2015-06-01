@@ -25,12 +25,12 @@ namespace TDJ_ProjectoFinal.entidades
         /// <summary>
         /// Construtor da classe PowerUp, herda de Flying Entity.
         /// </summary>
-        /// <param name="contents"></param>
-        /// <param name="assetName"></param>
-        /// <param name="tipoPowerUp"></param>
-        /// <param name="direcao"></param>
-        /// <param name="Scl"></param>
-        /// <param name="posY"></param>
+        /// <param name="contents">ContentManager</param>
+        /// <param name="assetName">Nome da asset na pasta Content</param>
+        /// <param name="tipoPowerUp">Define o tipo de Power UP</param>
+        /// <param name="direcao">Define a direcao do Power Up</param>
+        /// <param name="Scl">Faz o scale da sprite</param>
+        /// <param name="posY">Define a posicao y da sprite</param>
         public PowerUp(ContentManager contents, string assetName,TipoPowerUp tipoPowerUp, int direcao, float Scl, float posY) : base(contents, assetName)
         {
             base.spriteEffects = direcao > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -44,7 +44,10 @@ namespace TDJ_ProjectoFinal.entidades
             this.tipoPowerUp = tipoPowerUp;
             this.EnableCollisions();
         }
-
+        /// <summary>
+        /// Update dos power ups
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
 
