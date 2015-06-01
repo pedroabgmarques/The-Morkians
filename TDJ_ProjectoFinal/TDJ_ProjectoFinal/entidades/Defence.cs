@@ -11,24 +11,52 @@ namespace TDJ_ProjectoFinal.entidades
 {
     
 
+    /// <summary>
+    /// Tipo de defesa
+    /// </summary>
     public enum TipoDefesa
     {
+        /// <summary>
+        /// Dispara uma rajada de tiros consecutivos
+        /// </summary>
         Metrelhadora,
+        /// <summary>
+        /// Dispara apenas um tiro de tempo a tempo
+        /// </summary>
         Laser
     }
+
+    /// <summary>
+    /// Descreve uma defesa do nivel 2, tipo turret
+    /// </summary>
     public class Defence : Sprite
     {
+        /// <summary>
+        /// Tipo de defesa
+        /// </summary>
         public TipoDefesa tipodefesa { get; set; }
         private float shootTimeM ;
         private float shootTimeL;
         private Vector2 direction = Vector2.Zero;
         private Vector2 posBala;
         private float contadordisparo ;
+        /// <summary>
+        /// Rotação da turret
+        /// </summary>
         public float rot;
+        /// <summary>
+        /// Tempo de disparo
+        /// </summary>
         public float shootTimeLaser;
 
 
-
+        /// <summary>
+        /// Construtor da classe Defesa
+        /// </summary>
+        /// <param name="contents">Instância de ContentManager</param>
+        /// <param name="assetName">Nome da textura a utilizar</param>
+        /// <param name="tipodefesa">Tipo de defesa</param>
+        /// <param name="shootTimeLaser">Tempo de disparo</param>
         public Defence(ContentManager contents, string assetName, TipoDefesa tipodefesa, float shootTimeLaser=0)
             : base(contents, assetName) 
         {
@@ -60,6 +88,11 @@ namespace TDJ_ProjectoFinal.entidades
                 return -1f;
             }
         }
+
+        /// <summary>
+        /// Atualiza uma defesa
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Update(GameTime gameTime)
         {
             switch (this.tipodefesa) 
@@ -130,6 +163,10 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Desenha uma defesa
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

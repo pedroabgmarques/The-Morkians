@@ -9,12 +9,22 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
+    /// <summary>
+    /// Disponibiliza métodos para verificar colisões entre vários tipos de sprites
+    /// </summary>
     public static class Colisoes
     {
 
         static private Sprite collided;
         static private Vector2 collisionPoint;
 
+        /// <summary>
+        /// Verifica a existência de colisões pixel a pixel
+        /// </summary>
+        /// <param name="cManager">Instância de ContentManager</param>
+        /// <param name="scene">Instância de scene</param>
+        /// <param name="sprite">Sprite a verificar</param>
+        /// <param name="origemBala">Entidade que deu origem à bala</param>
         static public void Colision(ContentManager cManager, Scene scene, Sprite sprite, OrigemBala origemBala)
         {
             //Colisao com enimigos
