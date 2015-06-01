@@ -17,13 +17,28 @@ namespace TDJ_ProjectoFinal.entidades
     /// </summary>
     public enum TipoBala
     {
+        /// <summary>
+        /// Tipo de bala simples
+        /// </summary>
         Simples,
+        /// <summary>
+        /// Tipo de ala duplo
+        /// </summary>
         Duplo,
+        /// <summary>
+        /// Tipo de bala triplo
+        /// </summary>
         Triplo,
+        /// <summary>
+        /// Tipo de bala quadruplo
+        /// </summary>
         Quadruplo
 
     }
 
+    /// <summary>
+    /// Define um jogador
+    /// </summary>
     public class Player : FlyingEntity
     {
         
@@ -34,15 +49,29 @@ namespace TDJ_ProjectoFinal.entidades
         private int contador;
         private ContentManager contents;
         private float shootTime;
+        /// <summary>
+        /// Vida do jogador
+        /// </summary>
         public int Vida;
+        /// <summary>
+        /// Pontuação do jogador
+        /// </summary>
         public int pontuacao;
+        /// <summary>
+        /// Última posição conhecida
+        /// </summary>
         public Vector2 lastposition;
-
+        /// <summary>
+        /// Boundingbox à volta do jogador
+        /// </summary>
         public Rectangle boundingBox;
         
         Sprite collided;
         Vector2 collisionPoint;
         
+        /// <summary>
+        /// Tipo de balas que o jogador dispara
+        /// </summary>
         public TipoBala tipobala;
         private int contadorMisseis;
         private float maxSpeed = Camera.velocidadegeral*3;
@@ -76,7 +105,10 @@ namespace TDJ_ProjectoFinal.entidades
         }
 
         
-
+        /// <summary>
+        /// Atualiza o estado do jogador
+        /// </summary>
+        /// <param name="gameTime">Instância de gametime</param>
         public override void Update(GameTime gameTime)
         {
             
@@ -294,6 +326,10 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Devolve a velocidade do jogador como um vetor
+        /// </summary>
+        /// <returns>Vetor de velocidade do jogador</returns>
         public Vector2 getVectorVelocity() 
         {
             return Vector2.Subtract(position, lastposition);
