@@ -11,7 +11,11 @@ namespace TDJ_ProjectoFinal.entidades
 {
     
     
-
+    /// <summary>
+    /// Classe "Boss"
+    /// Esta classe diz respeito a todo o comportamento do "inimigo final" do jogo. 
+    /// É composta pelo construtor e pelo métudo update
+    /// </summary>
     class Boss:AnimatedSprite
     {
 
@@ -21,6 +25,17 @@ namespace TDJ_ProjectoFinal.entidades
         int contador,contador2;
         bool missil1Lancado = false;
         private float timeAfterKilled;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="content">Instâcia de ContentManager</param>
+        /// <param name="filename">nome da sprite</param>
+        /// <param name="nrows">número de linhas da spritesheet</param>
+        /// <param name="ncols">número de colunas da spritesheet</param>
+        /// <param name="loop">varivável responsavel pela ordem de repetição de uma spritesheet</param>
+        /// <param name="position">posição da spritesheet</param>
+        /// <param name="scale">relação entre o tamanho da sprite e a largura do mundo</param>
         public Boss(ContentManager content,string filename, int nrows, int ncols, bool loop, Vector2 position, float scale):
             base(content,filename,nrows,ncols,loop,position,scale)
         {
@@ -32,11 +47,14 @@ namespace TDJ_ProjectoFinal.entidades
             this.Vida = 700;
             this.shootTime = 7f / Camera.velocidadegeral;
         }
-        public float GetLifeBoss() 
-        {
-            return Vida;
-        }
 
+        /// <summary>
+        /// Métudo Update
+        /// Atualiza constantemente a posiçao do "boss" assim como a sua velocidade
+        /// Verifica a quantidade de vida e caso seja igual ou inferior a zero desencadeia uma serie de explosões e em seguida destoi-se
+        /// O delay entre as explosões e a dua destruição é controlado atravez de um timer.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             posY += Camera.velocidadegeral * 2.5f;
