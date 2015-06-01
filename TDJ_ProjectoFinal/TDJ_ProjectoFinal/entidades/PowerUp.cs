@@ -9,18 +9,34 @@ using System.Text;
 namespace TDJ_ProjectoFinal.entidades
 {
     /// <summary>
-    /// Define o tipo de PowerUp.Mais vida ou melhoramento das armas
+    /// Define o tipo de PowerUp - Mais vida ou melhoramento das armas
     /// </summary>
        public enum TipoPowerUp
         {
+           /// <summary>
+           /// Mais vida
+           /// </summary>
             Vida,
+           /// <summary>
+           /// Melhoramento de armas
+           /// </summary>
             Armas
         }
+
+    /// <summary>
+    /// Descreve um powerup que pode ser apanahado pelo jogador e lhe confere uma vantagem
+    /// </summary>
     public class PowerUp : FlyingEntity
     {
         private int direcao;
+        /// <summary>
+        /// Boudingbox do powerup, para verificação de colisões
+        /// </summary>
         public Rectangle boundingBox;
         Vector2 worldPixels;
+        /// <summary>
+        /// Tipo de powerup
+        /// </summary>
         public TipoPowerUp tipoPowerUp {get; set;}
         /// <summary>
         /// Construtor da classe PowerUp, herda de Flying Entity.
