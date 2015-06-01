@@ -8,7 +8,12 @@ using System.Text;
 using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
+<<<<<<< HEAD
+namespace TDJ_ProjectoFinal
+{
+=======
 namespace TDJ_ProjectoFinal{
+>>>>>>> 01b50400078fc77e05e33bb05b959d284833fed0
 
     /// <summary>
     /// Através desta variavel, é nos possivel saber a direção de uma  bala.

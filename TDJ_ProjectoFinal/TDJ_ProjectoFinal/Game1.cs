@@ -12,9 +12,13 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
+<<<<<<< HEAD
+   
+=======
     /// <summary>
     /// Nivel em que o jogo se encontra.
     /// </summary>
+>>>>>>> 01b50400078fc77e05e33bb05b959d284833fed0
     public enum GameState
     {
         /// <summary>
