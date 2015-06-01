@@ -10,23 +10,55 @@ using TDJ_ProjectoFinal.graficos;
 namespace TDJ_ProjectoFinal.entidades
 {
 
+    /// <summary>
+    /// Define o tipo de inimigo
+    /// </summary>
     public enum TipoNave
     {
+        /// <summary>
+        /// Naves pequenas e rápidas
+        /// </summary>
         Interceptor,
+        /// <summary>
+        /// Naves mais pesadas, lasers
+        /// </summary>
         Hunter,
+        /// <summary>
+        /// Bombardeiros - misseis teleguiados
+        /// </summary>
         Bomber,
+        /// <summary>
+        /// Nave-mãe
+        /// </summary>
         Mothership,
     }
 
+    /// <summary>
+    /// Descreve um NPC (inimigo)
+    /// </summary>
     public class NPC : FlyingEntity
     {
 
+        /// <summary>
+        /// Tipo de inimigo
+        /// </summary>
         public TipoNave tipoNave { get; set; }
+        /// <summary>
+        /// Vida do inimigo
+        /// </summary>
         public int Vida;
         int contador;
         private float shootTime;
         private float posY;
         Random random;
+        /// <summary>
+        /// Construtor da classe NPC.Recebe por parametro o tipo de enimigo(tipoNave)
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
+        /// <param name="tipoNave"></param>
+        /// <param name="Scl"></param>
+        /// <param name="random"></param>
         public NPC(ContentManager contents, string assetName, TipoNave tipoNave, float Scl, Random random) 
             : base(contents, assetName)
         {
@@ -66,6 +98,10 @@ namespace TDJ_ProjectoFinal.entidades
             this.Scale(Scl);
         }
 
+        /// <summary>
+        /// Atualiza o estado do NPC
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Update(GameTime gameTime)
         {
             // variavel usada pelo coseno
@@ -177,7 +213,11 @@ namespace TDJ_ProjectoFinal.entidades
             base.Update(gameTime);
         }
 
-
+        /// <summary>
+        /// Define a posiçao do NPC.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         new public NPC At(Vector2 p)
         {
             this.SetPosition(p);
