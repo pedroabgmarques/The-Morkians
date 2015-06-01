@@ -12,7 +12,7 @@ using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
 {
-
+   
     public enum GameState
     {
         Menu,

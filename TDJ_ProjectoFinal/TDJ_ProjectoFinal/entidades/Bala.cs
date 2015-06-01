@@ -9,6 +9,7 @@ using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
+{
 
     /// <summary>
     /// Atravéz desta variavel, é nos possivel saber a direção de uma  bala.
