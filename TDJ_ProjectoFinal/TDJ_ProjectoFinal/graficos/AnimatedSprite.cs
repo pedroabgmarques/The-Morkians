@@ -7,17 +7,45 @@ using System.Text;
 
 namespace TDJ_ProjectoFinal.graficos
 {
+    /// <summary>
+    /// Descreve uma animação
+    /// </summary>
     public class AnimatedSprite : Sprite
     {
         private int ncols, nrows;
         private Point currentFrame;
+        /// <summary>
+        /// FPS da animação
+        /// </summary>
         public float animationInterval = 1f / 60f;
+        /// <summary>
+        /// Temporizador de cada frame
+        /// </summary>
         public float animationTimer = 0f;
+        /// <summary>
+        /// Indica se a animação está em loop
+        /// </summary>
         public bool Loop;
+        /// <summary>
+        /// Tempo até iniciar a animação
+        /// </summary>
         public float delay;
+        /// <summary>
+        /// Tempo decorrido desde a criação da animação (para verificar se se deve iniciar a animação)
+        /// </summary>
         public float timeToExplode;
         
-
+        /// <summary>
+        /// Construtor de nova animação
+        /// </summary>
+        /// <param name="content">Instância de ContentManager</param>
+        /// <param name="filename">Nome da spritesheet a utilizar</param>
+        /// <param name="nrows">Nº de linhas da spritesheet</param>
+        /// <param name="ncols">Nº de colunas da spritesheet</param>
+        /// <param name="loop">Em loop?</param>
+        /// <param name="position">Posição inicial da animação</param>
+        /// <param name="scale">Escala da animação</param>
+        /// <param name="delay">Tempo a decorrer antes do inicio da animação</param>
         public AnimatedSprite(ContentManager content,
             string filename, int nrows, int ncols, bool loop, Vector2 position, float scale,float delay=0) :
             base(content, filename)
@@ -36,6 +64,10 @@ namespace TDJ_ProjectoFinal.graficos
             
 
         }
+
+        /// <summary>
+        /// Passa para o próximo frame da animação
+        /// </summary>
         public void nextFrame()
         {
             if (currentFrame.X < ncols - 1)
@@ -61,6 +93,10 @@ namespace TDJ_ProjectoFinal.graficos
             }
         }
 
+        /// <summary>
+        /// Atualiza o estado de uma animação
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Update(GameTime gameTime)
         {
             timeToExplode += 
@@ -84,6 +120,11 @@ namespace TDJ_ProjectoFinal.graficos
             
             base.Update(gameTime);
         }
+
+        /// <summary>
+        /// Desenha uma animação
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public override void Draw(GameTime gameTime)
         {
             if (timeToExplode >= delay)
@@ -98,6 +139,9 @@ namespace TDJ_ProjectoFinal.graficos
             
         }
 
+        /// <summary>
+        /// Permite que a animação tenha colisões com restantes sprites
+        /// </summary>
         public override void EnableCollisions()
         {
             this.HasCollisions = true;
