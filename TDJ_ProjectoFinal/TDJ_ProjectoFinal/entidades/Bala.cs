@@ -11,15 +11,24 @@ using TDJ_ProjectoFinal.graficos;
 namespace TDJ_ProjectoFinal{
 
     /// <summary>
-    /// Atravéz desta variavel, é nos possivel saber a direção de uma  bala.
-    /// É atravéz dela tambem que são criados os efeitos de power up do jogador.
+    /// Através desta variavel, é nos possivel saber a direção de uma  bala.
+    /// É através dela tambem que são criados os efeitos de power up do jogador.
     /// Em relação à sua origem, estas podem mover-se em frente a 0 graus, a +45graus ou a -45graus. 
     /// </summary>
 
     public enum DireccaoBala 
     {
+        /// <summary>
+        /// Em frente, 0º
+        /// </summary>
         EmFrente,
+        /// <summary>
+        /// 45º
+        /// </summary>
         Cima,
+        /// <summary>
+        /// -45º
+        /// </summary>
         Baixo
     }
 
@@ -33,9 +42,21 @@ namespace TDJ_ProjectoFinal{
     /// </summary>
     public enum OrigemBala
     {
+        /// <summary>
+        /// Morkian inimigo
+        /// </summary>
         inimigo,
+        /// <summary>
+        /// Jogador
+        /// </summary>
         player,
+        /// <summary>
+        /// Boss final
+        /// </summary>
         boss,
+        /// <summary>
+        /// Turrets imóveis
+        /// </summary>
         defesa
     }
    /// <summary>
@@ -47,23 +68,38 @@ namespace TDJ_ProjectoFinal{
     public class Bala : FlyingEntity
     {
        
+        /// <summary>
+        /// Direção do ecrã em que a bala se move (esquerda / direita ou direita / esquerda)
+        /// </summary>
         public int direccao;
+        /// <summary>
+        /// Tipo de bala - em frente, cima, baixo
+        /// </summary>
         public DireccaoBala direccaobala;
+        /// <summary>
+        /// Entidade que originou a bala
+        /// </summary>
         public OrigemBala origemBala;
+        /// <summary>
+        /// Vetor de direção da bala (rotação)
+        /// </summary>
         public Vector2 direction;
+        /// <summary>
+        /// Caso tenha sido disparada por uma turret, turret respetiva
+        /// </summary>
         public Defence parent;
+        
         
         /// <summary>
         ///Construtor da classe "Bala".
         ///É responsavável por todas as variáveis que definem uma bala
-        /// 
         /// </summary>
-        /// <param name="contents"></param>
-        /// <param name="assetName"></param>
-        /// <param name="direccao"></param>
-        /// <param name="origemBala"></param>
-        /// <param name="direccaobala"></param>
-        /// <param name="parent"></param>
+        /// <param name="contents">Instâcia de ContentManager</param>
+        /// <param name="assetName">Nome da textura da bala</param>
+        /// <param name="direccao">Direção do ecrã em que a bala se move</param>
+        /// <param name="origemBala">Entidade que disparou a bala</param>
+        /// <param name="direccaobala">Tipo de bala - frente, cima, baixo</param>
+        /// <param name="parent">Turret que originou a bala</param>
         public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala, Defence parent=null)
             : base(contents, assetName)
         {
@@ -90,11 +126,13 @@ namespace TDJ_ProjectoFinal{
         //            At(new Vector2(position.X, position.Y - 0.1f)));
         //    }
         //}
+
+
         /// <summary>
         /// Update da classe "Bala"
         /// Este método atualiza a posição da bala assim como a sua velocidade.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Instância de GameTime</param>
         public override void Update(GameTime gameTime)
 
         {
