@@ -17,13 +17,37 @@ namespace TDJ_ProjectoFinal
     /// </summary>
     public enum GameState
     {
+        /// <summary>
+        /// Menu inicial
+        /// </summary>
         Menu,
+        /// <summary>
+        /// 1º animação
+        /// </summary>
         Bridge0,
+        /// <summary>
+        /// Nível 1
+        /// </summary>
         Nivel1,
+        /// <summary>
+        /// 2º animação
+        /// </summary>
         Bridge1,
+        /// <summary>
+        /// Nivel 2
+        /// </summary>
         Nivel2,
+        /// <summary>
+        /// 3ª animação
+        /// </summary>
         Bridge2,
+        /// <summary>
+        /// Nivel 3
+        /// </summary>
         Nivel3,
+        /// <summary>
+        /// Animação final
+        /// </summary>
         End
     }
 
@@ -38,6 +62,9 @@ namespace TDJ_ProjectoFinal
         SpriteBatch spriteBatch;
         Scene scene,scene2,scene3;
         Player player;
+        /// <summary>
+        /// Instância de Random partilhada por todo o jogo
+        /// </summary>
         public static Random random;
         bool novopowerup = false;
         float timer;
@@ -53,6 +80,10 @@ namespace TDJ_ProjectoFinal
         bool RestartReady = false;
         int endTimer = 0;
         bool endTimerBool = false;
+
+        /// <summary>
+        /// Construtor do jogo
+        /// </summary>
         public Game1()
             : base()
         {
@@ -63,6 +94,9 @@ namespace TDJ_ProjectoFinal
             
         }
 
+        /// <summary>
+        /// Inicializa o jogo
+        /// </summary>
         protected override void Initialize()
         {
 
@@ -78,7 +112,9 @@ namespace TDJ_ProjectoFinal
             base.Initialize();
         }
 
-       
+       /// <summary>
+       /// Carrega os assets do jogo e o estado inicial
+       /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -375,7 +411,9 @@ namespace TDJ_ProjectoFinal
         }
 
             
-
+        /// <summary>
+        /// Descarrega os assets e recursos utilizados pelo jogo
+        /// </summary>
         protected override void UnloadContent()
         {
             
