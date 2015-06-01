@@ -9,6 +9,9 @@ using TDJ_ProjectoFinal.entidades;
 
 namespace TDJ_ProjectoFinal.graficos
 {
+    /// <summary>
+    /// Descreve uma sprite
+    /// </summary>
     public class Sprite
     {
         /// <summary>
@@ -43,16 +46,28 @@ namespace TDJ_ProjectoFinal.graficos
         /// 
         /// </summary>
         public Vector2 pixelsize;
+        /// <summary>
+        /// Rectângulo de source da imagem
+        /// </summary>
         protected Rectangle? source = null;
+        /// <summary>
+        /// Array de cores
+        /// </summary>
         protected Color[] pixels;
+        /// <summary>
+        /// Instância de ContentManager
+        /// </summary>
         protected ContentManager cManager;
 
+        /// <summary>
+        /// Instância de SpriteEffects
+        /// </summary>
         public SpriteEffects spriteEffects;
         /// <summary>
         /// Construtor da classe Sprite
         /// </summary>
-        /// <param name="contents"></param>
-        /// <param name="assetName"></param>
+        /// <param name="contents">Instância de ContentManager</param>
+        /// <param name="assetName">Textura</param>
         public Sprite(ContentManager contents, String assetName)
         {
             this.cManager = contents;
@@ -65,8 +80,12 @@ namespace TDJ_ProjectoFinal.graficos
             this.spriteEffects = SpriteEffects.None;
         }
 
-        // Se houver colisao, collisionPoint é o ponto de colisão
-        // se não houver, collisionPoint deve ser ignorado!
+        /// <summary>
+        /// Verifica a existência de colisões entre esta sprite e outra
+        /// </summary>
+        /// <param name="other">Sprite com a qual é necessário verificar a colisão</param>
+        /// <param name="collisionPoint">Ponto de colisão</param>
+        /// <returns>True se houve colisão</returns>
         public bool CollidesWith(Sprite other, out Vector2 collisionPoint)
         {
             collisionPoint = position; // Calar o compilador
@@ -93,6 +112,12 @@ namespace TDJ_ProjectoFinal.graficos
             image.GetData<Color>(pixels);
         }
 
+        /// <summary>
+        /// Devolve a cor de um determinado pixel / posição
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public Color GetColorAt(int x, int y)
         {
             // Se nao houver collider, da erro!!!
@@ -120,6 +145,12 @@ namespace TDJ_ProjectoFinal.graficos
             return new Vector2(i, j);
         }
 
+        /// <summary>
+        /// Indica se existe colisão entre dois pixeis
+        /// </summary>
+        /// <param name="other">Sprite contra a qual será verificada a colisão</param>
+        /// <param name="collisionPoint">Ponto da colisão</param>
+        /// <returns>True caso exista colisão entre dois pixeis</returns>
         public bool PixelTouches(Sprite other, out Vector2 collisionPoint)
         {
             // Se nao houver colisao, o ponto de colisao retornado e'
@@ -173,6 +204,11 @@ namespace TDJ_ProjectoFinal.graficos
         {
             this.scene = s;
         }
+        /// <summary>
+        /// Escala a sprite
+        /// </summary>
+        /// <param name="scale">Valor de escala</param>
+        /// <returns>Sprite escalada</returns>
         public Sprite Scl(float scale)
         {
             
@@ -182,6 +218,10 @@ namespace TDJ_ProjectoFinal.graficos
         }
 
 
+        /// <summary>
+        /// Desenha esta sprite
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public virtual void Draw(GameTime gameTime)
         {
             Rectangle pos = Camera.WorldSize2PixelRectangle(this.position, this.size);
@@ -191,18 +231,32 @@ namespace TDJ_ProjectoFinal.graficos
                 spriteEffects, 0);
         }
 
+        /// <summary>
+        /// Setter da rotação de uma sprite
+        /// </summary>
+        /// <param name="r">Valor da rotação</param>
         public virtual void SetRotation(float r)
         {
             this.rotation = r;
         }
 
+        /// <summary>
+        /// Atualiza o estado de uma sprite
+        /// </summary>
+        /// <param name="gameTime">Instância de gameTime</param>
         public virtual void Update(GameTime gameTime) { }
 
+        /// <summary>
+        /// Dispõe a sprite
+        /// </summary>
         public virtual void Dispose()
         {
             this.image.Dispose();
         }
 
+        /// <summary>
+        /// Destrói esta instância de sprite, retirando-a de todas as listas
+        /// </summary>
         public void Destroy()
         {
             if (this is Bala) WeaponsManager.removeBala((Bala)this);
@@ -211,10 +265,20 @@ namespace TDJ_ProjectoFinal.graficos
             this.scene.RemoveSprite(this);
         }
 
+        /// <summary>
+        /// Setter de posição da sprite
+        /// </summary>
+        /// <param name="position">Nova posição</param>
         public void SetPosition(Vector2 position)
         {
             this.position = position;
         }
+
+        /// <summary>
+        /// Coloca a sprite numa determinada posição e devolve a sprite
+        /// </summary>
+        /// <param name="p">Nova posição</param>
+        /// <returns>Sprite reposicionada</returns>
         public Sprite At(Vector2 p)
         {
             this.SetPosition(p);
