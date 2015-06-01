@@ -11,8 +11,9 @@ using TDJ_ProjectoFinal.graficos;
 namespace TDJ_ProjectoFinal
 
     /// <summary>
-    /// Atravez desta variavel, é nos possivel saber a direção de uma  bala
-    /// É atravez dela tambem que são criados os eefeitos de power up do jogador.
+    /// Atravéz desta variavel, é nos possivel saber a direção de uma  bala.
+    /// É atravéz dela tambem que são criados os efeitos de power up do jogador.
+    /// Em relação à sua origem, estas podem mover-se em frente a 0 graus, a +45graus ou a -45graus. 
     /// </summary>
 
     public enum DireccaoBala 
@@ -21,6 +22,15 @@ namespace TDJ_ProjectoFinal
         Cima,
         Baixo
     }
+
+    /// <summary>
+    /// Em todo jogo, a bala pode ter  quatro origens diferentes sendo elas:
+    ///     o jogador
+    ///     os inimigos comuns
+    ///     as defesas(segundo nivel)
+    ///     boss final
+    /// 
+    /// </summary>
     public enum OrigemBala
     {
         inimigo,
@@ -28,6 +38,12 @@ namespace TDJ_ProjectoFinal
         boss,
         defesa
     }
+   /// <summary>
+   /// A classe "Bala", como o nome indica, é responsável por todas as balas no jogo, sejam elas do player, inimigo ou defesas.
+   /// É composta por um construtor e por dois métodos sendo eles o método "Update" e método "BulletColision"
+   /// Esta classe herda caracteristicas de outra classe, FlyingEntity.
+   /// 
+   /// </summary>
     public class Bala : FlyingEntity
     {
        
@@ -37,7 +53,17 @@ namespace TDJ_ProjectoFinal
         public Vector2 direction;
         public Defence parent;
         
-
+        /// <summary>
+        ///Construtor da classe "Bala".
+        ///É responsavável por todas as variáveis que definem uma bala
+        /// 
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="assetName"></param>
+        /// <param name="direccao"></param>
+        /// <param name="origemBala"></param>
+        /// <param name="direccaobala"></param>
+        /// <param name="parent"></param>
         public Bala(ContentManager contents, string assetName, int direccao, OrigemBala origemBala, DireccaoBala direccaobala, Defence parent=null)
             : base(contents, assetName)
         {
@@ -64,6 +90,11 @@ namespace TDJ_ProjectoFinal
         //            At(new Vector2(position.X, position.Y - 0.1f)));
         //    }
         //}
+        /// <summary>
+        /// Update da classe "Bala"
+        /// Este método atualiza a posição da bala assim como a sua velocidade.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
 
         {
@@ -145,6 +176,10 @@ namespace TDJ_ProjectoFinal
             
    
         }
+        /// <summary>
+        /// Método "BulletColision" passa por parametro a cena em que a bala está assim como a sua origem.
+        /// Desta forma, verificamos se a bala colidiu com alguma sprite do jogo.
+        /// </summary>
 
         private void BulletColision()
         {
