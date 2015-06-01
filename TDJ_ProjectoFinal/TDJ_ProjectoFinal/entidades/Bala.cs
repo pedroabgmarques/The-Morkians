@@ -9,7 +9,11 @@ using TDJ_ProjectoFinal.entidades;
 using TDJ_ProjectoFinal.graficos;
 
 namespace TDJ_ProjectoFinal
-{
+
+    /// <summary>
+    /// Atravez desta variavel, é nos possivel saber a direção de uma  bala
+    /// É atravez dela tambem que são criados os eefeitos de power up do jogador.
+    /// </summary>
 
     public enum DireccaoBala 
     {
