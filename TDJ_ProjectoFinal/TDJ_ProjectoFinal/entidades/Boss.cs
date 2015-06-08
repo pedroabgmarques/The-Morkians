@@ -44,7 +44,7 @@ namespace TDJ_ProjectoFinal.entidades
             this.position.X = Camera.worldWidth;
             this.EnableCollisions();
             this.contador = 0;
-            this.Vida = 700;
+            this.Vida = 500;
             this.shootTime = 7f / Camera.velocidadegeral;
         }
 

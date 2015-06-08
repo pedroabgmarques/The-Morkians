@@ -193,6 +193,8 @@ namespace TDJ_ProjectoFinal
                     Cena.AddTexto("They are Earth's only hope! ", new Vector2(280, 400));
                     Cena.AddTexto("FIM - ESTE NÃO APARECE ", new Vector2(0, 0));
 
+                    
+
                     som.playMusicaBridge0();
                     
                     break;
