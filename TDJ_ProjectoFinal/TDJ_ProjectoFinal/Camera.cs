@@ -21,7 +21,7 @@ namespace TDJ_ProjectoFinal
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
             Camera.gDevManager = gdm;
-            Camera.velocidadegeral = 0.007f;
+            Camera.velocidadegeral = 0.003f;
             Camera.speed = Camera.velocidadegeral;
         }
 

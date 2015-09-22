@@ -122,14 +122,14 @@ namespace TDJ_ProjectoFinal.entidades
             //Guarda o estado do teclado
             currentKeyboardState = Keyboard.GetState();
             //Se pressionado esquerda
-            if (currentKeyboardState.IsKeyDown(Keys.A)) 
+            if (currentKeyboardState.IsKeyDown(Keys.Left)) 
             {
                 if(this.position.X - this.size.X / 2 > Camera.GetTarget().X - Camera.worldWidth / 2)
                     this.position.X -= speed;
 
             }
             //Se pressionado cima
-            if (currentKeyboardState.IsKeyDown(Keys.W)) 
+            if (currentKeyboardState.IsKeyDown(Keys.Up)) 
 
             {
                 if (this.position.Y + this.size.Y / 2 < Camera.GetTarget().Y + Camera.GetWorldHeight() / 2)
@@ -137,26 +137,26 @@ namespace TDJ_ProjectoFinal.entidades
 
             }
             //Se pressionado baixo
-            if (currentKeyboardState.IsKeyDown(Keys.S)) 
+            if (currentKeyboardState.IsKeyDown(Keys.Down)) 
             {
                 if (-this.position.Y + this.size.Y / 2 < Camera.GetTarget().Y + Camera.GetWorldHeight() / 2)
                     this.position.Y -= speed;
 
             }
             //Se pressioando direita
-            if (currentKeyboardState.IsKeyDown(Keys.D))
+            if (currentKeyboardState.IsKeyDown(Keys.Right))
             {
                 if (this.position.X + this.size.X / 2 < Camera.GetTarget().X + Camera.worldWidth / 2)
                     this.position.X += speed;
             }
             lastposition = this.position;
-            if (currentKeyboardState.IsKeyDown(Keys.Up))
+            if (currentKeyboardState.IsKeyDown(Keys.W))
             {
 
                 Camera.velocidadegeral += 0.00005f;
 
             }
-            if (currentKeyboardState.IsKeyDown(Keys.Down))
+            if (currentKeyboardState.IsKeyDown(Keys.S))
             {
                 if (Camera.velocidadegeral > 0f) 
                 { Camera.velocidadegeral -= 0.00005f; }
